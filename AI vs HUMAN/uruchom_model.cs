@@ -10,22 +10,22 @@ using System.Windows.Forms;
 
 namespace AI_vs_HUMAN
 {
-    public partial class test_obrazu : Form
+    public partial class uruchom_model : Form
     {
         private Size originalSize;
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
-        public test_obrazu()
+        public uruchom_model()
         {
             InitializeComponent();
-            this.Load += testLoad;
-            this.Resize += testResize;
+            this.Load += startLoad;
+            this.Resize += startResize;
         }
-        private void testLoad(object sender, EventArgs e)
+        private void startLoad(object sender, EventArgs e)
         {
             originalSize = this.Size;
             StoreOriginalBoundsRecursive(this);
         }
-        private void testResize(object sender, EventArgs E)
+        private void startResize(object sender, EventArgs E)
         {
             ResizeControlsRecursive(this);
         }
