@@ -64,5 +64,13 @@ namespace AI_vs_HUMAN
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            test_obrazu test_Obrazu = new test_obrazu();
+            test_Obrazu.ShowDialog();
+            this.Close();
+        }
     }
 }

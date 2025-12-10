@@ -29,74 +29,95 @@
         private void InitializeComponent()
         {
             this.challangeBitton = new System.Windows.Forms.Button();
-            this.checkButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.getPhotoButton = new System.Windows.Forms.Button();
+            this.pictureToCheck = new System.Windows.Forms.PictureBox();
+            this.photoPath = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.answerAIorNOT = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).BeginInit();
             this.SuspendLayout();
             // 
             // challangeBitton
             // 
-            this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.challangeBitton.Location = new System.Drawing.Point(447, 352);
+            this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.challangeBitton.Location = new System.Drawing.Point(1225, 902);
             this.challangeBitton.Name = "challangeBitton";
-            this.challangeBitton.Size = new System.Drawing.Size(280, 86);
+            this.challangeBitton.Size = new System.Drawing.Size(507, 147);
             this.challangeBitton.TabIndex = 0;
             this.challangeBitton.Text = "Mini gra, pojedynek z AI";
             this.challangeBitton.UseVisualStyleBackColor = true;
+            this.challangeBitton.Click += new System.EventHandler(this.challangeBitton_Click);
             // 
-            // checkButton
+            // getPhotoButton
             // 
-            this.checkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.checkButton.Location = new System.Drawing.Point(12, 352);
-            this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(429, 86);
-            this.checkButton.TabIndex = 1;
-            this.checkButton.Text = "Sprawdź czy ten obraz został wygenerowany przez AI";
-            this.checkButton.UseVisualStyleBackColor = true;
+            this.getPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40.25F);
+            this.getPhotoButton.Location = new System.Drawing.Point(12, 902);
+            this.getPhotoButton.Name = "getPhotoButton";
+            this.getPhotoButton.Size = new System.Drawing.Size(1207, 147);
+            this.getPhotoButton.TabIndex = 1;
+            this.getPhotoButton.Text = "Podaj obraz do sprawdzenia";
+            this.getPhotoButton.UseVisualStyleBackColor = true;
+            this.getPhotoButton.Click += new System.EventHandler(this.getPhotoButton_Click);
             // 
-            // pictureBox1
+            // pictureToCheck
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(497, 334);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pictureToCheck.Location = new System.Drawing.Point(12, 12);
+            this.pictureToCheck.Name = "pictureToCheck";
+            this.pictureToCheck.Size = new System.Drawing.Size(1207, 884);
+            this.pictureToCheck.TabIndex = 2;
+            this.pictureToCheck.TabStop = false;
             // 
-            // label1
+            // photoPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.label1.Location = new System.Drawing.Point(577, 119);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "WYNIK";
+            this.photoPath.FileName = "photoPath";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.button1.Location = new System.Drawing.Point(1225, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(507, 327);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "SPRAWDŹ!!!";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // answerAIorNOT
             // 
             this.answerAIorNOT.AutoSize = true;
-            this.answerAIorNOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.answerAIorNOT.Location = new System.Drawing.Point(515, 181);
+            this.answerAIorNOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.answerAIorNOT.Location = new System.Drawing.Point(1228, 526);
             this.answerAIorNOT.Name = "answerAIorNOT";
-            this.answerAIorNOT.Size = new System.Drawing.Size(216, 20);
+            this.answerAIorNOT.Size = new System.Drawing.Size(515, 46);
             this.answerAIorNOT.TabIndex = 4;
             this.answerAIorNOT.Text = "Nie wygenerowane przez AI";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.label1.Location = new System.Drawing.Point(1225, 342);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(204, 63);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "WYNIK";
             // 
             // test_obrazu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 450);
+            this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.answerAIorNOT);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.checkButton);
+            this.Controls.Add(this.pictureToCheck);
+            this.Controls.Add(this.getPhotoButton);
             this.Controls.Add(this.challangeBitton);
             this.Name = "test_obrazu";
             this.Text = "test_obrazu";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,9 +126,11 @@
         #endregion
 
         private System.Windows.Forms.Button challangeBitton;
-        private System.Windows.Forms.Button checkButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button getPhotoButton;
+        private System.Windows.Forms.PictureBox pictureToCheck;
+        private System.Windows.Forms.OpenFileDialog photoPath;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label answerAIorNOT;
+        private System.Windows.Forms.Label label1;
     }
 }

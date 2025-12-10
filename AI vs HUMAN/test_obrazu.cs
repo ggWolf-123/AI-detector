@@ -28,6 +28,10 @@ namespace AI_vs_HUMAN
         private void testResize(object sender, EventArgs E)
         {
             ResizeControlsRecursive(this);
+            //float scaleX = ((float)this.Width / originalSize.Width);
+            //float scaleY = ((float)this.Height / originalSize.Height);
+            //this.Scale(new SizeF(scaleX, scaleY));
+            //originalSize = this.Size;
         }
         private void StoreOriginalBoundsRecursive(Control parent)
         {
@@ -64,5 +68,48 @@ namespace AI_vs_HUMAN
                 }
             }
         }
+
+        private void challangeBitton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            mini_gra form_mini_gry = new mini_gra();
+            form_mini_gry.ShowDialog();
+            this.Close();
+        }
+
+        private void getPhotoButton_Click(object sender, EventArgs e)
+        {
+            photoPath.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            photoPath.Title = "Wybierz zdjęcie";
+            if (photoPath.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Image img = Image.FromFile(photoPath.FileName);
+                    pictureToCheck.Image = img;
+                    pictureToCheck.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd podczas ładowania zdjęcia");
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Image img = Image.FromFile(photoPath.FileName);
+                pictureToCheck.Image = img;
+                pictureToCheck.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nie podano zdjęcia.");
+                return;
+            }
+        }
+
     }
 }

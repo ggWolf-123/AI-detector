@@ -16,6 +16,7 @@ namespace AI_vs_HUMAN
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         public uruchom_model()
         {
+            this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
             this.Load += startLoad;
             this.Resize += startResize;
@@ -63,6 +64,14 @@ namespace AI_vs_HUMAN
                     ResizeControlsRecursive(ctrl);
                 }
             }
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            test_obrazu test_Obrazu = new test_obrazu();
+            test_Obrazu.ShowDialog();
+            this.Close();
         }
     }
 }
