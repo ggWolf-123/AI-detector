@@ -167,11 +167,11 @@ namespace AI_vs_HUMAN
         {
             int rightAnswers = -1;
             string diretoryOfImage = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(imagePath));
-            if (diretoryOfImage == "AI_val")
+            if (diretoryOfImage == "AI")
             {
                 rightAnswers = 1;
             }
-            else if (diretoryOfImage == "HUMAN_val")
+            else if (diretoryOfImage == "HUMAN")
             {
                 rightAnswers = 0;
             }

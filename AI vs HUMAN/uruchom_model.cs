@@ -98,11 +98,11 @@ namespace AI_vs_HUMAN
                 }            }
             catch { }// Server is not running, proceed to start it
             fastApiProcess = new Process();
-            fastApiProcess.StartInfo.FileName = "cmd.exe";
+            fastApiProcess.StartInfo.FileName = "uvicorn";
             string fastApiPath = Path.Combine(Application.StartupPath, @"..\..\fastapi_model");
             fastApiPath = Path.GetFullPath(fastApiPath);
+            fastApiProcess.StartInfo.Arguments = "test_zdjecie_api:app --host 0.0.0.0 --port 8000";
             fastApiProcess.StartInfo.WorkingDirectory = fastApiPath;
-            fastApiProcess.StartInfo.Arguments = "/C uvicorn test_zdjecie_api:app --host 0.0.0.0 --port 8000";
             fastApiProcess.StartInfo.CreateNoWindow = true;
             fastApiProcess.StartInfo.UseShellExecute = false;
             fastApiProcess.Start();
@@ -132,8 +132,20 @@ namespace AI_vs_HUMAN
         {
             if (fastApiProcess != null && !fastApiProcess.HasExited)
             {
-                fastApiProcess.Kill();
-                fastApiProcess.Dispose();
+                try
+                {
+                    fastApiProcess.CloseMainWindow();
+                    fastApiProcess.WaitForExit(2000);
+                    if (!fastApiProcess.HasExited)
+                    {
+                        fastApiProcess.Kill();
+                    }
+                }
+                catch { }
+                finally
+                {
+                    fastApiProcess.Dispose();
+                }
             }
             base.OnFormClosing(e);
         }
