@@ -4,9 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -98,6 +99,9 @@ namespace AI_vs_HUMAN
             catch { }// Server is not running, proceed to start it
             fastApiProcess = new Process();
             fastApiProcess.StartInfo.FileName = "cmd.exe";
+            string fastApiPath = Path.Combine(Application.StartupPath, @"..\..\fastapi_model");
+            fastApiPath = Path.GetFullPath(fastApiPath);
+            fastApiProcess.StartInfo.WorkingDirectory = fastApiPath;
             fastApiProcess.StartInfo.Arguments = "/C uvicorn test_zdjecie_api:app --host 0.0.0.0 --port 8000";
             fastApiProcess.StartInfo.CreateNoWindow = true;
             fastApiProcess.StartInfo.UseShellExecute = false;

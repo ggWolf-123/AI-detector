@@ -30,7 +30,7 @@
         {
             this.yesButton = new System.Windows.Forms.Button();
             this.noButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.randomPhoto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,8 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.aiRight = new System.Windows.Forms.Label();
             this.aiWrong = new System.Windows.Forms.Label();
-            this.restart = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.restartButton = new System.Windows.Forms.Button();
+            this.startGameButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // yesButton
@@ -52,6 +53,7 @@
             this.yesButton.TabIndex = 0;
             this.yesButton.Text = "TAK";
             this.yesButton.UseVisualStyleBackColor = true;
+            this.yesButton.Click += new System.EventHandler(this.yesButton_Click);
             // 
             // noButton
             // 
@@ -62,14 +64,15 @@
             this.noButton.TabIndex = 1;
             this.noButton.Text = "NIE";
             this.noButton.UseVisualStyleBackColor = true;
+            this.noButton.Click += new System.EventHandler(this.noButton_Click);
             // 
-            // pictureBox1
+            // randomPhoto
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 102);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1088, 831);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.randomPhoto.Location = new System.Drawing.Point(12, 102);
+            this.randomPhoto.Name = "randomPhoto";
+            this.randomPhoto.Size = new System.Drawing.Size(1088, 831);
+            this.randomPhoto.TabIndex = 2;
+            this.randomPhoto.TabStop = false;
             // 
             // label1
             // 
@@ -109,9 +112,9 @@
             this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.youRight.Location = new System.Drawing.Point(1106, 240);
             this.youRight.Name = "youRight";
-            this.youRight.Size = new System.Drawing.Size(345, 47);
+            this.youRight.Size = new System.Drawing.Size(368, 47);
             this.youRight.TabIndex = 6;
-            this.youRight.Text = "Miałeś/-aś rację : ";
+            this.youRight.Text = "Miałeś/-aś rację : 0";
             // 
             // youWrong
             // 
@@ -119,9 +122,9 @@
             this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.youWrong.Location = new System.Drawing.Point(1106, 316);
             this.youWrong.Name = "youWrong";
-            this.youWrong.Size = new System.Drawing.Size(365, 47);
+            this.youWrong.Size = new System.Drawing.Size(388, 47);
             this.youWrong.TabIndex = 7;
-            this.youWrong.Text = "Pomyliłeś/-łaś się: ";
+            this.youWrong.Text = "Pomyliłeś/-łaś się: 0";
             // 
             // label3
             // 
@@ -139,9 +142,9 @@
             this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.aiRight.Location = new System.Drawing.Point(1106, 588);
             this.aiRight.Name = "aiRight";
-            this.aiRight.Size = new System.Drawing.Size(293, 47);
+            this.aiRight.Size = new System.Drawing.Size(327, 47);
             this.aiRight.TabIndex = 9;
-            this.aiRight.Text = "AI miało rację: ";
+            this.aiRight.Text = "AI miało rację:  0";
             // 
             // aiWrong
             // 
@@ -149,20 +152,32 @@
             this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.aiWrong.Location = new System.Drawing.Point(1106, 668);
             this.aiWrong.Name = "aiWrong";
-            this.aiWrong.Size = new System.Drawing.Size(310, 47);
+            this.aiWrong.Size = new System.Drawing.Size(333, 47);
             this.aiWrong.TabIndex = 10;
-            this.aiWrong.Text = "AI pomyliło się: ";
+            this.aiWrong.Text = "AI pomyliło się: 0";
             // 
-            // restart
+            // restartButton
             // 
-            this.restart.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.restart.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.restart.Location = new System.Drawing.Point(1106, 780);
-            this.restart.Name = "restart";
-            this.restart.Size = new System.Drawing.Size(310, 153);
-            this.restart.TabIndex = 11;
-            this.restart.Text = "Reset";
-            this.restart.UseVisualStyleBackColor = true;
+            this.restartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.restartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.restartButton.Location = new System.Drawing.Point(1106, 780);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(310, 153);
+            this.restartButton.TabIndex = 11;
+            this.restartButton.Text = "Reset";
+            this.restartButton.UseVisualStyleBackColor = true;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
+            // 
+            // startGameButton
+            // 
+            this.startGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
+            this.startGameButton.Location = new System.Drawing.Point(94, 428);
+            this.startGameButton.Name = "startGameButton";
+            this.startGameButton.Size = new System.Drawing.Size(860, 110);
+            this.startGameButton.TabIndex = 12;
+            this.startGameButton.Text = "Zacznij grę";
+            this.startGameButton.UseVisualStyleBackColor = true;
+            this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
             // mini_gra
             // 
@@ -171,7 +186,7 @@
             this.ClientSize = new System.Drawing.Size(1744, 1061);
             this.Controls.Add(this.noButton);
             this.Controls.Add(this.yesButton);
-            this.Controls.Add(this.restart);
+            this.Controls.Add(this.restartButton);
             this.Controls.Add(this.aiWrong);
             this.Controls.Add(this.aiRight);
             this.Controls.Add(this.label3);
@@ -180,10 +195,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.startGameButton);
+            this.Controls.Add(this.randomPhoto);
             this.Name = "mini_gra";
             this.Text = "mini_gra";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,7 +209,7 @@
 
         private System.Windows.Forms.Button yesButton;
         private System.Windows.Forms.Button noButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox randomPhoto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
@@ -202,6 +218,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label aiRight;
         private System.Windows.Forms.Label aiWrong;
-        private System.Windows.Forms.Button restart;
+        private System.Windows.Forms.Button restartButton;
+        private System.Windows.Forms.Button startGameButton;
     }
 }
