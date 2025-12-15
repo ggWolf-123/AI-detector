@@ -5,7 +5,7 @@ import io
 from PIL import Image
 from fastapi import FastAPI, UploadFile, File
 
-MODEL_PATH="model_0.7916666666666666.pth"
+MODEL_PATH="model_pokaz_rozpoznawanie_AI_obraz.pth"
 DEVICE=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 app=FastAPI()
 
