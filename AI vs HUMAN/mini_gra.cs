@@ -139,7 +139,7 @@ namespace AI_vs_HUMAN
             {
                 isGameActive = true;
                 gameTimer.Stop();
-                timeLeft = 10;
+                timeLeft = 60;
                 timeLabel.Text = "Czas: 60s";
                 gameTimer.Start();
                 endlessModeButton.Enabled = false;
@@ -160,7 +160,7 @@ namespace AI_vs_HUMAN
             {
                 isGameActive = true;
                 gameTimer.Stop();
-                timeLeft = 10;
+                timeLeft = 60;
                 timeLabel.Text = "Czas: 60s";
                 gameTimer.Start();
                 endlessModeButton.Enabled = false;
