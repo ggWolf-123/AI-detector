@@ -24,6 +24,11 @@ namespace AI_vs_HUMAN
         private int wrongHumanAnswers = 0;
         private int rightAiAnswers = 0;
         private int wrongAiAnswers = 0;
+        private int timeLeft = 60;
+        private int points = 0;
+        private System.Windows.Forms.Timer gameTimer;
+        private bool isGameActive = false;
+        private bool endlessMode = false;
         public mini_gra()
         {
             InitializeComponent();
@@ -39,6 +44,10 @@ namespace AI_vs_HUMAN
         {
             originalSize = this.Size;
             StoreOriginalBoundsRecursive(this);
+            gameTimer = new System.Windows.Forms.Timer();
+            gameTimer.Interval = 1000;
+            gameTimer.Tick += GameTimerTick;
+            timeLabel.Text = "Czas: 60s";
         }
         private void miniGameResize(object sender, EventArgs E)
         {
@@ -90,7 +99,7 @@ namespace AI_vs_HUMAN
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
-            using(FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
                 folderDialog.Description = "Wybierz główny folder z obrazami";
                 folderDialog.ShowNewFolderButton = false;
@@ -104,7 +113,7 @@ namespace AI_vs_HUMAN
                                        file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
                         .ToArray();
-                    if(allImages.Length==0)
+                    if (allImages.Length == 0)
                     {
                         MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów.");
                         return;
@@ -126,6 +135,15 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
             }
+            if (!isGameActive && !endlessMode)
+            {
+                isGameActive = true;
+                gameTimer.Stop();
+                timeLeft = 10;
+                timeLabel.Text = "Czas: 60s";
+                gameTimer.Start();
+                endlessModeButton.Enabled = false;
+            }
             result_from_model = await SendImageToModel(selectdImagePath);
             int answerHuman = 0;
             liderBoard(selectdImagePath, result_from_model, answerHuman);
@@ -133,10 +151,19 @@ namespace AI_vs_HUMAN
 
         private async void yesButton_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(selectdImagePath))
+            if (string.IsNullOrEmpty(selectdImagePath))
             {
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
+            }
+            if (!isGameActive && !endlessMode)
+            {
+                isGameActive = true;
+                gameTimer.Stop();
+                timeLeft = 10;
+                timeLabel.Text = "Czas: 60s";
+                gameTimer.Start();
+                endlessModeButton.Enabled = false;
             }
             result_from_model = await SendImageToModel(selectdImagePath);
             int answerHuman = 1;
@@ -150,20 +177,7 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
             }
-            rightHumanAnswers = 0;
-            youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
-            wrongHumanAnswers = 0;
-            youWrong.Text = "Pomyliłeś/-łaś się: "+wrongHumanAnswers;
-            rightAiAnswers = 0;
-            aiRight.Text = "AI miało rację : " + rightAiAnswers;
-            wrongAiAnswers = 0;
-            aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
-            Random rnd = new Random();
-            selectdImagePath = allImages[rnd.Next(allImages.Length)];
-            randomPhoto.Image = Image.FromFile(selectdImagePath);
-            randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
-            previousAnswer.Text = "";
-            previousTitle.Text = "";
+            ResetGameLogic();
         }
         private void liderBoard(string imagePath, int answerAI, int answerHuman)
         {
@@ -180,17 +194,19 @@ namespace AI_vs_HUMAN
                 rightAnswers = 0;
                 previousAnswer.Text = "nie była wygenerowana przez AI";
             }
-            if (rightAnswers==answerHuman)
+            if (rightAnswers == answerHuman)
             {
                 rightHumanAnswers++;
-                youRight.Text = "Miałeś/-aś rację : "+rightHumanAnswers;
+                youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
+                points++;
             }
             else
             {
                 wrongHumanAnswers++;
-                youWrong.Text = "Pomyliłeś/-łaś się: "+wrongHumanAnswers;
+                youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
+                points--;
             }
-            if (rightAnswers==answerAI)
+            if (rightAnswers == answerAI)
             {
                 rightAiAnswers++;
                 aiRight.Text = "AI miało rację : " + rightAiAnswers;
@@ -199,6 +215,10 @@ namespace AI_vs_HUMAN
             {
                 wrongAiAnswers++;
                 aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+                if (rightAnswers == answerHuman) 
+                {
+                    points += 3;
+                }
             }
             Random rnd = new Random();
             selectdImagePath = allImages[rnd.Next(allImages.Length)];
@@ -232,6 +252,62 @@ namespace AI_vs_HUMAN
                     }
                 }
             }
+        }
+        private void GameTimerTick(object sender, EventArgs e)
+        {
+            timeLeft--;
+            int minutes = timeLeft / 60;
+            int seconds = timeLeft % 60;
+            timeLabel.Text = $"{minutes:D2}:{seconds:D2}";
+            if (timeLeft <= 0)
+            {
+                gameTimer.Stop();
+                yesButton.Enabled = false;
+                noButton.Enabled = false;
+                MessageBox.Show($"Koniec gry! Twój czas minął. Zdobyłeś tyle punktów {points}");
+                ResetGameLogic();
+                zapis_wyników zapisWynikówForm = new zapis_wyników(points);
+                zapisWynikówForm.ShowDialog();
+            }
+        }
+        private void ResetGameLogic()
+        {
+            isGameActive = false;
+            gameTimer.Stop();
+            timeLeft = 60;
+            timeLabel.Text = "Czas: 60s";
+            yesButton.Enabled = true;
+            noButton.Enabled = true;
+            rightHumanAnswers = 0;
+            youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
+            wrongHumanAnswers = 0;
+            youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
+            rightAiAnswers = 0;
+            aiRight.Text = "AI miało rację : " + rightAiAnswers;
+            wrongAiAnswers = 0;
+            aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+            Random rnd = new Random();
+            selectdImagePath = allImages[rnd.Next(allImages.Length)];
+            randomPhoto.Image = Image.FromFile(selectdImagePath);
+            randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+            previousAnswer.Text = "";
+            previousTitle.Text = "";
+            previousTitle.Text = "";
+            points = 0;
+            endlessModeButton.Enabled = true;
+            isGameActive = false;
+        }
+
+        private void endlessModeButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(selectdImagePath))
+            {
+                MessageBox.Show("Najpierw wybierz folder.");
+                return;
+            }
+            endlessMode =!endlessMode;
+            endlessModeButton.BackColor= endlessMode ? Color.LightGreen : SystemColors.Control;
+            ResetGameLogic();
         }
     }
 }

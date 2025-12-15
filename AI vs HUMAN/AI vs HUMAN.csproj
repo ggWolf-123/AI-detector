@@ -96,6 +96,12 @@
     <Compile Include="uruchom_model.Designer.cs">
       <DependentUpon>uruchom_model.cs</DependentUpon>
     </Compile>
+    <Compile Include="zapis_wyników.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="zapis_wyników.Designer.cs">
+      <DependentUpon>zapis_wyników.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="mini_gra.resx">
       <DependentUpon>mini_gra.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="uruchom_model.resx">
       <DependentUpon>uruchom_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="zapis_wyników.resx">
+      <DependentUpon>zapis_wyników.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="fastapi_model\model_0.7916666666666666.pth">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
