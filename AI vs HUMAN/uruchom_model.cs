@@ -76,6 +76,7 @@ namespace AI_vs_HUMAN
 
         private async void startButton_Click(object sender, EventArgs e)
         {
+            startButton.Enabled = false;
             await StartFastApiServer();
             this.Hide();
             test_obrazu test_Obrazu = new test_obrazu();
