@@ -41,6 +41,8 @@
             this.aiWrong = new System.Windows.Forms.Label();
             this.restartButton = new System.Windows.Forms.Button();
             this.startGameButton = new System.Windows.Forms.Button();
+            this.previousTitle = new System.Windows.Forms.Label();
+            this.previousAnswer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.label2.Location = new System.Drawing.Point(1106, 102);
+            this.label2.Location = new System.Drawing.Point(1264, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(357, 76);
             this.label2.TabIndex = 5;
@@ -110,7 +112,7 @@
             // 
             this.youRight.AutoSize = true;
             this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.youRight.Location = new System.Drawing.Point(1106, 240);
+            this.youRight.Location = new System.Drawing.Point(1253, 102);
             this.youRight.Name = "youRight";
             this.youRight.Size = new System.Drawing.Size(368, 47);
             this.youRight.TabIndex = 6;
@@ -120,7 +122,7 @@
             // 
             this.youWrong.AutoSize = true;
             this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.youWrong.Location = new System.Drawing.Point(1106, 316);
+            this.youWrong.Location = new System.Drawing.Point(1233, 168);
             this.youWrong.Name = "youWrong";
             this.youWrong.Size = new System.Drawing.Size(388, 47);
             this.youWrong.TabIndex = 7;
@@ -130,7 +132,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.label3.Location = new System.Drawing.Point(1106, 462);
+            this.label3.Location = new System.Drawing.Point(1285, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(296, 76);
             this.label3.TabIndex = 8;
@@ -140,7 +142,7 @@
             // 
             this.aiRight.AutoSize = true;
             this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.aiRight.Location = new System.Drawing.Point(1106, 588);
+            this.aiRight.Location = new System.Drawing.Point(1269, 334);
             this.aiRight.Name = "aiRight";
             this.aiRight.Size = new System.Drawing.Size(327, 47);
             this.aiRight.TabIndex = 9;
@@ -150,7 +152,7 @@
             // 
             this.aiWrong.AutoSize = true;
             this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.aiWrong.Location = new System.Drawing.Point(1106, 668);
+            this.aiWrong.Location = new System.Drawing.Point(1269, 397);
             this.aiWrong.Name = "aiWrong";
             this.aiWrong.Size = new System.Drawing.Size(333, 47);
             this.aiWrong.TabIndex = 10;
@@ -179,11 +181,31 @@
             this.startGameButton.UseVisualStyleBackColor = true;
             this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
+            // previousTitle
+            // 
+            this.previousTitle.AutoSize = true;
+            this.previousTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.previousTitle.Location = new System.Drawing.Point(1095, 502);
+            this.previousTitle.Name = "previousTitle";
+            this.previousTitle.Size = new System.Drawing.Size(0, 63);
+            this.previousTitle.TabIndex = 13;
+            // 
+            // previousAnswer
+            // 
+            this.previousAnswer.AutoSize = true;
+            this.previousAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
+            this.previousAnswer.Location = new System.Drawing.Point(1126, 606);
+            this.previousAnswer.Name = "previousAnswer";
+            this.previousAnswer.Size = new System.Drawing.Size(0, 47);
+            this.previousAnswer.TabIndex = 14;
+            // 
             // mini_gra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.Controls.Add(this.previousAnswer);
+            this.Controls.Add(this.previousTitle);
             this.Controls.Add(this.noButton);
             this.Controls.Add(this.yesButton);
             this.Controls.Add(this.restartButton);
@@ -220,5 +242,7 @@
         private System.Windows.Forms.Label aiWrong;
         private System.Windows.Forms.Button restartButton;
         private System.Windows.Forms.Button startGameButton;
+        private System.Windows.Forms.Label previousTitle;
+        private System.Windows.Forms.Label previousAnswer;
     }
 }

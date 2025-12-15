@@ -162,18 +162,23 @@ namespace AI_vs_HUMAN
             selectdImagePath = allImages[rnd.Next(allImages.Length)];
             randomPhoto.Image = Image.FromFile(selectdImagePath);
             randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+            previousAnswer.Text = "";
+            previousTitle.Text = "";
         }
         private void liderBoard(string imagePath, int answerAI, int answerHuman)
         {
             int rightAnswers = -1;
             string diretoryOfImage = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(imagePath));
+            previousTitle.Text = "Poprzednie zdjęcie/grafika";
             if (diretoryOfImage == "AI")
             {
                 rightAnswers = 1;
+                previousAnswer.Text = "była wygenerowana przez AI";
             }
             else if (diretoryOfImage == "HUMAN")
             {
                 rightAnswers = 0;
+                previousAnswer.Text = "nie była wygenerowana przez AI";
             }
             if (rightAnswers==answerHuman)
             {
