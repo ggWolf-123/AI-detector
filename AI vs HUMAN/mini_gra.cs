@@ -29,6 +29,7 @@ namespace AI_vs_HUMAN
         private System.Windows.Forms.Timer gameTimer;
         private bool isGameActive = false;
         private bool endlessMode = false;
+
         public mini_gra()
         {
             InitializeComponent();
@@ -40,6 +41,20 @@ namespace AI_vs_HUMAN
             this.Load += miniGameLoad;
             this.Resize += miniGameResize;
         }
+        private void miniGameKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!isGameActive || string.IsNullOrEmpty(selectdImagePath)) return;
+
+            if (e.KeyCode == Keys.Right)  // Prawa strzałka (yesButton)
+            {
+                yesButton.PerformClick();  // Symuluje kliknięcie przycisku 'yesButton'
+            }
+            else if (e.KeyCode == Keys.Left)  // Lewa strzałka (noButton)
+            {
+                noButton.PerformClick();  // Symuluje kliknięcie przycisku 'noButton'
+            }
+        }
+
         private void miniGameLoad(object sender, EventArgs e)
         {
             originalSize = this.Size;
@@ -215,7 +230,7 @@ namespace AI_vs_HUMAN
             {
                 wrongAiAnswers++;
                 aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
-                if (rightAnswers == answerHuman) 
+                if (rightAnswers == answerHuman)
                 {
                     points += 3;
                 }
@@ -265,9 +280,9 @@ namespace AI_vs_HUMAN
                 yesButton.Enabled = false;
                 noButton.Enabled = false;
                 MessageBox.Show($"Koniec gry! Twój czas minął. Zdobyłeś tyle punktów {points}");
-                ResetGameLogic();
                 zapis_wyników zapisWynikówForm = new zapis_wyników(points);
                 zapisWynikówForm.ShowDialog();
+                ResetGameLogic();
             }
         }
         private void ResetGameLogic()
@@ -305,9 +320,13 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw wybierz folder.");
                 return;
             }
-            endlessMode =!endlessMode;
-            endlessModeButton.BackColor= endlessMode ? Color.LightGreen : SystemColors.Control;
+            endlessMode = !endlessMode;
+            endlessModeButton.BackColor = endlessMode ? Color.LightGreen : SystemColors.Control;
             ResetGameLogic();
+            if (endlessMode == true)
+            {
+                timeLabel.Text = "Czas: nieskończony";
+            }
         }
     }
 }

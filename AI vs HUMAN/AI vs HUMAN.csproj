@@ -123,7 +123,7 @@
     <EmbeddedResource Include="zapis_wyników.resx">
       <DependentUpon>zapis_wyników.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="fastapi_model\model_pokaz_rozpoznawanie_AI_obraz.pth">
+    <None Include="fastapi_model\model_0.9971100508165561.pth">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
