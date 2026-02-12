@@ -24,9 +24,9 @@ def load_model():
 	model=model.to(DEVICE)
 	model.eval()
 	return model
-print("Ładowanie modelu...")
+#print("Ładowanie modelu...")
 model=load_model()
-print("Model załadowany")
+#print("Model załadowany")
 @app.post("/predict")
 async def predict(file:UploadFile=File(...)):
 	try:

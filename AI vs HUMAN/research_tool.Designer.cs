@@ -1,6 +1,6 @@
 ﻿namespace AI_vs_HUMAN
 {
-    partial class mini_gra
+    partial class research_tool
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,12 @@
             this.yesButton = new System.Windows.Forms.Button();
             this.noButton = new System.Windows.Forms.Button();
             this.randomPhoto = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.questionMG = new System.Windows.Forms.Label();
+            this.endButton = new System.Windows.Forms.Button();
+            this.humanScore = new System.Windows.Forms.Label();
             this.youRight = new System.Windows.Forms.Label();
             this.youWrong = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.aiScore = new System.Windows.Forms.Label();
             this.aiRight = new System.Windows.Forms.Label();
             this.aiWrong = new System.Windows.Forms.Label();
             this.restartButton = new System.Windows.Forms.Button();
@@ -45,6 +45,7 @@
             this.previousAnswer = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.endlessModeButton = new System.Windows.Forms.Button();
+            this.changeLang = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,37 +79,37 @@
             this.randomPhoto.TabIndex = 2;
             this.randomPhoto.TabStop = false;
             // 
-            // label1
+            // questionMG
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.label1.Location = new System.Drawing.Point(12, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(891, 47);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Czy ta grafika została wygenerowana przez AI?";
+            this.questionMG.AutoSize = true;
+            this.questionMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
+            this.questionMG.Location = new System.Drawing.Point(12, 27);
+            this.questionMG.Name = "questionMG";
+            this.questionMG.Size = new System.Drawing.Size(891, 47);
+            this.questionMG.TabIndex = 3;
+            this.questionMG.Text = "Czy ta grafika została wygenerowana przez AI?";
             // 
-            // button1
+            // endButton
             // 
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.button1.Location = new System.Drawing.Point(1422, 780);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(310, 153);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Koniec, wróć";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.endButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.endButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
+            this.endButton.Location = new System.Drawing.Point(1422, 780);
+            this.endButton.Name = "endButton";
+            this.endButton.Size = new System.Drawing.Size(310, 153);
+            this.endButton.TabIndex = 4;
+            this.endButton.Text = "Koniec, wróć";
+            this.endButton.UseVisualStyleBackColor = true;
+            this.endButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
+            // humanScore
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.label2.Location = new System.Drawing.Point(1264, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(357, 76);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Twój wynik";
+            this.humanScore.AutoSize = true;
+            this.humanScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
+            this.humanScore.Location = new System.Drawing.Point(1264, 9);
+            this.humanScore.Name = "humanScore";
+            this.humanScore.Size = new System.Drawing.Size(357, 76);
+            this.humanScore.TabIndex = 5;
+            this.humanScore.Text = "Twój wynik";
             // 
             // youRight
             // 
@@ -130,15 +131,15 @@
             this.youWrong.TabIndex = 7;
             this.youWrong.Text = "Pomyliłeś/-łaś się: 0";
             // 
-            // label3
+            // aiScore
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.label3.Location = new System.Drawing.Point(1285, 244);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(296, 76);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Wynik AI";
+            this.aiScore.AutoSize = true;
+            this.aiScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
+            this.aiScore.Location = new System.Drawing.Point(1285, 244);
+            this.aiScore.Name = "aiScore";
+            this.aiScore.Size = new System.Drawing.Size(296, 76);
+            this.aiScore.TabIndex = 8;
+            this.aiScore.Text = "Wynik AI";
             // 
             // aiRight
             // 
@@ -213,19 +214,30 @@
             // 
             // endlessModeButton
             // 
-            this.endlessModeButton.Location = new System.Drawing.Point(1627, 12);
+            this.endlessModeButton.Location = new System.Drawing.Point(1627, 57);
             this.endlessModeButton.Name = "endlessModeButton";
-            this.endlessModeButton.Size = new System.Drawing.Size(105, 62);
+            this.endlessModeButton.Size = new System.Drawing.Size(105, 52);
             this.endlessModeButton.TabIndex = 16;
             this.endlessModeButton.Text = "tryb nieskończony";
             this.endlessModeButton.UseVisualStyleBackColor = true;
             this.endlessModeButton.Click += new System.EventHandler(this.endlessModeButton_Click);
+            // 
+            // changeLang
+            // 
+            this.changeLang.Location = new System.Drawing.Point(1627, 12);
+            this.changeLang.Name = "changeLang";
+            this.changeLang.Size = new System.Drawing.Size(105, 39);
+            this.changeLang.TabIndex = 17;
+            this.changeLang.Text = "Zmień język";
+            this.changeLang.UseVisualStyleBackColor = true;
+            this.changeLang.Click += new System.EventHandler(this.changeLang_Click);
             // 
             // mini_gra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.Controls.Add(this.changeLang);
             this.Controls.Add(this.endlessModeButton);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.previousAnswer);
@@ -235,12 +247,12 @@
             this.Controls.Add(this.restartButton);
             this.Controls.Add(this.aiWrong);
             this.Controls.Add(this.aiRight);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.aiScore);
             this.Controls.Add(this.youWrong);
             this.Controls.Add(this.youRight);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.humanScore);
+            this.Controls.Add(this.endButton);
+            this.Controls.Add(this.questionMG);
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.randomPhoto);
             this.Name = "mini_gra";
@@ -256,12 +268,12 @@
         private System.Windows.Forms.Button yesButton;
         private System.Windows.Forms.Button noButton;
         private System.Windows.Forms.PictureBox randomPhoto;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label questionMG;
+        private System.Windows.Forms.Button endButton;
+        private System.Windows.Forms.Label humanScore;
         private System.Windows.Forms.Label youRight;
         private System.Windows.Forms.Label youWrong;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label aiScore;
         private System.Windows.Forms.Label aiRight;
         private System.Windows.Forms.Label aiWrong;
         private System.Windows.Forms.Button restartButton;
@@ -270,5 +282,6 @@
         private System.Windows.Forms.Label previousAnswer;
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Button endlessModeButton;
+        private System.Windows.Forms.Button changeLang;
     }
 }

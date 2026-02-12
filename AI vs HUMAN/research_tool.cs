@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace AI_vs_HUMAN
 {
-    public partial class mini_gra : Form
+    public partial class research_tool : Form
     {
         private Size originalSize;
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
@@ -30,84 +30,54 @@ namespace AI_vs_HUMAN
         private bool isGameActive = false;
         private bool endlessMode = false;
 
-        public mini_gra()
+        public research_tool()
         {
+            LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
             InitializeComponent();
+            ApplyLanguage();
             this.Shown += (s, e) =>
             {
                 this.WindowState = FormWindowState.Maximized;
             };
 
-            this.Load += miniGameLoad;
-            this.Resize += miniGameResize;
+            this.Load += startLoad;
+            this.Resize += startResize;
         }
-        private void miniGameKeyDown(object sender, KeyEventArgs e)
+        private void ApplyLanguage()
         {
-            if (!isGameActive || string.IsNullOrEmpty(selectdImagePath)) return;
-
-            if (e.KeyCode == Keys.Right)  // Prawa strzałka (yesButton)
+            this.Text = Properties.Resources.challangeBitton;
+            LanguageManager.ApplyLanguageToControls(this);
+        }
+        private void changeLang_Click(object sender, EventArgs e)
+        {
+            if (LanguageManager.CurrentLanguage == "en")
             {
-                yesButton.PerformClick();  // Symuluje kliknięcie przycisku 'yesButton'
+                LanguageManager.ChangeLanguage("pl");
             }
-            else if (e.KeyCode == Keys.Left)  // Lewa strzałka (noButton)
+            else
             {
-                noButton.PerformClick();  // Symuluje kliknięcie przycisku 'noButton'
+                LanguageManager.ChangeLanguage("en");
             }
+            ApplyLanguage();
         }
 
-        private void miniGameLoad(object sender, EventArgs e)
+        private void startLoad(object sender, EventArgs e)
         {
             originalSize = this.Size;
-            StoreOriginalBoundsRecursive(this);
+            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
             gameTimer = new System.Windows.Forms.Timer();
             gameTimer.Interval = 1000;
             gameTimer.Tick += GameTimerTick;
-            timeLabel.Text = "Czas: 60s";
+            timeLabel.Text = "Czas: 60s"; //do zmiany na podstawie języka
         }
-        private void miniGameResize(object sender, EventArgs E)
+        private void startResize(object sender, EventArgs E)
         {
-            ResizeControlsRecursive(this);
+            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
         }
-        private void StoreOriginalBoundsRecursive(Control parent)
-        {
-            foreach (Control ctrl in parent.Controls)
-            {
-                if (!originalControlBounds.ContainsKey(ctrl))
-                    originalControlBounds[ctrl] = ctrl.Bounds;
-
-                if (ctrl.Controls.Count > 0)
-                    StoreOriginalBoundsRecursive(ctrl);
-            }
-        }
-        private void ResizeControlsRecursive(Control parent)
-        {
-            if (originalSize.Width == 0 || originalSize.Height == 0) return;
-
-            float xRatio = (float)this.Width / originalSize.Width;
-            float yRatio = (float)this.Height / originalSize.Height;
-
-            foreach (Control ctrl in parent.Controls)
-            {
-                if (originalControlBounds.ContainsKey(ctrl))
-                {
-                    Rectangle orig = originalControlBounds[ctrl];
-                    int newX = (int)(orig.X * xRatio);
-                    int newY = (int)(orig.Y * yRatio);
-                    int newWidth = (int)(orig.Width * xRatio);
-                    int newHeight = (int)(orig.Height * yRatio);
-                    ctrl.Bounds = new Rectangle(newX, newY, newWidth, newHeight);
-                }
-                if (ctrl.Controls.Count > 0)
-                {
-                    ResizeControlsRecursive(ctrl);
-                }
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //endButton
         {
             this.Hide();
-            test_obrazu test_Obrazu = new test_obrazu();
+            file_test test_Obrazu = new file_test();
             test_Obrazu.ShowDialog();
             this.Close();
         }
@@ -159,7 +129,7 @@ namespace AI_vs_HUMAN
                 gameTimer.Start();
                 endlessModeButton.Enabled = false;
             }
-            result_from_model = await SendImageToModel(selectdImagePath);
+            result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 0;
             liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
@@ -180,7 +150,7 @@ namespace AI_vs_HUMAN
                 gameTimer.Start();
                 endlessModeButton.Enabled = false;
             }
-            result_from_model = await SendImageToModel(selectdImagePath);
+            result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 1;
             liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
@@ -240,34 +210,7 @@ namespace AI_vs_HUMAN
             randomPhoto.Image = Image.FromFile(selectdImagePath);
             randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
         }
-        private async Task<int> SendImageToModel(string filePath)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://127.0.0.1:8000/");
-                using (var content = new MultipartFormDataContent())
-                {
-                    var imageContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
-                    string ext = System.IO.Path.GetExtension(filePath).ToLower();
-                    string mime = "image/jpeg";
-                    if (ext == ".png") mime = "image/png";
-                    else if (ext == ".bmp") mime = "image/bmp";
-                    else if (ext == ".gif") mime = "image/gif";
-                    imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(mime);
-                    content.Add(imageContent, "file", System.IO.Path.GetFileName(filePath));
-
-                    HttpResponseMessage response = await client.PostAsync("predict", content);
-                    response.EnsureSuccessStatusCode();
-
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    using (var doc = JsonDocument.Parse(responseString))
-                    {
-                        int prediction = doc.RootElement.GetProperty("result").GetInt32();
-                        return prediction;
-                    }
-                }
-            }
-        }
+        
         private void GameTimerTick(object sender, EventArgs e)
         {
             timeLeft--;

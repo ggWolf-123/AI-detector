@@ -117,88 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Wy" xml:space="preserve">
-    <value>AI miało rację:  0</value>
+  <metadata name="photoPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="axWindowsMediaPlayer1.OcxState" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACFTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAtwAAAAIB
+        AAAAAQAAAAAAAAAAAAAAAKIAAAABAwAACAAAAAAABQAAAAAAAADwPwMAAAAAAAUAAAAAAAAAAAAIAAIA
+        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAZgB1AGwAbAAAAAsA
+        AAALAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAwAcAAGEC
+        AAAL
+</value>
   </data>
-  <data name="aiScore" xml:space="preserve">
-    <value>Wynik AI</value>
-  </data>
-  <data name="aiWrong" xml:space="preserve">
-    <value>AI pomyliło się: 0</value>
-  </data>
-  <data name="answerFileCheck" xml:space="preserve">
-    <value>WYNIK</value>
-  </data>
-  <data name="challangeBitton" xml:space="preserve">
-    <value>Mini gra, pojedynek z AI</value>
-  </data>
-  <data name="changeLang" xml:space="preserve">
-    <value>Zmień język</value>
-  </data>
-  <data name="checkButton" xml:space="preserve">
-    <value>Sprawdź!!!</value>
-  </data>
-  <data name="endButton" xml:space="preserve">
-    <value>Koniec, wróć</value>
-  </data>
-  <data name="endlessModeButton" xml:space="preserve">
-    <value>tryb nieskończony</value>
-  </data>
-  <data name="getPhotoButton" xml:space="preserve">
-    <value>Podaj obraz do sprawdzenia</value>
-  </data>
-  <data name="groupBoxSpeed" xml:space="preserve">
-    <value>Wybierz prędkość przetwarzania wideo</value>
-  </data>
-  <data name="humanScore" xml:space="preserve">
-    <value>Twój wynik</value>
-  </data>
-  <data name="noButton" xml:space="preserve">
-    <value>NIE</value>
-  </data>
-  <data name="questionMG" xml:space="preserve">
-    <value>Czy ta grafika została wygenerowana przez AI?</value>
-  </data>
-  <data name="restartButton" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="startButton" xml:space="preserve">
-    <value>Uruchom model (może to zająć chwilę)</value>
-  </data>
-  <data name="startGameButton" xml:space="preserve">
-    <value>Zacznij grę</value>
-  </data>
-  <data name="timeLabel" xml:space="preserve">
-    <value>Pozostały czas: </value>
-  </data>
-  <data name="yesButton" xml:space="preserve">
-    <value>TAK</value>
-  </data>
-  <data name="youRight" xml:space="preserve">
-    <value>Miałeś/-aś rację : 0</value>
-  </data>
-  <data name="youWrong" xml:space="preserve">
-    <value>Pomyliłeś/-łaś się : 0</value>
-  </data>
-  <data name="superSlowRadio" xml:space="preserve">
-    <value>Super wolno (każdą klatkę)</value>
-  </data>
-  <data name="slowRadio" xml:space="preserve">
-    <value>Wolno (co 15 klatkę)</value>
-  </data>
-  <data name="normalRadio" xml:space="preserve">
-    <value>Normalnie (co 30 klatkę)</value>
-  </data>
-  <data name="fastRadio" xml:space="preserve">
-    <value>Szybko (co 60 klatkę)</value>
-  </data>
-  <data name="superFastRadio" xml:space="preserve">
-    <value>Super szybko (co 120 klatkę)</value>
-  </data>
-  <data name="labelFast" xml:space="preserve">
-    <value>Co ile klatek ma być sprawdzane wideo (wartości wpisane nie mają pierwszeństwa)</value>
-  </data>
-  <data name="acceptSpeedButton" xml:space="preserve">
-    <value>Potwierdzam prędkość</value>
-  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>

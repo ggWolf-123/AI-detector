@@ -1,6 +1,6 @@
 ﻿namespace AI_vs_HUMAN
 {
-    partial class uruchom_model
+    partial class main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,25 +29,38 @@
         private void InitializeComponent()
         {
             this.startButton = new System.Windows.Forms.Button();
+            this.changeLang = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // startButton
             // 
             this.startButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.startButton.Location = new System.Drawing.Point(12, 12);
+            this.startButton.Location = new System.Drawing.Point(12, 239);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(1720, 1037);
+            this.startButton.Size = new System.Drawing.Size(1720, 810);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Uruchom model (może to chwile zająć)";
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // changeLang
+            // 
+            this.changeLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
+            this.changeLang.Location = new System.Drawing.Point(12, 12);
+            this.changeLang.Name = "changeLang";
+            this.changeLang.Size = new System.Drawing.Size(1720, 221);
+            this.changeLang.TabIndex = 1;
+            this.changeLang.Text = "Zmień język";
+            this.changeLang.UseVisualStyleBackColor = true;
+            this.changeLang.Click += new System.EventHandler(this.changeLang_Click);
             // 
             // uruchom_model
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.Controls.Add(this.changeLang);
             this.Controls.Add(this.startButton);
             this.Name = "uruchom_model";
             this.Text = "uruchom_model";
@@ -58,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button changeLang;
     }
 }
