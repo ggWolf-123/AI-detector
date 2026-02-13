@@ -28,7 +28,7 @@ namespace AI_vs_HUMAN
         private int points = 0;
         private System.Windows.Forms.Timer gameTimer;
         private bool isGameActive = false;
-        private bool endlessMode = false;
+        private int imgLimit = 0;
 
         public research_tool()
         {
@@ -120,14 +120,14 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
             }
-            if (!isGameActive && !endlessMode)
+            if (!isGameActive)
             {
                 isGameActive = true;
                 gameTimer.Stop();
                 timeLeft = 60;
                 timeLabel.Text = "Czas: 60s";
                 gameTimer.Start();
-                endlessModeButton.Enabled = false;
+                settingsOfData.Enabled = false;
             }
             result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 0;
@@ -141,14 +141,14 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
             }
-            if (!isGameActive && !endlessMode)
+            if (!isGameActive)
             {
                 isGameActive = true;
                 gameTimer.Stop();
                 timeLeft = 60;
                 timeLabel.Text = "Czas: 60s";
                 gameTimer.Start();
-                endlessModeButton.Enabled = false;
+                settingsOfData.Enabled = false;
             }
             result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 1;
@@ -206,6 +206,16 @@ namespace AI_vs_HUMAN
                 }
             }
             Random rnd = new Random();
+            if (Properties.Settings.Default.askLimitImg)
+            {
+                imgLimit++;
+                if (imgLimit >= Properties.Settings.Default.numericImgLimit)
+                {
+                    MessageBox.Show("Koniec.");
+                    ResetGameLogic();
+                    return;
+                }
+            }
             selectdImagePath = allImages[rnd.Next(allImages.Length)];
             randomPhoto.Image = Image.FromFile(selectdImagePath);
             randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
@@ -252,24 +262,14 @@ namespace AI_vs_HUMAN
             previousTitle.Text = "";
             previousTitle.Text = "";
             points = 0;
-            endlessModeButton.Enabled = true;
+            settingsOfData.Enabled = true;
             isGameActive = false;
         }
 
-        private void endlessModeButton_Click(object sender, EventArgs e)
+        private void settingsOfData_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(selectdImagePath))
-            {
-                MessageBox.Show("Najpierw wybierz folder.");
-                return;
-            }
-            endlessMode = !endlessMode;
-            endlessModeButton.BackColor = endlessMode ? Color.LightGreen : SystemColors.Control;
-            ResetGameLogic();
-            if (endlessMode == true)
-            {
-                timeLabel.Text = "Czas: nieskończony";
-            }
+            research_setting researchSetting = new research_setting();
+            researchSetting.ShowDialog();
         }
     }
 }

@@ -82,6 +82,12 @@
   <ItemGroup>
     <Compile Include="ApiComunication.cs" />
     <Compile Include="LanguageManager.cs" />
+    <Compile Include="research_setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="research_setting.Designer.cs">
+      <DependentUpon>research_setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="research_tool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <Compile Include="zapis_wyników.Designer.cs">
       <DependentUpon>zapis_wyników.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="research_setting.resx">
+      <DependentUpon>research_setting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="research_tool.resx">
       <DependentUpon>research_tool.cs</DependentUpon>
     </EmbeddedResource>

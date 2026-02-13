@@ -44,7 +44,7 @@
             this.previousTitle = new System.Windows.Forms.Label();
             this.previousAnswer = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
-            this.endlessModeButton = new System.Windows.Forms.Button();
+            this.settingsOfData = new System.Windows.Forms.Button();
             this.changeLang = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             this.SuspendLayout();
@@ -180,7 +180,7 @@
             this.startGameButton.Name = "startGameButton";
             this.startGameButton.Size = new System.Drawing.Size(860, 110);
             this.startGameButton.TabIndex = 12;
-            this.startGameButton.Text = "Zacznij grę";
+            this.startGameButton.Text = "Zacznij";
             this.startGameButton.UseVisualStyleBackColor = true;
             this.startGameButton.Click += new System.EventHandler(this.startGameButton_Click);
             // 
@@ -212,15 +212,15 @@
             this.timeLabel.TabIndex = 15;
             this.timeLabel.Text = "Pozostały czas: ";
             // 
-            // endlessModeButton
+            // settingsOfData
             // 
-            this.endlessModeButton.Location = new System.Drawing.Point(1627, 57);
-            this.endlessModeButton.Name = "endlessModeButton";
-            this.endlessModeButton.Size = new System.Drawing.Size(105, 52);
-            this.endlessModeButton.TabIndex = 16;
-            this.endlessModeButton.Text = "tryb nieskończony";
-            this.endlessModeButton.UseVisualStyleBackColor = true;
-            this.endlessModeButton.Click += new System.EventHandler(this.endlessModeButton_Click);
+            this.settingsOfData.Location = new System.Drawing.Point(1627, 57);
+            this.settingsOfData.Name = "settingsOfData";
+            this.settingsOfData.Size = new System.Drawing.Size(105, 52);
+            this.settingsOfData.TabIndex = 16;
+            this.settingsOfData.Text = "Ustawienia";
+            this.settingsOfData.UseVisualStyleBackColor = true;
+            this.settingsOfData.Click += new System.EventHandler(this.settingsOfData_Click);
             // 
             // changeLang
             // 
@@ -232,13 +232,13 @@
             this.changeLang.UseVisualStyleBackColor = true;
             this.changeLang.Click += new System.EventHandler(this.changeLang_Click);
             // 
-            // mini_gra
+            // research_tool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1744, 1061);
             this.Controls.Add(this.changeLang);
-            this.Controls.Add(this.endlessModeButton);
+            this.Controls.Add(this.settingsOfData);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.previousAnswer);
             this.Controls.Add(this.previousTitle);
@@ -255,7 +255,7 @@
             this.Controls.Add(this.questionMG);
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.randomPhoto);
-            this.Name = "mini_gra";
+            this.Name = "research_tool";
             this.Text = "mini_gra";
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).EndInit();
             this.ResumeLayout(false);
@@ -281,7 +281,7 @@
         private System.Windows.Forms.Label previousTitle;
         private System.Windows.Forms.Label previousAnswer;
         private System.Windows.Forms.Label timeLabel;
-        private System.Windows.Forms.Button endlessModeButton;
+        private System.Windows.Forms.Button settingsOfData;
         private System.Windows.Forms.Button changeLang;
     }
 }
