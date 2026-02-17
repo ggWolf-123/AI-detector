@@ -470,12 +470,12 @@ namespace AI_vs_HUMAN.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool aiAnswersTooShow {
+        public bool showAiAnswers {
             get {
-                return ((bool)(this["aiAnswersTooShow"]));
+                return ((bool)(this["showAiAnswers"]));
             }
             set {
-                this["aiAnswersTooShow"] = value;
+                this["showAiAnswers"] = value;
             }
         }
         
@@ -548,6 +548,54 @@ namespace AI_vs_HUMAN.Properties {
             }
             set {
                 this["newFileNameTextBox"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool funMode {
+            get {
+                return ((bool)(this["funMode"]));
+            }
+            set {
+                this["funMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showResult {
+            get {
+                return ((bool)(this["showResult"]));
+            }
+            set {
+                this["showResult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool wasThatAi {
+            get {
+                return ((bool)(this["wasThatAi"]));
+            }
+            set {
+                this["wasThatAi"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int numberOfSeasion {
+            get {
+                return ((int)(this["numberOfSeasion"]));
+            }
+            set {
+                this["numberOfSeasion"] = value;
             }
         }
     }

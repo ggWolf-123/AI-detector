@@ -85,10 +85,13 @@
             this.newFileToCSV = new System.Windows.Forms.CheckBox();
             this.showAnswerByColor = new System.Windows.Forms.CheckBox();
             this.aiAnswersToo = new System.Windows.Forms.CheckBox();
-            this.aiAnswersTooShow = new System.Windows.Forms.CheckBox();
+            this.showAiAnswers = new System.Windows.Forms.CheckBox();
             this.showHumanAnswers = new System.Windows.Forms.CheckBox();
             this.resetFileButton = new System.Windows.Forms.Button();
             this.resetFolder = new System.Windows.Forms.Button();
+            this.funMode = new System.Windows.Forms.CheckBox();
+            this.showResult = new System.Windows.Forms.CheckBox();
+            this.wasThatAi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.addPoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.takePoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSeconds)).BeginInit();
@@ -128,15 +131,20 @@
             this.addPoint.Name = "addPoint";
             this.addPoint.Size = new System.Drawing.Size(120, 20);
             this.addPoint.TabIndex = 2;
-            this.addPoint.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // takePoint
             // 
             this.takePoint.Location = new System.Drawing.Point(273, 105);
+            this.takePoint.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.takePoint.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.takePoint.Name = "takePoint";
             this.takePoint.Size = new System.Drawing.Size(120, 20);
             this.takePoint.TabIndex = 3;
@@ -162,9 +170,9 @@
             // settingAcceptButton
             // 
             this.settingAcceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.settingAcceptButton.Location = new System.Drawing.Point(937, 507);
+            this.settingAcceptButton.Location = new System.Drawing.Point(915, 507);
             this.settingAcceptButton.Name = "settingAcceptButton";
-            this.settingAcceptButton.Size = new System.Drawing.Size(267, 183);
+            this.settingAcceptButton.Size = new System.Drawing.Size(289, 183);
             this.settingAcceptButton.TabIndex = 6;
             this.settingAcceptButton.Text = "Zatwierdz";
             this.settingAcceptButton.UseVisualStyleBackColor = true;
@@ -664,16 +672,16 @@
             this.aiAnswersToo.Text = "AI też ocenia";
             this.aiAnswersToo.UseVisualStyleBackColor = true;
             // 
-            // aiAnswersTooShow
+            // showAiAnswers
             // 
-            this.aiAnswersTooShow.AutoSize = true;
-            this.aiAnswersTooShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.aiAnswersTooShow.Location = new System.Drawing.Point(150, 401);
-            this.aiAnswersTooShow.Name = "aiAnswersTooShow";
-            this.aiAnswersTooShow.Size = new System.Drawing.Size(324, 29);
-            this.aiAnswersTooShow.TabIndex = 46;
-            this.aiAnswersTooShow.Text = "Pokaż poprawność odpowiedzi AI";
-            this.aiAnswersTooShow.UseVisualStyleBackColor = true;
+            this.showAiAnswers.AutoSize = true;
+            this.showAiAnswers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.showAiAnswers.Location = new System.Drawing.Point(150, 401);
+            this.showAiAnswers.Name = "showAiAnswers";
+            this.showAiAnswers.Size = new System.Drawing.Size(185, 29);
+            this.showAiAnswers.TabIndex = 46;
+            this.showAiAnswers.Text = "Pokaż jak idzie AI";
+            this.showAiAnswers.UseVisualStyleBackColor = true;
             // 
             // showHumanAnswers
             // 
@@ -681,9 +689,9 @@
             this.showHumanAnswers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.showHumanAnswers.Location = new System.Drawing.Point(6, 436);
             this.showHumanAnswers.Name = "showHumanAnswers";
-            this.showHumanAnswers.Size = new System.Drawing.Size(409, 29);
+            this.showHumanAnswers.Size = new System.Drawing.Size(277, 29);
             this.showHumanAnswers.TabIndex = 47;
-            this.showHumanAnswers.Text = "Pokaż poprawność udzielanych odpowiedzi";
+            this.showHumanAnswers.Text = "Pokaż jak idzie uczestnikowi";
             this.showHumanAnswers.UseVisualStyleBackColor = true;
             // 
             // resetFileButton
@@ -708,15 +716,51 @@
             this.resetFolder.UseVisualStyleBackColor = true;
             this.resetFolder.Click += new System.EventHandler(this.resetFolder_Click);
             // 
+            // funMode
+            // 
+            this.funMode.AutoSize = true;
+            this.funMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.funMode.Location = new System.Drawing.Point(915, 472);
+            this.funMode.Name = "funMode";
+            this.funMode.Size = new System.Drawing.Size(289, 29);
+            this.funMode.TabIndex = 50;
+            this.funMode.Text = "Tryb bez zapisywania danych";
+            this.funMode.UseVisualStyleBackColor = true;
+            // 
+            // showResult
+            // 
+            this.showResult.AutoSize = true;
+            this.showResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.showResult.Location = new System.Drawing.Point(400, 97);
+            this.showResult.Name = "showResult";
+            this.showResult.Size = new System.Drawing.Size(140, 29);
+            this.showResult.TabIndex = 51;
+            this.showResult.Text = "Pokaż wynik";
+            this.showResult.UseVisualStyleBackColor = true;
+            // 
+            // wasThatAi
+            // 
+            this.wasThatAi.AutoSize = true;
+            this.wasThatAi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.wasThatAi.Location = new System.Drawing.Point(12, 61);
+            this.wasThatAi.Name = "wasThatAi";
+            this.wasThatAi.Size = new System.Drawing.Size(559, 29);
+            this.wasThatAi.TabIndex = 52;
+            this.wasThatAi.Text = "Pokaż czy poprzedni przykład został wygenerowany przez AI";
+            this.wasThatAi.UseVisualStyleBackColor = true;
+            // 
             // research_setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 702);
+            this.Controls.Add(this.wasThatAi);
+            this.Controls.Add(this.showResult);
+            this.Controls.Add(this.funMode);
             this.Controls.Add(this.resetFolder);
             this.Controls.Add(this.resetFileButton);
             this.Controls.Add(this.showHumanAnswers);
-            this.Controls.Add(this.aiAnswersTooShow);
+            this.Controls.Add(this.showAiAnswers);
             this.Controls.Add(this.aiAnswersToo);
             this.Controls.Add(this.showAnswerByColor);
             this.Controls.Add(this.newFileToCSV);
@@ -843,9 +887,12 @@
         private System.Windows.Forms.CheckBox newFileToCSV;
         private System.Windows.Forms.CheckBox showAnswerByColor;
         private System.Windows.Forms.CheckBox aiAnswersToo;
-        private System.Windows.Forms.CheckBox aiAnswersTooShow;
+        private System.Windows.Forms.CheckBox showAiAnswers;
         private System.Windows.Forms.CheckBox showHumanAnswers;
         private System.Windows.Forms.Button resetFileButton;
         private System.Windows.Forms.Button resetFolder;
+        private System.Windows.Forms.CheckBox funMode;
+        private System.Windows.Forms.CheckBox showResult;
+        private System.Windows.Forms.CheckBox wasThatAi;
     }
 }

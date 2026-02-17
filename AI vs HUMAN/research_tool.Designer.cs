@@ -117,9 +117,8 @@
             this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.youRight.Location = new System.Drawing.Point(1253, 102);
             this.youRight.Name = "youRight";
-            this.youRight.Size = new System.Drawing.Size(368, 47);
+            this.youRight.Size = new System.Drawing.Size(0, 47);
             this.youRight.TabIndex = 6;
-            this.youRight.Text = "Miałeś/-aś rację : 0";
             // 
             // youWrong
             // 
@@ -127,9 +126,8 @@
             this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.youWrong.Location = new System.Drawing.Point(1233, 168);
             this.youWrong.Name = "youWrong";
-            this.youWrong.Size = new System.Drawing.Size(388, 47);
+            this.youWrong.Size = new System.Drawing.Size(0, 47);
             this.youWrong.TabIndex = 7;
-            this.youWrong.Text = "Pomyliłeś/-łaś się: 0";
             // 
             // aiScore
             // 
@@ -147,9 +145,8 @@
             this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.aiRight.Location = new System.Drawing.Point(1269, 334);
             this.aiRight.Name = "aiRight";
-            this.aiRight.Size = new System.Drawing.Size(327, 47);
+            this.aiRight.Size = new System.Drawing.Size(0, 47);
             this.aiRight.TabIndex = 9;
-            this.aiRight.Text = "AI miało rację:  0";
             // 
             // aiWrong
             // 
@@ -157,9 +154,8 @@
             this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.aiWrong.Location = new System.Drawing.Point(1269, 397);
             this.aiWrong.Name = "aiWrong";
-            this.aiWrong.Size = new System.Drawing.Size(333, 47);
+            this.aiWrong.Size = new System.Drawing.Size(0, 47);
             this.aiWrong.TabIndex = 10;
-            this.aiWrong.Text = "AI pomyliło się: 0";
             // 
             // restartButton
             // 
@@ -208,9 +204,8 @@
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
             this.timeLabel.Location = new System.Drawing.Point(909, 27);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(319, 47);
+            this.timeLabel.Size = new System.Drawing.Size(0, 47);
             this.timeLabel.TabIndex = 15;
-            this.timeLabel.Text = "Pozostały czas: ";
             // 
             // settingsOfData
             // 

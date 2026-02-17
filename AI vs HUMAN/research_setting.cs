@@ -60,9 +60,10 @@ namespace AI_vs_HUMAN
 
             addPoint.Enabled = pointAskBox.Checked;
             takePoint.Enabled = pointAskBox.Checked;
+            showResult.Enabled = pointAskBox.Checked;
             numericSeconds.Enabled = askTimeMax.Checked;
             numericImgLimit.Enabled = askLimitImg.Checked;
-            aiAnswersTooShow.Enabled = aiAnswersToo.Checked;
+            showAiAnswers.Enabled = aiAnswersToo.Checked;
         }
         private void ToggleCustomField(int index)
         {
@@ -114,11 +115,6 @@ namespace AI_vs_HUMAN
             List<string> columns = new List<string>
             {
             };
-            AddIfEnabled(columns,1);
-            AddIfEnabled(columns, 2);
-            AddIfEnabled(columns, 3);
-            AddIfEnabled(columns, 4);
-            AddIfEnabled(columns, 5);
             if (pointAskBox.Checked)
             {
                 columns.Add("Points");
@@ -136,11 +132,16 @@ namespace AI_vs_HUMAN
                 columns.Add("AIPoints");
                 columns.Add("AiGoodAnswer");
                 columns.Add("AiBadAnswer");
-                if (aiAnswersTooShow.Checked)
+                if (showAiAnswers.Checked)
                 {
                     columns.Add("AIAnswerFeedback");
                 }
             }
+            AddIfEnabled(columns, 1);
+            AddIfEnabled(columns, 2);
+            AddIfEnabled(columns, 3);
+            AddIfEnabled(columns, 4);
+            AddIfEnabled(columns, 5);
             return columns;
         }
         private void AddIfEnabled(List<string> columns, int index)
@@ -177,10 +178,10 @@ namespace AI_vs_HUMAN
         }
         private void AiAnswersToo_CheckedChanged(object sender, EventArgs e)
         {
-            aiAnswersTooShow.Enabled = aiAnswersToo.Checked;
+            showAiAnswers.Enabled = aiAnswersToo.Checked;
             if(!aiAnswersToo.Checked)
             {
-                aiAnswersTooShow.Checked = false;
+                showAiAnswers.Checked = false;
             }
         }
         private bool CheckFileCompatibility(string filePath)
@@ -287,12 +288,12 @@ namespace AI_vs_HUMAN
             }
             return true;
         }
-        // ==========================buttons
 
         private void pointAskBox_CheckedChanged(object sender, EventArgs e)
         {
             addPoint.Enabled = pointAskBox.Checked;
             takePoint.Enabled = pointAskBox.Checked;
+            showResult.Enabled = pointAskBox.Checked;
         }
         private void askLimitImg_CheckedChanged(object sender, EventArgs e)
         {
@@ -303,6 +304,7 @@ namespace AI_vs_HUMAN
         {
             numericSeconds.Enabled = askTimeMax.Checked;
         }
+        // ==========================buttons
         private void whereToSaveFolderButton_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
@@ -341,7 +343,25 @@ namespace AI_vs_HUMAN
         }
         private void settingAcceptButton_Click(object sender, EventArgs e)
         {
-            if(!newFileToTXT.Checked && !newFileToCSV.Checked && string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath))
+            if(funMode.Checked)
+            {
+                if (askSavePaths .Checked&& string.IsNullOrWhiteSpace(Properties.Settings.Default.SaveFolderPath))
+                {
+                    MessageBox.Show("Musisz wybrać folder docelowy, aby zapisać ścieżki do obrazów.");
+                    return;
+                }
+                SaveCustomField(yourAsk1, yourAsk1TextBox, yourAsk1NumericRadio, yourAsk1StringRadio, 1);
+                SaveCustomField(yourAsk2, yourAsk2TextBox, yourAsk2NumericRadio, yourAsk2StringRadio, 2);
+                SaveCustomField(yourAsk3, yourAsk3TextBox, yourAsk3NumericRadio, yourAsk3StringRadio, 3);
+                SaveCustomField(yourAsk4, yourAsk4TextBox, yourAsk4NumericRadio, yourAsk4StringRadio, 4);
+                SaveCustomField(yourAsk5, yourAsk5TextBox, yourAsk5NumericRadio, yourAsk5StringRadio, 5);
+                SaveAllControlsSettings();
+                Properties.Settings.Default.Save();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+                return;
+            }
+            if (!newFileToTXT.Checked && !newFileToCSV.Checked && string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath))
             {
                 MessageBox.Show("Musisz wybrać istniejący plik lub utworzyć nowy, aby kontynuować.");
                 return;

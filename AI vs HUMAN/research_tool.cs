@@ -9,6 +9,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace AI_vs_HUMAN
 {
@@ -24,7 +26,8 @@ namespace AI_vs_HUMAN
         private int wrongHumanAnswers = 0;
         private int rightAiAnswers = 0;
         private int wrongAiAnswers = 0;
-        private int timeLeft = 60;
+        private int timeLeft;
+        private int timeOfResearch=0;
         private int points = 0;
         private System.Windows.Forms.Timer gameTimer;
         private bool isGameActive = false;
@@ -42,6 +45,31 @@ namespace AI_vs_HUMAN
 
             this.Load += startLoad;
             this.Resize += startResize;
+            if (!Properties.Settings.Default.showHumanAnswers)
+            {
+                humanScore.Text = "";
+                youRight.Text = "";
+                youWrong.Text = "";
+            }
+            else
+            {
+                humanScore.Text = "Twój wynik";
+                youRight.Text = "Miałeś/-aś rację : ";
+                youWrong.Text = "Pomyliłeś/-łaś się: ";
+            }
+
+            if (!Properties.Settings.Default.showAiAnswers)
+            {
+                aiScore.Text = "";
+                aiRight.Text = "";
+                aiWrong.Text = "";
+            }
+            else
+            {
+                aiScore.Text = "Wynik AI";
+                aiRight.Text = "AI miało rację : ";
+                aiWrong.Text = "AI pomyliło się : ";
+            }
         }
         private void ApplyLanguage()
         {
@@ -65,10 +93,12 @@ namespace AI_vs_HUMAN
         {
             originalSize = this.Size;
             ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
-            gameTimer = new System.Windows.Forms.Timer();
-            gameTimer.Interval = 1000;
-            gameTimer.Tick += GameTimerTick;
-            timeLabel.Text = "Czas: 60s"; //do zmiany na podstawie języka
+            if(Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
+            {
+                gameTimer = new System.Windows.Forms.Timer();
+                gameTimer.Interval = 1000;
+                gameTimer.Tick += GameTimerTick;
+            }
         }
         private void startResize(object sender, EventArgs E)
         {
@@ -123,13 +153,15 @@ namespace AI_vs_HUMAN
             if (!isGameActive)
             {
                 isGameActive = true;
-                gameTimer.Stop();
-                timeLeft = 60;
-                timeLabel.Text = "Czas: 60s";
-                gameTimer.Start();
+                if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
+                {
+                    gameTimer.Stop();
+                    gameTimer.Start();
+                }
                 settingsOfData.Enabled = false;
             }
-            result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
+            if(Properties.Settings.Default.aiAnswersToo)
+                result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 0;
             liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
@@ -144,13 +176,15 @@ namespace AI_vs_HUMAN
             if (!isGameActive)
             {
                 isGameActive = true;
-                gameTimer.Stop();
-                timeLeft = 60;
-                timeLabel.Text = "Czas: 60s";
-                gameTimer.Start();
+                if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
+                {
+                    gameTimer.Stop();
+                    gameTimer.Start();
+                }
                 settingsOfData.Enabled = false;
             }
-            result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
+            if (Properties.Settings.Default.aiAnswersToo)
+                result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 1;
             liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
@@ -164,46 +198,93 @@ namespace AI_vs_HUMAN
             }
             ResetGameLogic();
         }
-        private void liderBoard(string imagePath, int answerAI, int answerHuman)
+        private void AddToFile(string imagePath, int correctAnswer, int answerHuman, int answerAi)
         {
+            string folderPath = Properties.Settings.Default.SaveFolderPath;
+            int sessionNumber = Properties.Settings.Default.numberOfSeasion;
+            string filePath = System.IO.Path.Combine(folderPath, $"session_{sessionNumber}.txt");
+            string line;
+            string aiOrHuman = correctAnswer == 1 ? "AI" : "HUMAN";
+            string humanAnswer = answerHuman == 1 ? "AI" : "HUMAN";
+            string aiAnswer = answerAi == 1 ? "AI" : "HUMAN";
+
+            if (Properties.Settings.Default.aiAnswersToo)
+            {
+                line = $" {DateTime.Now}: {selectdImagePath} | Right answer: {aiOrHuman} | Your answer: {humanAnswer} | AI answer: {aiAnswer}";
+            }
+            else
+            {
+                line = $" {DateTime.Now}: {selectdImagePath} | Right answer: {aiOrHuman} | Your answer: {humanAnswer}";
+            }
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, append: true))
+                {
+                    writer.WriteLine(line);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas zapisywania danych: {ex.Message}");
+            }
+        }
+        private async Task liderBoard(string imagePath, int answerAI, int answerHuman)
+        {
+            yesButton.Enabled = false;
+            noButton.Enabled = false;
             int rightAnswers = -1;
             string diretoryOfImage = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(imagePath));
-            previousTitle.Text = "Poprzednie zdjęcie/grafika";
+            if(Properties.Settings.Default.wasThatAi)
+                previousTitle.Text = "Poprzednie zdjęcie/grafika";
             if (diretoryOfImage == "AI")
             {
                 rightAnswers = 1;
-                previousAnswer.Text = "była wygenerowana przez AI";
+                if (Properties.Settings.Default.wasThatAi)
+                    previousAnswer.Text = " była wygenerowana przez AI";
             }
             else if (diretoryOfImage == "HUMAN")
             {
                 rightAnswers = 0;
-                previousAnswer.Text = "nie była wygenerowana przez AI";
+                if (Properties.Settings.Default.wasThatAi)
+                    previousAnswer.Text = "nie była wygenerowana przez AI";
             }
             if (rightAnswers == answerHuman)
             {
                 rightHumanAnswers++;
-                youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
-                points++;
+                if(Properties.Settings.Default.showHumanAnswers)
+                    youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
             }
             else
             {
                 wrongHumanAnswers++;
-                youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
-                points--;
+                if (Properties.Settings.Default.showHumanAnswers)
+                    youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
             }
             if (rightAnswers == answerAI)
             {
                 rightAiAnswers++;
-                aiRight.Text = "AI miało rację : " + rightAiAnswers;
+                if (Properties.Settings.Default.showAiAnswers)
+                    aiRight.Text = "AI miało rację : " + rightAiAnswers;
             }
             else
             {
                 wrongAiAnswers++;
-                aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+                if (Properties.Settings.Default.showAiAnswers)
+                    aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+            }
+            if(Properties.Settings.Default.showAnswerByColor)
+            {
                 if (rightAnswers == answerHuman)
-                {
-                    points += 3;
-                }
+                    selectdImagePath = @"..\..\images_yes_no\YES.png";
+                else
+                    selectdImagePath = @"..\..\images_yes_no\YES.png";
+                randomPhoto.Image = Image.FromFile(selectdImagePath);
+                randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+                
+            }
+            if (Properties.Settings.Default.askSavePaths)
+            {
+                AddToFile(imagePath, rightAnswers,answerHuman,answerAI);
             }
             Random rnd = new Random();
             if (Properties.Settings.Default.askLimitImg)
@@ -212,63 +293,148 @@ namespace AI_vs_HUMAN
                 if (imgLimit >= Properties.Settings.Default.numericImgLimit)
                 {
                     MessageBox.Show("Koniec.");
-                    ResetGameLogic();
+                    EndOfResearch();
                     return;
                 }
             }
             selectdImagePath = allImages[rnd.Next(allImages.Length)];
+            await Task.Delay(200);
             randomPhoto.Image = Image.FromFile(selectdImagePath);
             randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+            yesButton.Enabled = true;
+            noButton.Enabled = true;
         }
         
         private void GameTimerTick(object sender, EventArgs e)
         {
             timeLeft--;
+            timeOfResearch++;
             int minutes = timeLeft / 60;
             int seconds = timeLeft % 60;
-            timeLabel.Text = $"{minutes:D2}:{seconds:D2}";
+            if(Properties.Settings.Default.askTimeMax)
+            {
+                timeLabel.Text = $"{minutes:D2}:{seconds:D2}";
+            }
             if (timeLeft <= 0)
             {
                 gameTimer.Stop();
                 yesButton.Enabled = false;
                 noButton.Enabled = false;
-                MessageBox.Show($"Koniec gry! Twój czas minął. Zdobyłeś tyle punktów {points}");
+                EndOfResearch();
+            }
+        }
+        private void EndOfResearch()
+        {
+            if (Properties.Settings.Default.pointAskBox)
+            {
+                points = (Properties.Settings.Default.addPoint * rightHumanAnswers) + (Properties.Settings.Default.takePoint * wrongHumanAnswers);
+                if (Properties.Settings.Default.showResult)
+                {
+                    MessageBox.Show($"Koniec gry!. Zdobyłeś tyle punktów {points}");
+                }
+                else
+                {
+                    MessageBox.Show($"Koniec gry!");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Koniec gry! Twój czas minął.");
+            }
+            if(!Properties.Settings.Default.funMode)
+            {
                 zapis_wyników zapisWynikówForm = new zapis_wyników(points);
                 zapisWynikówForm.ShowDialog();
-                ResetGameLogic();
             }
+            ResetGameLogic();
         }
         private void ResetGameLogic()
         {
             isGameActive = false;
-            gameTimer.Stop();
-            timeLeft = 60;
-            timeLabel.Text = "Czas: 60s";
+            if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
+            {
+                gameTimer.Stop();
+                timeLeft = Properties.Settings.Default.numericSeconds;
+                if(Properties.Settings.Default.askTimeMax)
+                    timeLabel.Text = $"Czas: {Properties.Settings.Default.numericSeconds}s";
+            }
+            else
+            {
+                timeLabel.Text = "";
+            }
+            timeOfResearch = 0;
             yesButton.Enabled = true;
             noButton.Enabled = true;
             rightHumanAnswers = 0;
-            youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
             wrongHumanAnswers = 0;
-            youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
             rightAiAnswers = 0;
-            aiRight.Text = "AI miało rację : " + rightAiAnswers;
             wrongAiAnswers = 0;
-            aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+            if (Properties.Settings.Default.showHumanAnswers)
+            {
+                youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
+                youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
+            }
+            if (Properties.Settings.Default.wasThatAi)
+            {
+                aiRight.Text = "AI miało rację : " + rightAiAnswers;
+                aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+            }
             Random rnd = new Random();
             selectdImagePath = allImages[rnd.Next(allImages.Length)];
             randomPhoto.Image = Image.FromFile(selectdImagePath);
             randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
             previousAnswer.Text = "";
             previousTitle.Text = "";
-            previousTitle.Text = "";
             points = 0;
             settingsOfData.Enabled = true;
             isGameActive = false;
+            if (Properties.Settings.Default.askSavePaths)
+            {
+                Properties.Settings.Default.numberOfSeasion++;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void settingsOfData_Click(object sender, EventArgs e)
         {
             research_setting researchSetting = new research_setting();
+            researchSetting.FormClosed += (s, args) =>
+            {
+                if (Properties.Settings.Default.askTimeMax)
+                {
+                    timeLeft = Properties.Settings.Default.numericSeconds;
+                    timeLabel.Text = $"Czas: {Properties.Settings.Default.numericSeconds}s";
+                }
+                else
+                {
+                    timeLabel.Text = "";
+                }
+                if (!Properties.Settings.Default.showHumanAnswers)
+                {
+                    humanScore.Text = "";
+                    youRight.Text = "";
+                    youWrong.Text = "";
+                }
+                else
+                {
+                    humanScore.Text = "Twój wynik";
+                    youRight.Text = "Miałeś/-aś rację : ";
+                    youWrong.Text = "Pomyliłeś/-łaś się: ";
+                }
+
+                if (!Properties.Settings.Default.showAiAnswers)
+                {
+                    aiScore.Text = "";
+                    aiRight.Text = "";
+                    aiWrong.Text = "";
+                }
+                else
+                {
+                    aiScore.Text = "Wynik AI";
+                    aiRight.Text = "AI miało rację : ";
+                    aiWrong.Text = "AI pomyliło się : ";
+                }
+            };
             researchSetting.ShowDialog();
         }
     }
