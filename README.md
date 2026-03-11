@@ -17,20 +17,20 @@ Below is a list of features that are already available in the application as wel
 		- [ ] Checking folders with graphics, videos and texts and returning results in a txt file
 	- [ ] Adding languages and the ability to easily switch between them
 		- [x] Polish
-		- [x] English
+		- [ ] English
 		- [ ] Spanish
 	- [ ] Adding a research module
-		- [ ] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
+		- [x] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
 		- [ ] Connecting your own files in the research module in a clearly defined format
 			- [x] Using graphic files
 			- [ ] Using video files
 			- [ ] Using text files
-		- [ ] Not returning or returning results on an ongoing basis during the study at the user's request
-		- [ ] Not returning or returning results in the form of a txt file after the study is completed
+		- [x] Not returning or returning results on an ongoing basis during the study at the user's request
+		- [x] Not returning or returning results in the form of a txt file after the study is completed
 		- [ ] Saving results to a database
-			- [ ] The possibility of selecting data to save in the database
-			- [ ] The possibility of creating your own data to save in the database (maximum 5 data)
-			- [ ] The possibility of connecting an existing database in order to extend it with new data
+			- [x] The possibility of selecting data to save in the database
+			- [x] The possibility of creating your own data to save in the database (maximum 5 data)
+			- [x] The possibility of connecting an existing database in order to extend it with new data
 	- [ ] Creating a simple installer for Windows and Linux systems
 		- [ ] Creating a simple installer for Windows system
 		- [ ] Creating a simple installer for Linux system
@@ -58,20 +58,20 @@ Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak 
 		- [ ] Sprawdzanie folderów z grafikami, wideo i tekstami oraz zwracaniem wyników w pliku txt
 	- [ ] Dodanie języków i możliwości łatwego przełączania się między nimi
 		- [x] Polski
-		- [x] Angielski
+		- [ ] Angielski
 		- [ ] Hiszpański
 	- [ ] Dodanie modułu badawczego
-		- [ ] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
+		- [x] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
 		- [ ] Podpięcie własnych plików w module badawczym w jasno określonym formacie
 			- [x] Wykorzystywanie plików graficznych
 			- [ ] Wykorzystywanie plików wideo
 			- [ ] Wykorzystywanie plików tekstowych
-		- [ ] Nie zwracanie lub zwracanie wyników na bierząco podczas badania na rządanie użytkownika
-		- [ ] Nie zwracanie lub zwracanie wyników w formie pliku txt po zakończeniu badania
+		- [x] Nie zwracanie lub zwracanie wyników na bierząco podczas badania na rządanie użytkownika
+		- [x] Nie zwracanie lub zwracanie wyników w formie pliku txt po zakończeniu badania
 		- [ ] Zapisywanie wyników do bazy danych
-			- [ ] Mozliwość wybrania danych do zapisu w bazie danych
-			- [ ] Możliwość stworzenia własnych danych do zapisu w bazie danych (maksymalnie 5 danych)
-			- [ ] Możliwość podpięcia istniejącej już bazy danych w celu jej rozszerzenia o nowe dane
+			- [x] Mozliwość wybrania danych do zapisu w bazie danych
+			- [x] Możliwość stworzenia własnych danych do zapisu w bazie danych (maksymalnie 5 danych)
+			- [x] Możliwość podpięcia istniejącej już bazy danych w celu jej rozszerzenia o nowe dane
 	- [ ] Storzenie prostego instalatora dla systemu Windows i Linux
 		- [ ] Stworzenie prostego instalatora dla systemu Windows
 		- [ ] Stworzenie prostego instalatora dla systemu Linux

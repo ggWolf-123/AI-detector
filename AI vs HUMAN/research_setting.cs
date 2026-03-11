@@ -171,6 +171,16 @@ namespace AI_vs_HUMAN
         }
         private void SaveCustomField(CheckBox askCheckBox, TextBox askTextBox, RadioButton numericRadio, RadioButton stringRadio, int index)
         {
+            if (askCheckBox.Checked && string.IsNullOrWhiteSpace(askTextBox.Text))
+            {
+                MessageBox.Show($"Pole 'Your Ask {index}' jest zaznaczone, ale nie podano nazwy kolumny. Zapis zostaje zatrzymany.");
+                return;
+            }
+            if (askCheckBox.Checked && !numericRadio.Checked && !stringRadio.Checked)
+            {
+                MessageBox.Show($"Pole 'Your Ask {index}' jest zaznaczone, ale nie wybrano typu danych (Numeric/String). Zapis zostaje zatrzymany.");
+                return;
+            }
             Properties.Settings.Default[$"YourAsk{index}Enabled"] = askCheckBox.Checked;
             Properties.Settings.Default[$"YourAsk{index}Text"] = askTextBox.Text;
             Properties.Settings.Default[$"YourAsk{index}IsNumeric"] = numericRadio.Checked;

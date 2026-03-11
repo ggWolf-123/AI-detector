@@ -97,6 +97,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResizeControl.cs" />
+    <Compile Include="save_result.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="save_result.Designer.cs">
+      <DependentUpon>save_result.cs</DependentUpon>
+    </Compile>
     <Compile Include="speed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,12 +121,6 @@
     <Compile Include="main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
-    <Compile Include="zapis_wyników.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="zapis_wyników.Designer.cs">
-      <DependentUpon>zapis_wyników.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="research_setting.resx">
       <DependentUpon>research_setting.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +138,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="save_result.resx">
+      <DependentUpon>save_result.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="speed.resx">
       <DependentUpon>speed.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,9 +149,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="zapis_wyników.resx">
-      <DependentUpon>zapis_wyników.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="fastapi_model\model_0.9971100508165561.pth">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

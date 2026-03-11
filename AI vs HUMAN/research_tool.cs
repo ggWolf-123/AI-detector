@@ -29,6 +29,7 @@ namespace AI_vs_HUMAN
         private int timeLeft;
         private int timeOfResearch=0;
         private int points = 0;
+        private int AIpoints = 0;
         private System.Windows.Forms.Timer gameTimer;
         private bool isGameActive = false;
         private int imgLimit = 0;
@@ -340,11 +341,24 @@ namespace AI_vs_HUMAN
             else
             {
                 MessageBox.Show($"Koniec gry! Twój czas minął.");
+                points = 0;
+                rightHumanAnswers = 0;
+                wrongHumanAnswers = 0;
             }
-            if(!Properties.Settings.Default.funMode)
+            if (Properties.Settings.Default.aiAnswersToo)
             {
-                zapis_wyników zapisWynikówForm = new zapis_wyników(points);
-                zapisWynikówForm.ShowDialog();
+                AIpoints= (Properties.Settings.Default.addPoint * rightAiAnswers) + (Properties.Settings.Default.takePoint * wrongAiAnswers);
+            }
+            else
+            {
+                AIpoints = 0;
+                rightAiAnswers = 0;
+                wrongAiAnswers = 0;
+            }
+            if (!Properties.Settings.Default.funMode)
+            {
+                save_result results = new save_result(points, rightHumanAnswers, wrongHumanAnswers, AIpoints, rightAiAnswers, wrongAiAnswers);
+                results.ShowDialog();
             }
             ResetGameLogic();
         }
@@ -386,6 +400,7 @@ namespace AI_vs_HUMAN
             previousAnswer.Text = "";
             previousTitle.Text = "";
             points = 0;
+            AIpoints = 0;
             settingsOfData.Enabled = true;
             isGameActive = false;
             if (Properties.Settings.Default.askSavePaths)
