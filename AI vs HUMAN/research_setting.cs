@@ -142,6 +142,7 @@ namespace AI_vs_HUMAN
             AddIfEnabled(columns, 3);
             AddIfEnabled(columns, 4);
             AddIfEnabled(columns, 5);
+            columns.Add("SessionID");
             return columns;
         }
         private void AddIfEnabled(List<string> columns, int index)

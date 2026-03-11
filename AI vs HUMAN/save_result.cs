@@ -19,7 +19,9 @@ namespace AI_vs_HUMAN
         private int AIpoints;
         private int AIgoodAnswers;
         private int AIbadAnswers;
-        public save_result(int points, int goodAnswers, int badAnswers, int AIpoints, int AIgoodAnswers, int AIbadAnswers)
+        private int timeOfRechearch;
+        private string path = Properties.Settings.Default.SaveFolderPath + Properties.Settings.Default.FileName;
+        public save_result(int points, int goodAnswers, int badAnswers, int AIpoints, int AIgoodAnswers, int AIbadAnswers, int timeOfRechearch)
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
             InitializeComponent();
@@ -78,6 +80,7 @@ namespace AI_vs_HUMAN
             this.AIpoints = AIpoints;
             this.AIgoodAnswers = AIgoodAnswers;
             this.AIbadAnswers = AIbadAnswers;
+            this.timeOfRechearch = timeOfRechearch;
 
             if (!Properties.Settings.Default.askGender)
             {
@@ -187,11 +190,11 @@ namespace AI_vs_HUMAN
         {
             if (!groupBoxChecker())
             {
-                if(!Properties.Settings.Default.askGender)
+                if (!Properties.Settings.Default.askGender)
                 {
                     MessageBox.Show("Brakuje danej o płci.");
                 }
-                if(!Properties.Settings.Default.askPopulation)
+                if (!Properties.Settings.Default.askPopulation)
                 {
                     MessageBox.Show("Brakuje danej o wielkości miejsca zamieszkania.");
                 }
@@ -200,6 +203,105 @@ namespace AI_vs_HUMAN
             if (!yourDataTextChecker())
             {
                 return;
+            }
+            List<string> lines = new List<string>
+            {
+            };
+            if (Properties.Settings.Default.pointAskBox)
+            {
+                lines.Add($"{points}");
+                lines.Add($"{goodAnswers}");
+                lines.Add($"{badAnswers}");
+            }
+            if (Properties.Settings.Default.askSaveHowLong)
+            {
+                lines.Add($"{timeOfRechearch}");
+            }
+            if (Properties.Settings.Default.askLimitImg)
+            {
+                lines.Add($"{Properties.Settings.Default.numericImgLimit}");
+            }
+            if (Properties.Settings.Default.askGender)
+            {
+                if (maleRadio.Checked)
+                {
+                    lines.Add("M");
+                }
+                else if (femaleRadio.Checked)
+                {
+                    lines.Add("F");
+                }
+                else if (otherRadio.Checked)
+                {
+                    lines.Add("O");
+                }
+                else if (privateRadio.Checked)
+                {
+                    lines.Add("-");
+                }
+            }
+            if (Properties.Settings.Default.askYears)
+            {
+                lines.Add($"{ageNumeric.Value}");
+            }
+            if (Properties.Settings.Default.askPopulation)
+            {
+                if (villageRadio.Checked)
+                {
+                    lines.Add("V");
+                }
+                else if (to50Radio.Checked)
+                {
+                    lines.Add("<50");
+                }
+                else if (from50to150Radio.Checked)
+                {
+                    lines.Add("50_150");
+                }
+                else if (from150to500Radio.Checked)
+                {
+                    lines.Add("150_500");
+                }
+                else if (over500Radio.Checked)
+                {
+                    lines.Add(">500");
+                }
+            }
+            if (Properties.Settings.Default.showAnswerByColor && Properties.Settings.Default.showHumanAnswers)
+            {
+                lines.Add("3");
+            }
+            else if (Properties.Settings.Default.showAnswerByColor)
+            {
+                lines.Add("2");
+            }
+            else if (Properties.Settings.Default.showHumanAnswers)
+            {
+                lines.Add("1");
+            }
+            if (Properties.Settings.Default.aiAnswersToo)
+            {
+                lines.Add($"{AIpoints}");
+                lines.Add($"{AIgoodAnswers}");
+                lines.Add($"{AIbadAnswers}");
+                if (Properties.Settings.Default.showAiAnswers)
+                {
+                    lines.Add("1");
+                }
+            }
+            // ADD YOUR CUSTOM DATA HERE
+            //lines.Add($"{Properties.Settings.Default.numberOfSeasion}");
+            string filePath ="";
+            string row=string.Join(";", lines);
+            if (Properties.Settings.Default.newFileToCSV)
+            {
+                filePath = path + ".csv";
+                System.IO.File.AppendAllText(filePath, row + Environment.NewLine);
+            }
+            if(Properties.Settings.Default.newFileToTXT)
+            {
+                filePath = path + ".txt";
+                System.IO.File.AppendAllText(filePath, row + Environment.NewLine);
             }
         }
     }

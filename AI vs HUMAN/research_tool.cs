@@ -357,7 +357,7 @@ namespace AI_vs_HUMAN
             }
             if (!Properties.Settings.Default.funMode)
             {
-                save_result results = new save_result(points, rightHumanAnswers, wrongHumanAnswers, AIpoints, rightAiAnswers, wrongAiAnswers);
+                save_result results = new save_result(points, rightHumanAnswers, wrongHumanAnswers, AIpoints, rightAiAnswers, wrongAiAnswers, timeOfResearch);
                 results.ShowDialog();
             }
             ResetGameLogic();
