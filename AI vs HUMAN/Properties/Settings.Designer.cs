@@ -598,5 +598,29 @@ namespace AI_vs_HUMAN.Properties {
                 this["numberOfSeasion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string yourQuestion {
+            get {
+                return ((string)(this["yourQuestion"]));
+            }
+            set {
+                this["yourQuestion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool newQuestion {
+            get {
+                return ((bool)(this["newQuestion"]));
+            }
+            set {
+                this["newQuestion"] = value;
+            }
+        }
     }
 }

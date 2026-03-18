@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,12 @@ namespace AI_vs_HUMAN
         private int AIgoodAnswers;
         private int AIbadAnswers;
         private int timeOfRechearch;
-        private string path = Properties.Settings.Default.SaveFolderPath + Properties.Settings.Default.FileName;
+        private string pathWithoutExtension = Path.Combine(
+            Properties.Settings.Default.SaveFolderPath,
+            Path.GetFileNameWithoutExtension(Properties.Settings.Default.FileName)
+            );
+        private TextBox[] yourAskText;
+        private NumericUpDown[] numericYourData;
         public save_result(int points, int goodAnswers, int badAnswers, int AIpoints, int AIgoodAnswers, int AIbadAnswers, int timeOfRechearch)
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
@@ -58,7 +64,7 @@ namespace AI_vs_HUMAN
                 privateData4,
                 privateData5
             };
-            Control[] yourAskText =
+            yourAskText = new TextBox[]
             {
                 textYourData1,
                 textYourData2,
@@ -66,7 +72,7 @@ namespace AI_vs_HUMAN
                 textYourData4,
                 textYourData5
             };
-            Control[] numericYourData =
+            numericYourData = new NumericUpDown[]
             {
                 numericYourData1,
                 numericYourData2,
@@ -108,7 +114,7 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    yourAskControl[i].Name = yourDataName[i];
+                    yourAskControl[i].Text = yourDataName[i];
                 }
                 if (yourSettingsText[i])
                 {
@@ -185,6 +191,23 @@ namespace AI_vs_HUMAN
                 }
             }
             return yourDataCheck;
+        }
+
+        private void addCustomData(List<string> lines, int number)
+        {
+            bool isEnabled= (bool)Properties.Settings.Default[$"YourAsk{number}Enabled"];
+            bool isString = (bool)Properties.Settings.Default[$"YourAsk{number}IsString"];
+            if (isEnabled)
+            {
+                if (isString)
+                {
+                    lines.Add(yourAskText[number-1].Text);
+                }
+                else
+                {
+                    lines.Add(numericYourData[number-1].Value.ToString());
+                }
+            }
         }
         private void save_results_button_Click(object sender, EventArgs e)
         {
@@ -289,20 +312,33 @@ namespace AI_vs_HUMAN
                     lines.Add("1");
                 }
             }
-            // ADD YOUR CUSTOM DATA HERE
-            //lines.Add($"{Properties.Settings.Default.numberOfSeasion}");
+            addCustomData(lines, 1);
+            addCustomData(lines, 2);
+            addCustomData(lines, 3);
+            addCustomData(lines, 4);
+            addCustomData(lines, 5);
+            lines.Add($"{Properties.Settings.Default.numberOfSeasion}");
             string filePath ="";
             string row=string.Join(";", lines);
             if (Properties.Settings.Default.newFileToCSV)
             {
-                filePath = path + ".csv";
-                System.IO.File.AppendAllText(filePath, row + Environment.NewLine);
+                filePath = pathWithoutExtension + ".csv";
+                File.AppendAllText(filePath, row + Environment.NewLine);
+                MessageBox.Show($"Wyniki zostały zapisane do pliku: {filePath}");
             }
             if(Properties.Settings.Default.newFileToTXT)
             {
-                filePath = path + ".txt";
-                System.IO.File.AppendAllText(filePath, row + Environment.NewLine);
+                filePath = pathWithoutExtension + ".txt";
+                File.AppendAllText(filePath, row + Environment.NewLine);
+                MessageBox.Show($"Wyniki zostały zapisane do pliku: {filePath}");
             }
+            if (!(string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath)))
+            {
+                File.AppendAllText(Properties.Settings.Default.ExistingFilePath, row + Environment.NewLine);
+                MessageBox.Show($"Wyniki zostały zapisane do pliku (starego): {Properties.Settings.Default.ExistingFilePath}");
+            }
+            this.Close();
+            
         }
     }
 }

@@ -92,6 +92,8 @@
             this.funMode = new System.Windows.Forms.CheckBox();
             this.showResult = new System.Windows.Forms.CheckBox();
             this.wasThatAi = new System.Windows.Forms.CheckBox();
+            this.newQuestion = new System.Windows.Forms.CheckBox();
+            this.yourQuestion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.addPoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.takePoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSeconds)).BeginInit();
@@ -749,11 +751,32 @@
             this.wasThatAi.Text = "Pokaż czy poprzedni przykład został wygenerowany przez AI";
             this.wasThatAi.UseVisualStyleBackColor = true;
             // 
+            // newQuestion
+            // 
+            this.newQuestion.AutoSize = true;
+            this.newQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.newQuestion.Location = new System.Drawing.Point(312, 436);
+            this.newQuestion.Name = "newQuestion";
+            this.newQuestion.Size = new System.Drawing.Size(117, 29);
+            this.newQuestion.TabIndex = 53;
+            this.newQuestion.Text = "Zapytanie";
+            this.newQuestion.UseVisualStyleBackColor = true;
+            this.newQuestion.CheckedChanged += new System.EventHandler(this.newQuestion_CheckedChanged);
+            // 
+            // yourQuestion
+            // 
+            this.yourQuestion.Location = new System.Drawing.Point(435, 443);
+            this.yourQuestion.Name = "yourQuestion";
+            this.yourQuestion.Size = new System.Drawing.Size(237, 20);
+            this.yourQuestion.TabIndex = 54;
+            // 
             // research_setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 702);
+            this.Controls.Add(this.yourQuestion);
+            this.Controls.Add(this.newQuestion);
             this.Controls.Add(this.wasThatAi);
             this.Controls.Add(this.showResult);
             this.Controls.Add(this.funMode);
@@ -894,5 +917,7 @@
         private System.Windows.Forms.CheckBox funMode;
         private System.Windows.Forms.CheckBox showResult;
         private System.Windows.Forms.CheckBox wasThatAi;
+        private System.Windows.Forms.CheckBox newQuestion;
+        private System.Windows.Forms.TextBox yourQuestion;
     }
 }

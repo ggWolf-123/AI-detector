@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace AI_vs_HUMAN
@@ -30,9 +25,10 @@ namespace AI_vs_HUMAN
         private int timeOfResearch=0;
         private int points = 0;
         private int AIpoints = 0;
-        private System.Windows.Forms.Timer gameTimer;
+        private Timer gameTimer;
         private bool isGameActive = false;
         private int imgLimit = 0;
+        
 
         public research_tool()
         {
@@ -115,6 +111,11 @@ namespace AI_vs_HUMAN
 
         private void startGameButton_Click(object sender, EventArgs e)
         {
+            chooseFolder();
+        }
+
+        private void chooseFolder()
+        {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
                 folderDialog.Description = "Wybierz główny folder z obrazami";
@@ -143,7 +144,6 @@ namespace AI_vs_HUMAN
                 }
             }
         }
-
         private async void noButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectdImagePath))
@@ -164,7 +164,7 @@ namespace AI_vs_HUMAN
             if(Properties.Settings.Default.aiAnswersToo)
                 result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 0;
-            liderBoard(selectdImagePath, result_from_model, answerHuman);
+            await liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
 
         private async void yesButton_Click(object sender, EventArgs e)
@@ -187,7 +187,7 @@ namespace AI_vs_HUMAN
             if (Properties.Settings.Default.aiAnswersToo)
                 result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
             int answerHuman = 1;
-            liderBoard(selectdImagePath, result_from_model, answerHuman);
+            await liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
 
         private void restartButton_Click(object sender, EventArgs e)
@@ -197,30 +197,52 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Najpierw rozpocznij grę.");
                 return;
             }
+            chooseFolder();
             ResetGameLogic();
         }
-        private void AddToFile(string imagePath, int correctAnswer, int answerHuman, int answerAi)
+        private void AddToFile(string filePath, int correctAnswer, int answerHuman, int answerAi)
         {
             string folderPath = Properties.Settings.Default.SaveFolderPath;
             int sessionNumber = Properties.Settings.Default.numberOfSeasion;
-            string filePath = System.IO.Path.Combine(folderPath, $"session_{sessionNumber}.txt");
-            string line;
+            string saveFilePath = System.IO.Path.Combine(folderPath, $"session_{sessionNumber}.txt");
             string aiOrHuman = correctAnswer == 1 ? "AI" : "HUMAN";
             string humanAnswer = answerHuman == 1 ? "AI" : "HUMAN";
             string aiAnswer = answerAi == 1 ? "AI" : "HUMAN";
 
+            List<string> list = new List<string>
+            {
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                filePath,
+                aiOrHuman,
+                humanAnswer
+            };
             if (Properties.Settings.Default.aiAnswersToo)
             {
-                line = $" {DateTime.Now}: {selectdImagePath} | Right answer: {aiOrHuman} | Your answer: {humanAnswer} | AI answer: {aiAnswer}";
+                list.Add(aiAnswer);
             }
-            else
-            {
-                line = $" {DateTime.Now}: {selectdImagePath} | Right answer: {aiOrHuman} | Your answer: {humanAnswer}";
-            }
+            string line = string.Join(";", list);
             try
             {
-                using (StreamWriter writer = new StreamWriter(filePath, append: true))
+                bool fileExists = File.Exists(saveFilePath);
+                bool fileEmpty = fileExists ? new FileInfo(saveFilePath).Length == 0 : true;
+                using (StreamWriter writer = new StreamWriter(saveFilePath, append: true))
                 {
+                    if(!fileExists || fileEmpty)
+                    {
+                        List<string> headerList = new List<string>
+                        {
+                            "Timestamp",
+                            "FilePath",
+                            "CorrectAnswer",
+                            "HumanAnswer"
+                        };
+                        if (Properties.Settings.Default.aiAnswersToo)
+                        {
+                            headerList.Add("AIAnswer");
+                        }
+                        string headerLine = string.Join(";", headerList);
+                        writer.WriteLine(headerLine);
+                    }
                     writer.WriteLine(line);
                 }
             }
@@ -278,7 +300,7 @@ namespace AI_vs_HUMAN
                 if (rightAnswers == answerHuman)
                     selectdImagePath = @"..\..\images_yes_no\YES.png";
                 else
-                    selectdImagePath = @"..\..\images_yes_no\YES.png";
+                    selectdImagePath = @"..\..\images_yes_no\NO.png";
                 randomPhoto.Image = Image.FromFile(selectdImagePath);
                 randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
                 
@@ -293,7 +315,6 @@ namespace AI_vs_HUMAN
                 imgLimit++;
                 if (imgLimit >= Properties.Settings.Default.numericImgLimit)
                 {
-                    MessageBox.Show("Koniec.");
                     EndOfResearch();
                     return;
                 }
@@ -383,6 +404,7 @@ namespace AI_vs_HUMAN
             wrongHumanAnswers = 0;
             rightAiAnswers = 0;
             wrongAiAnswers = 0;
+            imgLimit = 0;
             if (Properties.Settings.Default.showHumanAnswers)
             {
                 youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
@@ -448,6 +470,10 @@ namespace AI_vs_HUMAN
                     aiScore.Text = "Wynik AI";
                     aiRight.Text = "AI miało rację : ";
                     aiWrong.Text = "AI pomyliło się : ";
+                }
+                if(Properties.Settings.Default.newQuestion)
+                {
+                    questionMG.Text = Properties.Settings.Default.yourQuestion;
                 }
             };
             researchSetting.ShowDialog();

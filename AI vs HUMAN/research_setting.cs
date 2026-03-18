@@ -64,6 +64,7 @@ namespace AI_vs_HUMAN
             numericSeconds.Enabled = askTimeMax.Checked;
             numericImgLimit.Enabled = askLimitImg.Checked;
             showAiAnswers.Enabled = aiAnswersToo.Checked;
+            yourQuestion.Enabled = newQuestion.Checked;
         }
         private void ToggleCustomField(int index)
         {
@@ -80,7 +81,7 @@ namespace AI_vs_HUMAN
 
             }
         }
-        private void CreateNewFile()
+        private bool CreateNewFile()
         {
             string folderPath = Properties.Settings.Default.SaveFolderPath;
             string fileName = newFileNameTextBox.Text.Trim();
@@ -94,7 +95,8 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku.");
+                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawien, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku.");
+                    return false;
                 }
             }
             if (newFileToCSV.Checked)
@@ -106,45 +108,14 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku.");
+                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawien, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku.");
+                    return false;
                 }
             }
+            return true;
         }
-        private List<string> GenerateExpectedColumns()
-        {
-            List<string> columns = new List<string>
-            {
-            };
-            if (pointAskBox.Checked)
-            {
-                columns.Add("Points");
-                columns.Add("GoodAnswers");
-                columns.Add("BadAnswers");
-            }
-            if (askSaveHowLong.Checked) columns.Add("TestTime");
-            if (askLimitImg.Checked) columns.Add("NumberOfImg");
-            if (askGender.Checked) columns.Add("Sex");
-            if (askYears.Checked) columns.Add("Age");
-            if (askPopulation.Checked) columns.Add("SPR");
-            if (showAnswerByColor.Checked || showHumanAnswers.Checked) columns.Add("Feedback");
-            if (aiAnswersToo.Checked)
-            {
-                columns.Add("AIPoints");
-                columns.Add("AiGoodAnswer");
-                columns.Add("AiBadAnswer");
-                if (showAiAnswers.Checked)
-                {
-                    columns.Add("AIAnswerFeedback");
-                }
-            }
-            AddIfEnabled(columns, 1);
-            AddIfEnabled(columns, 2);
-            AddIfEnabled(columns, 3);
-            AddIfEnabled(columns, 4);
-            AddIfEnabled(columns, 5);
-            columns.Add("SessionID");
-            return columns;
-        }
+        
+        
         private void AddIfEnabled(List<string> columns, int index)
         {
             bool enabled= (bool)Properties.Settings.Default[$"YourAsk{index}Enabled"];
@@ -223,6 +194,41 @@ namespace AI_vs_HUMAN
                 return false;
             }
         }
+        private List<string> GenerateExpectedColumns()
+        {
+            List<string> columns = new List<string>
+            {
+            };
+            if (pointAskBox.Checked)
+            {
+                columns.Add("Points");
+                columns.Add("GoodAnswers");
+                columns.Add("BadAnswers");
+            }
+            if (askSaveHowLong.Checked) columns.Add("TestTime");
+            if (askLimitImg.Checked) columns.Add("NumberOfImg");
+            if (askGender.Checked) columns.Add("Sex");
+            if (askYears.Checked) columns.Add("Age");
+            if (askPopulation.Checked) columns.Add("SPR");
+            if (showAnswerByColor.Checked || showHumanAnswers.Checked) columns.Add("Feedback");
+            if (aiAnswersToo.Checked)
+            {
+                columns.Add("AIPoints");
+                columns.Add("AiGoodAnswer");
+                columns.Add("AiBadAnswer");
+                if (showAiAnswers.Checked)
+                {
+                    columns.Add("AIAnswerFeedback");
+                }
+            }
+            AddIfEnabled(columns, 1);
+            AddIfEnabled(columns, 2);
+            AddIfEnabled(columns, 3);
+            AddIfEnabled(columns, 4);
+            AddIfEnabled(columns, 5);
+            columns.Add("SessionID");
+            return columns;
+        }
         private IEnumerable<Control> GetAllContrils(Control root)
         {
             foreach (Control control in root.Controls)
@@ -273,6 +279,9 @@ namespace AI_vs_HUMAN
                     Properties.Settings.Default[tb.Name] = tb.Text;
                 }
             }
+            Properties.Settings.Default.FileName = newFileNameTextBox.Text;
+            Properties.Settings.Default.SaveFolderPath = chosenFolderToSave.Text;
+            Properties.Settings.Default.ExistingFilePath = chosenFileToWrite.Text;
             Properties.Settings.Default.Save();
         }
         private bool ValidateCustomFields()
@@ -315,6 +324,10 @@ namespace AI_vs_HUMAN
         {
             numericSeconds.Enabled = askTimeMax.Checked;
         }
+        private void newQuestion_CheckedChanged(object sender, EventArgs e)
+        {
+            yourQuestion.Enabled = newQuestion.Checked;
+        }
         // ==========================buttons
         private void whereToSaveFolderButton_Click(object sender, EventArgs e)
         {
@@ -354,18 +367,19 @@ namespace AI_vs_HUMAN
         }
         private void settingAcceptButton_Click(object sender, EventArgs e)
         {
-            if(funMode.Checked)
+            if (askSavePaths.Checked && string.IsNullOrWhiteSpace(Properties.Settings.Default.SaveFolderPath))
             {
-                if (askSavePaths .Checked&& string.IsNullOrWhiteSpace(Properties.Settings.Default.SaveFolderPath))
-                {
-                    MessageBox.Show("Musisz wybrać folder docelowy, aby zapisać ścieżki do obrazów.");
-                    return;
-                }
+                MessageBox.Show("Musisz wybrać folder docelowy, aby zapisać ścieżki plików.");
+                return;
+            }
+            if (funMode.Checked)
+            {
                 SaveCustomField(yourAsk1, yourAsk1TextBox, yourAsk1NumericRadio, yourAsk1StringRadio, 1);
                 SaveCustomField(yourAsk2, yourAsk2TextBox, yourAsk2NumericRadio, yourAsk2StringRadio, 2);
                 SaveCustomField(yourAsk3, yourAsk3TextBox, yourAsk3NumericRadio, yourAsk3StringRadio, 3);
                 SaveCustomField(yourAsk4, yourAsk4TextBox, yourAsk4NumericRadio, yourAsk4StringRadio, 4);
                 SaveCustomField(yourAsk5, yourAsk5TextBox, yourAsk5NumericRadio, yourAsk5StringRadio, 5);
+
                 SaveAllControlsSettings();
                 Properties.Settings.Default.Save();
                 this.DialogResult = DialogResult.OK;
@@ -387,6 +401,11 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Musisz wybrać folder docelowy, aby utworzyć nowy plik.");
                 return;
             }
+            if (!(CheckFileCompatibility(Properties.Settings.Default.ExistingFilePath)))
+            {
+                MessageBox.Show("Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go.");
+                return;
+            }
             if(!ValidateCustomFields())
             {
                 return;
@@ -398,9 +417,9 @@ namespace AI_vs_HUMAN
             SaveCustomField(yourAsk5, yourAsk5TextBox, yourAsk5NumericRadio, yourAsk5StringRadio, 5);
             SaveAllControlsSettings();
             Properties.Settings.Default.Save();
-            if (newFileToTXT.Checked || newFileToCSV.Checked)
+            if (!((newFileToTXT.Checked || newFileToCSV.Checked) && CreateNewFile()))
             {
-                CreateNewFile();
+                return;
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -417,7 +436,7 @@ namespace AI_vs_HUMAN
         {
             Properties.Settings.Default.SaveFolderPath = "";
             Properties.Settings.Default.Save();
-            chosenFileToWrite.Text = "Ścieżka wybranego folderu to:";
+            chosenFolderToSave.Text = "Ścieżka wybranego folderu to:";
         }
     }
 }
