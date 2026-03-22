@@ -401,7 +401,7 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Musisz wybrać folder docelowy, aby utworzyć nowy plik.");
                 return;
             }
-            if (!(CheckFileCompatibility(Properties.Settings.Default.ExistingFilePath)))
+            if (!(CheckFileCompatibility(Properties.Settings.Default.ExistingFilePath)) && !(string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath)))
             {
                 MessageBox.Show("Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go.");
                 return;
