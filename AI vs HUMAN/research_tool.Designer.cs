@@ -52,9 +52,9 @@
             // yesButton
             // 
             this.yesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.yesButton.Location = new System.Drawing.Point(872, 939);
+            this.yesButton.Location = new System.Drawing.Point(382, 582);
             this.yesButton.Name = "yesButton";
-            this.yesButton.Size = new System.Drawing.Size(860, 110);
+            this.yesButton.Size = new System.Drawing.Size(377, 76);
             this.yesButton.TabIndex = 0;
             this.yesButton.Text = "TAK";
             this.yesButton.UseVisualStyleBackColor = true;
@@ -63,9 +63,9 @@
             // noButton
             // 
             this.noButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.noButton.Location = new System.Drawing.Point(12, 939);
+            this.noButton.Location = new System.Drawing.Point(12, 582);
             this.noButton.Name = "noButton";
-            this.noButton.Size = new System.Drawing.Size(860, 110);
+            this.noButton.Size = new System.Drawing.Size(364, 76);
             this.noButton.TabIndex = 1;
             this.noButton.Text = "NIE";
             this.noButton.UseVisualStyleBackColor = true;
@@ -75,17 +75,17 @@
             // 
             this.randomPhoto.Location = new System.Drawing.Point(12, 102);
             this.randomPhoto.Name = "randomPhoto";
-            this.randomPhoto.Size = new System.Drawing.Size(1088, 831);
+            this.randomPhoto.Size = new System.Drawing.Size(747, 474);
             this.randomPhoto.TabIndex = 2;
             this.randomPhoto.TabStop = false;
             // 
             // questionMG
             // 
             this.questionMG.AutoSize = true;
-            this.questionMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
+            this.questionMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.questionMG.Location = new System.Drawing.Point(12, 27);
             this.questionMG.Name = "questionMG";
-            this.questionMG.Size = new System.Drawing.Size(891, 47);
+            this.questionMG.Size = new System.Drawing.Size(587, 31);
             this.questionMG.TabIndex = 3;
             this.questionMG.Text = "Czy ta grafika została wygenerowana przez AI?";
             // 
@@ -93,77 +93,81 @@
             // 
             this.endButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.endButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.endButton.Location = new System.Drawing.Point(1422, 780);
+            this.endButton.Location = new System.Drawing.Point(955, 582);
             this.endButton.Name = "endButton";
-            this.endButton.Size = new System.Drawing.Size(310, 153);
+            this.endButton.Size = new System.Drawing.Size(229, 76);
             this.endButton.TabIndex = 4;
-            this.endButton.Text = "Koniec, wróć";
+            this.endButton.Text = "Koniec";
             this.endButton.UseVisualStyleBackColor = true;
             this.endButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // humanScore
             // 
             this.humanScore.AutoSize = true;
-            this.humanScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.humanScore.Location = new System.Drawing.Point(1264, 9);
+            this.humanScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.humanScore.Location = new System.Drawing.Point(800, 90);
             this.humanScore.Name = "humanScore";
-            this.humanScore.Size = new System.Drawing.Size(357, 76);
+            this.humanScore.Size = new System.Drawing.Size(217, 46);
             this.humanScore.TabIndex = 5;
             this.humanScore.Text = "Twój wynik";
             // 
             // youRight
             // 
             this.youRight.AutoSize = true;
-            this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.youRight.Location = new System.Drawing.Point(1253, 102);
+            this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.youRight.Location = new System.Drawing.Point(807, 150);
             this.youRight.Name = "youRight";
-            this.youRight.Size = new System.Drawing.Size(0, 47);
+            this.youRight.Size = new System.Drawing.Size(276, 31);
             this.youRight.TabIndex = 6;
+            this.youRight.Text = "poprawne odpowiedzi";
             // 
             // youWrong
             // 
             this.youWrong.AutoSize = true;
-            this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.youWrong.Location = new System.Drawing.Point(1233, 168);
+            this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.youWrong.Location = new System.Drawing.Point(807, 193);
             this.youWrong.Name = "youWrong";
-            this.youWrong.Size = new System.Drawing.Size(0, 47);
+            this.youWrong.Size = new System.Drawing.Size(238, 31);
             this.youWrong.TabIndex = 7;
+            this.youWrong.Text = "błędne odpowiedzi";
             // 
             // aiScore
             // 
             this.aiScore.AutoSize = true;
-            this.aiScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.aiScore.Location = new System.Drawing.Point(1285, 244);
+            this.aiScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.aiScore.Location = new System.Drawing.Point(800, 255);
             this.aiScore.Name = "aiScore";
-            this.aiScore.Size = new System.Drawing.Size(296, 76);
+            this.aiScore.Size = new System.Drawing.Size(177, 46);
             this.aiScore.TabIndex = 8;
             this.aiScore.Text = "Wynik AI";
             // 
             // aiRight
             // 
             this.aiRight.AutoSize = true;
-            this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.aiRight.Location = new System.Drawing.Point(1269, 334);
+            this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.aiRight.Location = new System.Drawing.Point(802, 314);
             this.aiRight.Name = "aiRight";
-            this.aiRight.Size = new System.Drawing.Size(0, 47);
+            this.aiRight.Size = new System.Drawing.Size(309, 31);
             this.aiRight.TabIndex = 9;
+            this.aiRight.Text = "poprawne odpowiedzi AI";
             // 
             // aiWrong
             // 
             this.aiWrong.AutoSize = true;
-            this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.aiWrong.Location = new System.Drawing.Point(1269, 397);
+            this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.aiWrong.Location = new System.Drawing.Point(802, 365);
             this.aiWrong.Name = "aiWrong";
-            this.aiWrong.Size = new System.Drawing.Size(0, 47);
+            this.aiWrong.Size = new System.Drawing.Size(271, 31);
             this.aiWrong.TabIndex = 10;
+            this.aiWrong.Text = "błędne odpowiedzi AI";
             // 
             // restartButton
             // 
             this.restartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.restartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.restartButton.Location = new System.Drawing.Point(1106, 780);
+            this.restartButton.Location = new System.Drawing.Point(765, 582);
             this.restartButton.Name = "restartButton";
-            this.restartButton.Size = new System.Drawing.Size(310, 153);
+            this.restartButton.Size = new System.Drawing.Size(184, 76);
             this.restartButton.TabIndex = 11;
             this.restartButton.Text = "Reset";
             this.restartButton.UseVisualStyleBackColor = true;
@@ -172,9 +176,9 @@
             // startGameButton
             // 
             this.startGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.startGameButton.Location = new System.Drawing.Point(94, 428);
+            this.startGameButton.Location = new System.Drawing.Point(20, 271);
             this.startGameButton.Name = "startGameButton";
-            this.startGameButton.Size = new System.Drawing.Size(860, 110);
+            this.startGameButton.Size = new System.Drawing.Size(739, 110);
             this.startGameButton.TabIndex = 12;
             this.startGameButton.Text = "Zacznij";
             this.startGameButton.UseVisualStyleBackColor = true;
@@ -183,35 +187,40 @@
             // previousTitle
             // 
             this.previousTitle.AutoSize = true;
-            this.previousTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.previousTitle.Location = new System.Drawing.Point(1095, 502);
+            this.previousTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.previousTitle.Location = new System.Drawing.Point(800, 434);
             this.previousTitle.Name = "previousTitle";
-            this.previousTitle.Size = new System.Drawing.Size(0, 63);
+            this.previousTitle.Size = new System.Drawing.Size(248, 46);
             this.previousTitle.TabIndex = 13;
+            this.previousTitle.Visible=false;
+            this.previousTitle.Text = "Previous title";
             // 
             // previousAnswer
             // 
             this.previousAnswer.AutoSize = true;
-            this.previousAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.previousAnswer.Location = new System.Drawing.Point(1126, 606);
+            this.previousAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.previousAnswer.Location = new System.Drawing.Point(807, 498);
             this.previousAnswer.Name = "previousAnswer";
-            this.previousAnswer.Size = new System.Drawing.Size(0, 47);
+            this.previousAnswer.Size = new System.Drawing.Size(212, 31);
             this.previousAnswer.TabIndex = 14;
+            this.previousAnswer.Visible=false;
+            this.previousAnswer.Text = "previous answer";
             // 
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.25F);
-            this.timeLabel.Location = new System.Drawing.Point(909, 27);
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.timeLabel.Location = new System.Drawing.Point(605, 27);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(0, 47);
+            this.timeLabel.Size = new System.Drawing.Size(131, 31);
             this.timeLabel.TabIndex = 15;
+            this.timeLabel.Text = "timeLabel";
             // 
             // settingsOfData
             // 
-            this.settingsOfData.Location = new System.Drawing.Point(1627, 57);
+            this.settingsOfData.Location = new System.Drawing.Point(1079, 12);
             this.settingsOfData.Name = "settingsOfData";
-            this.settingsOfData.Size = new System.Drawing.Size(105, 52);
+            this.settingsOfData.Size = new System.Drawing.Size(105, 39);
             this.settingsOfData.TabIndex = 16;
             this.settingsOfData.Text = "Ustawienia";
             this.settingsOfData.UseVisualStyleBackColor = true;
@@ -219,7 +228,7 @@
             // 
             // changeLang
             // 
-            this.changeLang.Location = new System.Drawing.Point(1627, 12);
+            this.changeLang.Location = new System.Drawing.Point(968, 12);
             this.changeLang.Name = "changeLang";
             this.changeLang.Size = new System.Drawing.Size(105, 39);
             this.changeLang.TabIndex = 17;
@@ -231,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.ClientSize = new System.Drawing.Size(1214, 661);
             this.Controls.Add(this.changeLang);
             this.Controls.Add(this.settingsOfData);
             this.Controls.Add(this.timeLabel);

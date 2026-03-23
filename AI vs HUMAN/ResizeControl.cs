@@ -11,12 +11,18 @@ namespace AI_vs_HUMAN
 {
     internal class ResizeControl
     {
+        private static Dictionary<Control, Rectangle> originalControlBoundsInternal = new Dictionary<Control, Rectangle>();
+        
+        private static Dictionary<Control, float> originalFontSizes = new Dictionary<Control, float>(); 
         public static void StoreOriginalBoundsRecursive(Control parent, Dictionary<Control, Rectangle> originalControlBounds)
         {
             foreach (Control ctrl in parent.Controls)
             {
                 if (!originalControlBounds.ContainsKey(ctrl))
                     originalControlBounds[ctrl] = ctrl.Bounds;
+
+                if (!originalFontSizes.ContainsKey(ctrl))
+                    originalFontSizes[ctrl] = ctrl.Font.Size;
 
                 if (ctrl.Controls.Count > 0)
                     StoreOriginalBoundsRecursive(ctrl, originalControlBounds);
@@ -39,6 +45,13 @@ namespace AI_vs_HUMAN
                     int newWidth = (int)(orig.Width * xRatio);
                     int newHeight = (int)(orig.Height * yRatio);
                     ctrl.Bounds = new Rectangle(newX, newY, newWidth, newHeight);
+                }
+                if(originalFontSizes.ContainsKey(ctrl))
+                {
+                    float origFontSize = originalFontSizes[ctrl];
+                    float newFontSize = origFontSize * Math.Min(xRatio, yRatio);
+                    newFontSize=Math.Max(6,Math.Min(newFontSize, 40));
+                    ctrl.Font = new Font(ctrl.Font.FontFamily, newFontSize, ctrl.Font.Style);
                 }
                 if (ctrl.Controls.Count > 0)
                 {

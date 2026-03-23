@@ -36,9 +36,9 @@
             // 
             this.startButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
-            this.startButton.Location = new System.Drawing.Point(12, 239);
+            this.startButton.Location = new System.Drawing.Point(12, 144);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(1720, 810);
+            this.startButton.Size = new System.Drawing.Size(1190, 505);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Uruchom model (może to chwile zająć)";
             this.startButton.UseVisualStyleBackColor = true;
@@ -49,20 +49,20 @@
             this.changeLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F);
             this.changeLang.Location = new System.Drawing.Point(12, 12);
             this.changeLang.Name = "changeLang";
-            this.changeLang.Size = new System.Drawing.Size(1720, 221);
+            this.changeLang.Size = new System.Drawing.Size(1190, 126);
             this.changeLang.TabIndex = 1;
             this.changeLang.Text = "Zmień język";
             this.changeLang.UseVisualStyleBackColor = true;
             this.changeLang.Click += new System.EventHandler(this.changeLang_Click);
             // 
-            // uruchom_model
+            // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.ClientSize = new System.Drawing.Size(1214, 661);
             this.Controls.Add(this.changeLang);
             this.Controls.Add(this.startButton);
-            this.Name = "uruchom_model";
+            this.Name = "main";
             this.Text = "uruchom_model";
             this.ResumeLayout(false);
 

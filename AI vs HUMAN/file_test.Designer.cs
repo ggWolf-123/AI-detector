@@ -44,21 +44,21 @@
             // 
             // challangeBitton
             // 
-            this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.challangeBitton.Location = new System.Drawing.Point(1225, 902);
+            this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.challangeBitton.Location = new System.Drawing.Point(689, 562);
             this.challangeBitton.Name = "challangeBitton";
-            this.challangeBitton.Size = new System.Drawing.Size(507, 147);
+            this.challangeBitton.Size = new System.Drawing.Size(209, 90);
             this.challangeBitton.TabIndex = 0;
-            this.challangeBitton.Text = "Mini gra, pojedynek z AI";
+            this.challangeBitton.Text = "Moduł badawczy";
             this.challangeBitton.UseVisualStyleBackColor = true;
             this.challangeBitton.Click += new System.EventHandler(this.challangeBitton_Click);
             // 
             // getPhotoButton
             // 
-            this.getPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40.25F);
-            this.getPhotoButton.Location = new System.Drawing.Point(12, 902);
+            this.getPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.getPhotoButton.Location = new System.Drawing.Point(12, 562);
             this.getPhotoButton.Name = "getPhotoButton";
-            this.getPhotoButton.Size = new System.Drawing.Size(1207, 147);
+            this.getPhotoButton.Size = new System.Drawing.Size(671, 90);
             this.getPhotoButton.TabIndex = 1;
             this.getPhotoButton.Text = "Podaj obraz do sprawdzenia";
             this.getPhotoButton.UseVisualStyleBackColor = true;
@@ -68,7 +68,7 @@
             // 
             this.pictureToCheck.Location = new System.Drawing.Point(12, 12);
             this.pictureToCheck.Name = "pictureToCheck";
-            this.pictureToCheck.Size = new System.Drawing.Size(1207, 884);
+            this.pictureToCheck.Size = new System.Drawing.Size(886, 544);
             this.pictureToCheck.TabIndex = 2;
             this.pictureToCheck.TabStop = false;
             // 
@@ -78,10 +78,10 @@
             // 
             // checkButton
             // 
-            this.checkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.checkButton.Location = new System.Drawing.Point(1225, 128);
+            this.checkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.checkButton.Location = new System.Drawing.Point(904, 124);
             this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(507, 211);
+            this.checkButton.Size = new System.Drawing.Size(298, 211);
             this.checkButton.TabIndex = 5;
             this.checkButton.Text = "SPRAWDŹ!!!";
             this.checkButton.UseVisualStyleBackColor = true;
@@ -90,29 +90,29 @@
             // answerAIorNOT
             // 
             this.answerAIorNOT.AutoSize = true;
-            this.answerAIorNOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.answerAIorNOT.Location = new System.Drawing.Point(1228, 526);
+            this.answerAIorNOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.answerAIorNOT.Location = new System.Drawing.Point(904, 438);
             this.answerAIorNOT.Name = "answerAIorNOT";
-            this.answerAIorNOT.Size = new System.Drawing.Size(31, 46);
+            this.answerAIorNOT.Size = new System.Drawing.Size(106, 25);
             this.answerAIorNOT.TabIndex = 4;
-            this.answerAIorNOT.Text = " ";
+            this.answerAIorNOT.Text = "TO NIE AI";
             // 
             // answerFileCheck
             // 
             this.answerFileCheck.AutoSize = true;
-            this.answerFileCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.answerFileCheck.Location = new System.Drawing.Point(1225, 342);
+            this.answerFileCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.answerFileCheck.Location = new System.Drawing.Point(921, 338);
             this.answerFileCheck.Name = "answerFileCheck";
-            this.answerFileCheck.Size = new System.Drawing.Size(204, 63);
+            this.answerFileCheck.Size = new System.Drawing.Size(130, 39);
             this.answerFileCheck.TabIndex = 3;
             this.answerFileCheck.Text = "WYNIK";
             // 
             // changeLang
             // 
-            this.changeLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F);
-            this.changeLang.Location = new System.Drawing.Point(1225, 12);
+            this.changeLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.changeLang.Location = new System.Drawing.Point(912, 8);
             this.changeLang.Name = "changeLang";
-            this.changeLang.Size = new System.Drawing.Size(507, 110);
+            this.changeLang.Size = new System.Drawing.Size(290, 110);
             this.changeLang.TabIndex = 6;
             this.changeLang.Text = "Zmień język";
             this.changeLang.UseVisualStyleBackColor = true;
@@ -124,14 +124,14 @@
             this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 12);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1207, 884);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(886, 544);
             this.axWindowsMediaPlayer1.TabIndex = 7;
             // 
-            // test_obrazu
+            // file_test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1744, 1061);
+            this.ClientSize = new System.Drawing.Size(1214, 661);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.changeLang);
             this.Controls.Add(this.checkButton);
@@ -140,7 +140,7 @@
             this.Controls.Add(this.pictureToCheck);
             this.Controls.Add(this.getPhotoButton);
             this.Controls.Add(this.challangeBitton);
-            this.Name = "test_obrazu";
+            this.Name = "file_test";
             this.Text = "test_obrazu";
             ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
