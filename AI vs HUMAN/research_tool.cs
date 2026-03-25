@@ -1,17 +1,19 @@
-﻿using System;
+﻿using OpenCvSharp;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AI_vs_HUMAN
 {
     public partial class research_tool : Form
     {
-        private Size originalSize;
+        private System.Drawing.Size originalSize;
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string mainFolderPath;
         private string selectdImagePath;
@@ -22,19 +24,23 @@ namespace AI_vs_HUMAN
         private int rightAiAnswers = 0;
         private int wrongAiAnswers = 0;
         private int timeLeft;
-        private int timeOfResearch=0;
+        private int timeOfResearch = 0;
         private int points = 0;
         private int AIpoints = 0;
         private Timer gameTimer;
         private bool isGameActive = false;
         private int imgLimit = 0;
-        
+        private double result_from_model_video;
+        private bool gameCancelled = false;
+        private Random rnd = new Random();
+
 
         public research_tool()
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
             InitializeComponent();
             ApplyLanguage();
+            axWindowsMediaPlayer1.Hide();
             this.Shown += (s, e) =>
             {
                 this.WindowState = FormWindowState.Maximized;
@@ -90,7 +96,7 @@ namespace AI_vs_HUMAN
         {
             originalSize = this.Size;
             ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
-            if(Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
+            if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
             {
                 gameTimer = new System.Windows.Forms.Timer();
                 gameTimer.Interval = 1000;
@@ -101,7 +107,7 @@ namespace AI_vs_HUMAN
         {
             ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
         }
-        private void button1_Click(object sender, EventArgs e) //endButton
+        private void endButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             file_test test_Obrazu = new file_test();
@@ -128,20 +134,79 @@ namespace AI_vs_HUMAN
                                        file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                                       file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".avi", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".mov", StringComparison.OrdinalIgnoreCase))
                         .ToArray();
                     if (allImages.Length == 0)
                     {
-                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów.");
+                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów i/lub filmów.");
                         return;
                     }
-                    Random rnd = new Random();
-                    selectdImagePath = allImages[rnd.Next(allImages.Length)];
-                    randomPhoto.Image = Image.FromFile(selectdImagePath);
-                    randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
+                    randomFilePrepare();
                     startGameButton.SendToBack();
                     MessageBox.Show($"Wybrano folder: {mainFolderPath}");
+            }
+        }
+    }
+        private async void randomFilePrepare()
+        {
+            selectdImagePath = allImages[rnd.Next(allImages.Length)];
+            await Task.Delay(200);
+            string ext = System.IO.Path.GetExtension(selectdImagePath).ToLower();
+            try
+            {
+                if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
+                {
+                    axWindowsMediaPlayer1.URL = "";
+                    axWindowsMediaPlayer1.Hide();
+                    axWindowsMediaPlayer1.Ctlcontrols.stop();
+                    randomPhoto.Show();
+                    randomPhoto.Image = System.Drawing.Image.FromFile(selectdImagePath);
+                    randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
                 }
+                else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
+                {
+                    randomPhoto.Hide();
+                    axWindowsMediaPlayer1.Show();
+                    this.axWindowsMediaPlayer1.URL = selectdImagePath;
+                    this.axWindowsMediaPlayer1.Ctlcontrols.play();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+            }
+            yesButton.Enabled = true;
+            noButton.Enabled = true;
+        }
+        private async Task randomFileAiCheck()
+        {
+            string ext = System.IO.Path.GetExtension(selectdImagePath).ToLower();
+            try
+            {
+                if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
+                {
+                    result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
+                }
+                else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
+                {
+                    result_from_model_video = await ApiComunication.AnalizeVideo(selectdImagePath, 180);
+                    if (result_from_model_video < 50) //result_from_model is a percentage of frames classified as AI, so if it's less than 50%, we say it's not AI
+                    {
+                        result_from_model = 0;
+                    }
+                    else
+                    {
+                        result_from_model = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas sprawdzania pliku przez AI\n{ex.Message}");
             }
         }
         private async void noButton_Click(object sender, EventArgs e)
@@ -156,13 +221,20 @@ namespace AI_vs_HUMAN
                 isGameActive = true;
                 if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
                 {
+                    timeLeft = Properties.Settings.Default.numericSeconds;
                     gameTimer.Stop();
                     gameTimer.Start();
                 }
-                settingsOfData.Enabled = false;
             }
-            if(Properties.Settings.Default.aiAnswersToo)
-                result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
+            buttonsEnabledChange(false);
+            if (Properties.Settings.Default.aiAnswersToo)
+            {
+                await randomFileAiCheck();
+            }
+            if (gameCancelled || !isGameActive)
+            {
+                return;
+            }
             int answerHuman = 0;
             await liderBoard(selectdImagePath, result_from_model, answerHuman);
         }
@@ -179,15 +251,31 @@ namespace AI_vs_HUMAN
                 isGameActive = true;
                 if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
                 {
+                    timeLeft = Properties.Settings.Default.numericSeconds;
                     gameTimer.Stop();
                     gameTimer.Start();
                 }
-                settingsOfData.Enabled = false;
             }
+            buttonsEnabledChange(false);
             if (Properties.Settings.Default.aiAnswersToo)
-                result_from_model = await ApiComunication.SendImageToModel(selectdImagePath);
+            {
+                await randomFileAiCheck();
+            }
+            if(gameCancelled || !isGameActive)
+            {
+                return;
+            }
             int answerHuman = 1;
             await liderBoard(selectdImagePath, result_from_model, answerHuman);
+        }
+        private void buttonsEnabledChange(bool enabled)
+        {
+            settingsOfData.Enabled = enabled;
+            changeLang.Enabled = enabled;
+            restartButton.Enabled = enabled;
+            endButton.Enabled = enabled;
+            noButton.Enabled = enabled;
+            yesButton.Enabled = enabled;
         }
 
         private void restartButton_Click(object sender, EventArgs e)
@@ -301,7 +389,7 @@ namespace AI_vs_HUMAN
                     selectdImagePath = @"..\..\images_yes_no\YES.png";
                 else
                     selectdImagePath = @"..\..\images_yes_no\NO.png";
-                randomPhoto.Image = Image.FromFile(selectdImagePath);
+                randomPhoto.Image = System.Drawing.Image.FromFile(selectdImagePath);
                 randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
                 
             }
@@ -309,7 +397,6 @@ namespace AI_vs_HUMAN
             {
                 AddToFile(imagePath, rightAnswers,answerHuman,answerAI);
             }
-            Random rnd = new Random();
             if (Properties.Settings.Default.askLimitImg)
             {
                 imgLimit++;
@@ -319,17 +406,15 @@ namespace AI_vs_HUMAN
                     return;
                 }
             }
-            selectdImagePath = allImages[rnd.Next(allImages.Length)];
-            await Task.Delay(200);
-            randomPhoto.Image = Image.FromFile(selectdImagePath);
-            randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
-            yesButton.Enabled = true;
-            noButton.Enabled = true;
+            randomFilePrepare();
         }
         
         private void GameTimerTick(object sender, EventArgs e)
         {
-            timeLeft--;
+            if (timeLeft > 0)
+            {
+                timeLeft--;
+            }
             timeOfResearch++;
             int minutes = timeLeft / 60;
             int seconds = timeLeft % 60;
@@ -347,6 +432,7 @@ namespace AI_vs_HUMAN
         }
         private void EndOfResearch()
         {
+            gameCancelled = true;
             if (Properties.Settings.Default.pointAskBox)
             {
                 points = (Properties.Settings.Default.addPoint * rightHumanAnswers) + (Properties.Settings.Default.takePoint * wrongHumanAnswers);
@@ -385,6 +471,7 @@ namespace AI_vs_HUMAN
         }
         private void ResetGameLogic()
         {
+            gameCancelled = false;
             isGameActive = false;
             if (Properties.Settings.Default.askTimeMax || Properties.Settings.Default.askSaveHowLong)
             {
@@ -397,9 +484,14 @@ namespace AI_vs_HUMAN
             {
                 timeLabel.Text = "";
             }
+            randomFilePrepare();
+            previousAnswer.Text = "";
+            previousTitle.Text = "";
+            points = 0;
+            AIpoints = 0;
+            buttonsEnabledChange(true);
+            isGameActive = false;
             timeOfResearch = 0;
-            yesButton.Enabled = true;
-            noButton.Enabled = true;
             rightHumanAnswers = 0;
             wrongHumanAnswers = 0;
             rightAiAnswers = 0;
@@ -410,21 +502,11 @@ namespace AI_vs_HUMAN
                 youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
                 youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
             }
-            if (Properties.Settings.Default.wasThatAi)
+            if (Properties.Settings.Default.showAiAnswers)
             {
                 aiRight.Text = "AI miało rację : " + rightAiAnswers;
                 aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
             }
-            Random rnd = new Random();
-            selectdImagePath = allImages[rnd.Next(allImages.Length)];
-            randomPhoto.Image = Image.FromFile(selectdImagePath);
-            randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
-            previousAnswer.Text = "";
-            previousTitle.Text = "";
-            points = 0;
-            AIpoints = 0;
-            settingsOfData.Enabled = true;
-            isGameActive = false;
             if (Properties.Settings.Default.askSavePaths)
             {
                 Properties.Settings.Default.numberOfSeasion++;
@@ -455,8 +537,8 @@ namespace AI_vs_HUMAN
                 else
                 {
                     humanScore.Text = "Twój wynik";
-                    youRight.Text = "Miałeś/-aś rację : ";
-                    youWrong.Text = "Pomyliłeś/-łaś się: ";
+                    youRight.Text = "Miałeś/-aś rację : 0";
+                    youWrong.Text = "Pomyliłeś/-łaś się: 0";
                 }
 
                 if (!Properties.Settings.Default.showAiAnswers)
@@ -468,8 +550,8 @@ namespace AI_vs_HUMAN
                 else
                 {
                     aiScore.Text = "Wynik AI";
-                    aiRight.Text = "AI miało rację : ";
-                    aiWrong.Text = "AI pomyliło się : ";
+                    aiRight.Text = "AI miało rację : 0";
+                    aiWrong.Text = "AI pomyliło się : 0";
                 }
                 if(Properties.Settings.Default.newQuestion)
                 {

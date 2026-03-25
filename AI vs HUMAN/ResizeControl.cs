@@ -9,9 +9,10 @@ using System.Windows.Forms;
 
 namespace AI_vs_HUMAN
 {
+
+//spróbuj przerobić tą klasę tak aby wystarczyła jedna linijka w dowolnym formularzu, a ona będzie sama wszysko skalować
     internal class ResizeControl
     {
-        private static Dictionary<Control, Rectangle> originalControlBoundsInternal = new Dictionary<Control, Rectangle>();
         
         private static Dictionary<Control, float> originalFontSizes = new Dictionary<Control, float>(); 
         public static void StoreOriginalBoundsRecursive(Control parent, Dictionary<Control, Rectangle> originalControlBounds)
