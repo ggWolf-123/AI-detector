@@ -38,6 +38,7 @@
             this.answerFileCheck = new System.Windows.Forms.Label();
             this.changeLang = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.checkFolderButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -45,9 +46,9 @@
             // challangeBitton
             // 
             this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
-            this.challangeBitton.Location = new System.Drawing.Point(689, 562);
+            this.challangeBitton.Location = new System.Drawing.Point(904, 559);
             this.challangeBitton.Name = "challangeBitton";
-            this.challangeBitton.Size = new System.Drawing.Size(209, 90);
+            this.challangeBitton.Size = new System.Drawing.Size(298, 90);
             this.challangeBitton.TabIndex = 0;
             this.challangeBitton.Text = "Moduł badawczy";
             this.challangeBitton.UseVisualStyleBackColor = true;
@@ -58,7 +59,7 @@
             this.getPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
             this.getPhotoButton.Location = new System.Drawing.Point(12, 562);
             this.getPhotoButton.Name = "getPhotoButton";
-            this.getPhotoButton.Size = new System.Drawing.Size(671, 90);
+            this.getPhotoButton.Size = new System.Drawing.Size(445, 90);
             this.getPhotoButton.TabIndex = 1;
             this.getPhotoButton.Text = "Podaj obraz do sprawdzenia";
             this.getPhotoButton.UseVisualStyleBackColor = true;
@@ -127,11 +128,23 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(886, 544);
             this.axWindowsMediaPlayer1.TabIndex = 7;
             // 
+            // checkFolderButton
+            // 
+            this.checkFolderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.checkFolderButton.Location = new System.Drawing.Point(463, 562);
+            this.checkFolderButton.Name = "checkFolderButton";
+            this.checkFolderButton.Size = new System.Drawing.Size(435, 90);
+            this.checkFolderButton.TabIndex = 8;
+            this.checkFolderButton.Text = "Sprawdź pliki z wybranego folderu";
+            this.checkFolderButton.UseVisualStyleBackColor = true;
+            this.checkFolderButton.Click += new System.EventHandler(this.checkFolderButton_Click);
+            // 
             // file_test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1214, 661);
+            this.Controls.Add(this.checkFolderButton);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.changeLang);
             this.Controls.Add(this.checkButton);
@@ -160,5 +173,6 @@
         private System.Windows.Forms.Label answerFileCheck;
         private System.Windows.Forms.Button changeLang;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Button checkFolderButton;
     }
 }

@@ -3,17 +3,22 @@ using OpenCvSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.LinkLabel;
 namespace AI_vs_HUMAN
 {
     public partial class file_test : Form
     {
         private System.Drawing.Size originalSize; //Size: OpenCvSharp.Size, but we need System.Drawing.Size for scaling
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
+        private string[] allImages;
+        private string mainFolderPath;
         public file_test()
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
@@ -167,6 +172,80 @@ namespace AI_vs_HUMAN
             {
                 MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
                 return;
+            }
+        }
+        private async void checkFolderButton_Click(object sender, EventArgs e)
+        {
+            chooseFolder();
+            string path = System.IO.Path.Combine(mainFolderPath, "result_of_folder_AI_DETECTOR.csv");
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+            var header = "File Name;Result";
+            System.IO.File.WriteAllText(path, header + Environment.NewLine);
+            foreach (string file in allImages)
+            {
+                var columns = new List<string> {System.IO.Path.GetFileName(file)};
+                string ext = System.IO.Path.GetExtension(file).ToLower();
+                if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
+                {
+                    int result_from_model = await ApiComunication.SendImageToModel(file);
+                    if (result_from_model == 0)
+                        columns.Add("Not AI");
+                    else if (result_from_model == 1)
+                        columns.Add("AI");
+                }
+                else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
+                {
+                    double result_from_model;
+                    result_from_model = await ApiComunication.AnalizeVideo(file, 180);
+                    if (result_from_model == -1)
+                    {
+                        MessageBox.Show($"Bład podczas analizy wideo {System.IO.Path.GetFileName(file)}.");
+                        columns.Add("Error during analysis");
+                    }
+                    else if (result_from_model < 50) //result_from_model is a percentage of frames classified as AI, so if it's less than 50%, we say it's not AI
+                    {
+                        columns.Add($"Not AI, Confidence: {100.0 - result_from_model:F2}%");
+                    }
+                    else
+                    {
+                        columns.Add($"AI, Confidence: {(result_from_model):F2}%");
+                    }
+                }
+                string row=string.Join(";", columns);
+                System.IO.File.AppendAllText(path, row + Environment.NewLine);
+            }
+            MessageBox.Show($"Sprawdznie folderu {mainFolderPath} zakończyło się.");
+        }
+        private void chooseFolder()
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                folderDialog.Description = "Wybierz folder z plikami do sprawdzenia. Plik csv z wynikami zostanie do niego zapisany.";
+                folderDialog.ShowNewFolderButton = false;
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mainFolderPath = folderDialog.SelectedPath;
+                    allImages = System.IO.Directory.GetFiles(mainFolderPath, "*.*", System.IO.SearchOption.AllDirectories)
+                        .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".avi", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".mov", StringComparison.OrdinalIgnoreCase))
+                        .ToArray();
+                    if (allImages.Length == 0)
+                    {
+                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów i/lub filmów.");
+                        return;
+                    }
+                    MessageBox.Show($"Wybrano folder: {mainFolderPath}");
+                }
             }
         }
     }
