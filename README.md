@@ -88,7 +88,7 @@ Below is a list of features that are already available in the application as wel
 		- [x] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
 		- [ ] Connecting your own files in the research module in a clearly defined format
 			- [x] Using graphic files
-			- [ ] Using video files
+			- [x] Using video files
 			- [ ] Using text files
 		- [x] Not returning or returning results on an ongoing basis during the study at the user's request
 		- [x] Not returning or returning results in the form of a txt file after the study is completed
@@ -104,6 +104,7 @@ Below is a list of features that are already available in the application as wel
 	- [ ] Adding the ability to check PDF files
 	- [ ] Adding more languages (for example German, French, Italian, Chinese, Japanese)
 	- [ ] Other possible changes and additions that may arise during the development of the project
+
 
 
 ### Wersja Polska
@@ -129,7 +130,7 @@ Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak 
 		- [x] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
 		- [ ] Podpięcie własnych plików w module badawczym w jasno określonym formacie
 			- [x] Wykorzystywanie plików graficznych
-			- [ ] Wykorzystywanie plików wideo
+			- [x] Wykorzystywanie plików wideo
 			- [ ] Wykorzystywanie plików tekstowych
 		- [x] Nie zwracanie lub zwracanie wyników na bierząco podczas badania na rządanie użytkownika
 		- [x] Nie zwracanie lub zwracanie wyników w formie pliku txt po zakończeniu badania

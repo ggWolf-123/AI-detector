@@ -14,99 +14,141 @@ namespace AI_vs_HUMAN
 {
     internal class ApiComunication
     {
-        public static async Task<Process> StartFastApiServer()
+        private static readonly HttpClient client = new HttpClient();
+        public class PythonEnvConfig
         {
-            try
+            public string PythonExe { get; set; }
+            public string WorkingDir { get; set; }
+        }
+        public static async Task<List<Process>> StartFastApiServers()
+        {
+            var env = StartENV();
+            var processes = StartFasApiProcesses(env);
+            await WaitForAllApisReady(300);
+            return processes;
+        }
+        public static List<Process> StartFasApiProcesses(PythonEnvConfig env)
+        {
+            return new List<Process>
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    var response = await client.GetAsync("http://127.0.0.1:8000/docs");
+                StartFastApi("main", 8000, env)
+            };
+        }
+        private static PythonEnvConfig StartENV()
+        {
+            string baseDir=AppContext.BaseDirectory;
+            string solutionRoot=Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
+            string fastApiDir = Path.Combine(solutionRoot, "AI vs HUMAN", "fastapi_model");
+            string venvPath = Path.Combine(solutionRoot, "env", "Scripts", "python.exe");
+            if (!Directory.Exists(fastApiDir))
+            {
+                MessageBox.Show(fastApiDir);
+                throw new Exception($"FastAPI directory not found at {fastApiDir}.");
+            }
+            if (!File.Exists(venvPath))
+            {
+                MessageBox.Show(venvPath);
+                throw new Exception($"Python executable not found at {venvPath}.");
+            }
+            MessageBox.Show($"WorkingDir: {fastApiDir}");
+            return new PythonEnvConfig
+            {
 
+                PythonExe = venvPath,
+                WorkingDir = fastApiDir
+            };
+        }
+        public static Process StartFastApi(string module, int port, PythonEnvConfig env)
+        {
+            var process= new Process();
+            process.StartInfo.FileName = env.PythonExe;
+            process.StartInfo.WorkingDirectory = env.WorkingDir;
+            process.StartInfo.Arguments = $"-m uvicorn {module}:app --host 127.0.0.1 --port {port}";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.OutputDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                {
+                    Console.WriteLine($"[{module} OUTPUT] {e.Data}");
+                }
+            };
+            process.ErrorDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                {
+                    Console.WriteLine($"[{module} ERROR] {e.Data}");
+                }
+            };
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+            return process;
+        }
+        public static async Task WaitForAllApisReady(int timeout=300) //this function can be expanded if more APIs are added, currently it only checks one API
+        {
+            await WaitForHealth("http://127.0.0.1:8000/health", timeout);
+        }
+        public static async Task WaitForHealth(string url,int timeout=300)
+        {
+            var start=DateTime.UtcNow;
+            while((DateTime.UtcNow-start).TotalSeconds<timeout)
+            {
+                try
+                {
+                    var response = await client.GetAsync(url);
                     if (response.IsSuccessStatusCode)
                     {
-                        // Server is already running
-                        return null;
+                        return;
                     }
                 }
-            }
-            catch { }// Server is not running, proceed to start it
-            Process fastApiProcess = new Process();
-            fastApiProcess.StartInfo.FileName = "uvicorn";
-            string fastApiPath = Path.Combine(Application.StartupPath, @"..\..\fastapi_model");
-            fastApiPath = Path.GetFullPath(fastApiPath);
-            fastApiProcess.StartInfo.Arguments = "api_photos_and_videos:app --host 0.0.0.0 --port 8000";
-            fastApiProcess.StartInfo.WorkingDirectory = fastApiPath;
-            fastApiProcess.StartInfo.CreateNoWindow = true;
-            fastApiProcess.StartInfo.UseShellExecute = false;
-            fastApiProcess.Start();
-
-            using (HttpClient http = new HttpClient())
-            {
-                for (int i = 0; i < 40; i++)
+                catch
                 {
-                    try
-                    {
-                        var r = await http.GetAsync("http://127.0.0.1:8000/docs");
-                        if (r.IsSuccessStatusCode)
-                        {
-                            return fastApiProcess;
-                        }
-                    }
-                    catch
-                    {
-                        await Task.Delay(250);
-                    }
+                    // Ignore exceptions and retry
                 }
+                await Task.Delay(500);
             }
-
-            MessageBox.Show("Nie udało się udostępnić serwera FastAPI.\n\nNie udało się uruchomić serwera FastAPI.");
-            return null;
+            throw new Exception($"API at {url} did not become ready in time.");
         }
         public static async Task<int> SendImageToModel(string filePath)
         {
-            using (HttpClient client = new HttpClient())
+            using (var content = new MultipartFormDataContent())
             {
-                client.BaseAddress = new Uri("http://127.0.0.1:8000/");
-                using (var content = new MultipartFormDataContent())
+                var imageContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
+                string ext = System.IO.Path.GetExtension(filePath).ToLower();
+                string mime = "image/jpeg";
+                if (ext == ".png") mime = "image/png";
+                else if (ext == ".bmp") mime = "image/bmp";
+                else if (ext == ".gif") mime = "image/gif";
+                imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(mime);
+                content.Add(imageContent, "file", System.IO.Path.GetFileName(filePath));
+
+                HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:8000/predict/image", content);
+                response.EnsureSuccessStatusCode();
+
+                var responseString = await response.Content.ReadAsStringAsync();
+                using (var doc = JsonDocument.Parse(responseString))
                 {
-                    var imageContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
-                    string ext = System.IO.Path.GetExtension(filePath).ToLower();
-                    string mime = "image/jpeg";
-                    if (ext == ".png") mime = "image/png";
-                    else if (ext == ".bmp") mime = "image/bmp";
-                    else if (ext == ".gif") mime = "image/gif";
-                    imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(mime);
-                    content.Add(imageContent, "file", System.IO.Path.GetFileName(filePath));
-
-                    HttpResponseMessage response = await client.PostAsync("predict", content);
-                    response.EnsureSuccessStatusCode();
-
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    using (var doc = JsonDocument.Parse(responseString))
-                    {
-                        int prediction = doc.RootElement.GetProperty("result").GetInt32();
-                        return prediction;
-                    }
+                    int prediction = doc.RootElement.GetProperty("result").GetInt32();
+                    return prediction;
                 }
             }
         }
         public static async Task<int> SendFrameToModel(byte[] imageBytes)
         {
-            using (HttpClient client = new HttpClient())
+            using (var content = new MultipartFormDataContent())
             {
-                client.BaseAddress = new Uri("http://127.0.0.1:8000/");
-                using (var content = new MultipartFormDataContent())
+                var imageContent = new ByteArrayContent(imageBytes);
+                imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg");
+                content.Add(imageContent, "file", "frame.jpg");
+                var response = await client.PostAsync("http://127.0.0.1:8000/predict/image", content);
+                var responseString = await response.Content.ReadAsStringAsync();
+                using (var doc = JsonDocument.Parse(responseString))
                 {
-                    var imageContent = new ByteArrayContent(imageBytes);
-                    imageContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg");
-                    content.Add(imageContent, "file", "frame.jpg");
-                    var response = await client.PostAsync("predict", content);
-                    var responseString = await response.Content.ReadAsStringAsync();
-                    using (var doc = JsonDocument.Parse(responseString))
-                    {
-                        int prediction = doc.RootElement.GetProperty("result").GetInt32();
-                        return prediction;
-                    }
+                    int prediction = doc.RootElement.GetProperty("result").GetInt32();
+                    return prediction;
                 }
             }
         }
@@ -155,6 +197,37 @@ namespace AI_vs_HUMAN
                 }
                 double aiPercentage = (double)aiCount / analyzedFrames * 100;
                 return aiPercentage;
+            }
+        }
+        public static async Task<string> SentTextToTranslate(string text)
+        {
+            var json=JsonSerializer.Serialize(new { text = text });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://127.0.0.1:8000/translate", content);
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            using (var doc = JsonDocument.Parse(responseString))
+            {
+                if (doc.RootElement.TryGetProperty("translated_text", out var el))
+                {
+                    return el.GetString();
+                }
+                string translation = doc.RootElement.GetProperty("translated_text").GetString();
+                return translation;
+            }
+        }
+
+        public static async Task<int> SentTextToModel(string text)
+        {
+            var json = JsonSerializer.Serialize(new { text = text });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://127.0.0.1:8000/predict/text", content);
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            using (var doc = JsonDocument.Parse(responseString))
+            {
+                int result = doc.RootElement.GetProperty("result").GetInt32();
+                return result;
             }
         }
     }

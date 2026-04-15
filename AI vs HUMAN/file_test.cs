@@ -73,7 +73,7 @@ namespace AI_vs_HUMAN
         }
         private void getPhotoButton_Click(object sender, EventArgs e)
         {
-            photoPath.Filter = "Media Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.mp4;*.avi;*.mov";
+            photoPath.Filter = "Media Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.mp4;*.avi;*.mov;*.txt";
             photoPath.Title = "Wybierz plik";
             if (photoPath.ShowDialog() == DialogResult.OK)
             {
@@ -162,6 +162,16 @@ namespace AI_vs_HUMAN
                     challangeBitton.Enabled = true;
                     getPhotoButton.Enabled = true;
                 }
+                else if (ext == ".txt")
+                {
+                    string text = System.IO.File.ReadAllText(filePath);
+                    text=await ApiComunication.SentTextToTranslate(text);
+                    int result_from_model = await ApiComunication.SentTextToModel(text);
+                    if (result_from_model == 0)
+                        answerAIorNOT.Text = "Model mówi: to nie jest AI";
+                    else if (result_from_model == 1)
+                        answerAIorNOT.Text = "Model mówi: to jest AI";
+                }
                 else
                 {
                     MessageBox.Show("Nieobsługiwany format pliku.");
@@ -171,6 +181,9 @@ namespace AI_vs_HUMAN
             catch (Exception ex)
             {
                 MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+                checkButton.Enabled = true;
+                challangeBitton.Enabled = true;
+                getPhotoButton.Enabled = true;
                 return;
             }
         }

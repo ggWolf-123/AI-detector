@@ -150,7 +150,13 @@
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="fastapi_model\model_0.9971100508165561.pth">
+    <None Include="fastapi_model\assets\image_model.pth">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="fastapi_model\assets\SVM_model.pkl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="fastapi_model\assets\vectorizer.pkl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -188,7 +194,16 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fastapi_model\api_photos_and_videos.py">
+    <Content Include="fastapi_model\main.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fastapi_model\models\translate_model.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fastapi_model\models\text_model.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fastapi_model\models\image_model.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images_yes_no\NO.png">

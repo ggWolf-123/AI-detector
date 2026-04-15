@@ -63,7 +63,8 @@ namespace AI_vs_HUMAN
         {
             startButton.Enabled = false;
             changeLang.Enabled= false;
-            fastApiProcess = await ApiComunication.StartFastApiServer();
+            var processes = await ApiComunication.StartFastApiServers();
+            fastApiProcess = processes.FirstOrDefault();
             this.Hide();
             file_test test_Obrazu = new file_test();
             test_Obrazu.ShowDialog();
