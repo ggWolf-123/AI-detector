@@ -48,6 +48,7 @@
             this.settingsOfData = new System.Windows.Forms.Button();
             this.changeLang = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.textBoxRandomText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -246,11 +247,22 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(781, 474);
             this.axWindowsMediaPlayer1.TabIndex = 18;
             // 
+            // textBoxRandomText
+            // 
+            this.textBoxRandomText.AcceptsTab = true;
+            this.textBoxRandomText.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.textBoxRandomText.Location = new System.Drawing.Point(12, 102);
+            this.textBoxRandomText.Name = "textBoxRandomText";
+            this.textBoxRandomText.Size = new System.Drawing.Size(782, 474);
+            this.textBoxRandomText.TabIndex = 19;
+            this.textBoxRandomText.Text = "";
+            // 
             // research_tool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1214, 661);
+            this.Controls.Add(this.textBoxRandomText);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.changeLang);
             this.Controls.Add(this.settingsOfData);
@@ -300,5 +312,6 @@
         private System.Windows.Forms.Button settingsOfData;
         private System.Windows.Forms.Button changeLang;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.RichTextBox textBoxRandomText;
     }
 }

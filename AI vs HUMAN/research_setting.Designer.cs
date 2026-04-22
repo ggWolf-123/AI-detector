@@ -94,6 +94,10 @@
             this.wasThatAi = new System.Windows.Forms.CheckBox();
             this.newQuestion = new System.Windows.Forms.CheckBox();
             this.yourQuestion = new System.Windows.Forms.TextBox();
+            this.fileToLoad = new System.Windows.Forms.GroupBox();
+            this.askImageIn = new System.Windows.Forms.CheckBox();
+            this.askVideoIn = new System.Windows.Forms.CheckBox();
+            this.askTextIn = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.addPoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.takePoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSeconds)).BeginInit();
@@ -103,6 +107,7 @@
             this.yourAsk3Box.SuspendLayout();
             this.yourAsk4Box.SuspendLayout();
             this.yourAsk5Box.SuspendLayout();
+            this.fileToLoad.SuspendLayout();
             this.SuspendLayout();
             // 
             // settingsAsk
@@ -297,7 +302,7 @@
             // 
             this.yourAsk1.AutoSize = true;
             this.yourAsk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.yourAsk1.Location = new System.Drawing.Point(623, 25);
+            this.yourAsk1.Location = new System.Drawing.Point(806, 25);
             this.yourAsk1.Name = "yourAsk1";
             this.yourAsk1.Size = new System.Drawing.Size(163, 29);
             this.yourAsk1.TabIndex = 18;
@@ -308,7 +313,7 @@
             // 
             this.yourAsk1Box.Controls.Add(this.yourAsk1StringRadio);
             this.yourAsk1Box.Controls.Add(this.yourAsk1NumericRadio);
-            this.yourAsk1Box.Location = new System.Drawing.Point(792, 25);
+            this.yourAsk1Box.Location = new System.Drawing.Point(975, 25);
             this.yourAsk1Box.Name = "yourAsk1Box";
             this.yourAsk1Box.Size = new System.Drawing.Size(102, 76);
             this.yourAsk1Box.TabIndex = 19;
@@ -340,7 +345,7 @@
             // yourAsk1Name
             // 
             this.yourAsk1Name.AutoSize = true;
-            this.yourAsk1Name.Location = new System.Drawing.Point(900, 25);
+            this.yourAsk1Name.Location = new System.Drawing.Point(1083, 25);
             this.yourAsk1Name.Name = "yourAsk1Name";
             this.yourAsk1Name.Size = new System.Drawing.Size(83, 13);
             this.yourAsk1Name.TabIndex = 20;
@@ -348,14 +353,14 @@
             // 
             // yourAsk1TextBox
             // 
-            this.yourAsk1TextBox.Location = new System.Drawing.Point(903, 44);
+            this.yourAsk1TextBox.Location = new System.Drawing.Point(1086, 44);
             this.yourAsk1TextBox.Name = "yourAsk1TextBox";
             this.yourAsk1TextBox.Size = new System.Drawing.Size(100, 20);
             this.yourAsk1TextBox.TabIndex = 21;
             // 
             // yourAsk2TextBox
             // 
-            this.yourAsk2TextBox.Location = new System.Drawing.Point(903, 124);
+            this.yourAsk2TextBox.Location = new System.Drawing.Point(1086, 124);
             this.yourAsk2TextBox.Name = "yourAsk2TextBox";
             this.yourAsk2TextBox.Size = new System.Drawing.Size(100, 20);
             this.yourAsk2TextBox.TabIndex = 25;
@@ -363,7 +368,7 @@
             // yourAsk2Name
             // 
             this.yourAsk2Name.AutoSize = true;
-            this.yourAsk2Name.Location = new System.Drawing.Point(900, 105);
+            this.yourAsk2Name.Location = new System.Drawing.Point(1083, 105);
             this.yourAsk2Name.Name = "yourAsk2Name";
             this.yourAsk2Name.Size = new System.Drawing.Size(83, 13);
             this.yourAsk2Name.TabIndex = 24;
@@ -373,7 +378,7 @@
             // 
             this.yourAsk2Box.Controls.Add(this.yourAsk2StringRadio);
             this.yourAsk2Box.Controls.Add(this.yourAsk2NumericRadio);
-            this.yourAsk2Box.Location = new System.Drawing.Point(792, 105);
+            this.yourAsk2Box.Location = new System.Drawing.Point(975, 105);
             this.yourAsk2Box.Name = "yourAsk2Box";
             this.yourAsk2Box.Size = new System.Drawing.Size(102, 76);
             this.yourAsk2Box.TabIndex = 23;
@@ -406,7 +411,7 @@
             // 
             this.yourAsk2.AutoSize = true;
             this.yourAsk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.yourAsk2.Location = new System.Drawing.Point(623, 105);
+            this.yourAsk2.Location = new System.Drawing.Point(806, 105);
             this.yourAsk2.Name = "yourAsk2";
             this.yourAsk2.Size = new System.Drawing.Size(163, 29);
             this.yourAsk2.TabIndex = 22;
@@ -415,7 +420,7 @@
             // 
             // yourAsk3TextBox
             // 
-            this.yourAsk3TextBox.Location = new System.Drawing.Point(903, 206);
+            this.yourAsk3TextBox.Location = new System.Drawing.Point(1086, 206);
             this.yourAsk3TextBox.Name = "yourAsk3TextBox";
             this.yourAsk3TextBox.Size = new System.Drawing.Size(100, 20);
             this.yourAsk3TextBox.TabIndex = 29;
@@ -423,7 +428,7 @@
             // yourAsk3Name
             // 
             this.yourAsk3Name.AutoSize = true;
-            this.yourAsk3Name.Location = new System.Drawing.Point(900, 187);
+            this.yourAsk3Name.Location = new System.Drawing.Point(1083, 187);
             this.yourAsk3Name.Name = "yourAsk3Name";
             this.yourAsk3Name.Size = new System.Drawing.Size(83, 13);
             this.yourAsk3Name.TabIndex = 28;
@@ -433,7 +438,7 @@
             // 
             this.yourAsk3Box.Controls.Add(this.yourAsk3StringRadio);
             this.yourAsk3Box.Controls.Add(this.yourAsk3NumericRadio);
-            this.yourAsk3Box.Location = new System.Drawing.Point(792, 187);
+            this.yourAsk3Box.Location = new System.Drawing.Point(975, 187);
             this.yourAsk3Box.Name = "yourAsk3Box";
             this.yourAsk3Box.Size = new System.Drawing.Size(102, 76);
             this.yourAsk3Box.TabIndex = 27;
@@ -466,7 +471,7 @@
             // 
             this.yourAsk3.AutoSize = true;
             this.yourAsk3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.yourAsk3.Location = new System.Drawing.Point(623, 187);
+            this.yourAsk3.Location = new System.Drawing.Point(806, 187);
             this.yourAsk3.Name = "yourAsk3";
             this.yourAsk3.Size = new System.Drawing.Size(163, 29);
             this.yourAsk3.TabIndex = 26;
@@ -475,7 +480,7 @@
             // 
             // yourAsk4TextBox
             // 
-            this.yourAsk4TextBox.Location = new System.Drawing.Point(903, 290);
+            this.yourAsk4TextBox.Location = new System.Drawing.Point(1086, 290);
             this.yourAsk4TextBox.Name = "yourAsk4TextBox";
             this.yourAsk4TextBox.Size = new System.Drawing.Size(100, 20);
             this.yourAsk4TextBox.TabIndex = 33;
@@ -483,7 +488,7 @@
             // yourAsk4Name
             // 
             this.yourAsk4Name.AutoSize = true;
-            this.yourAsk4Name.Location = new System.Drawing.Point(900, 271);
+            this.yourAsk4Name.Location = new System.Drawing.Point(1083, 271);
             this.yourAsk4Name.Name = "yourAsk4Name";
             this.yourAsk4Name.Size = new System.Drawing.Size(83, 13);
             this.yourAsk4Name.TabIndex = 32;
@@ -493,7 +498,7 @@
             // 
             this.yourAsk4Box.Controls.Add(this.yourAsk4StringRadio);
             this.yourAsk4Box.Controls.Add(this.yourAsk4NumericRadio);
-            this.yourAsk4Box.Location = new System.Drawing.Point(792, 271);
+            this.yourAsk4Box.Location = new System.Drawing.Point(975, 271);
             this.yourAsk4Box.Name = "yourAsk4Box";
             this.yourAsk4Box.Size = new System.Drawing.Size(102, 76);
             this.yourAsk4Box.TabIndex = 31;
@@ -526,7 +531,7 @@
             // 
             this.yourAsk4.AutoSize = true;
             this.yourAsk4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.yourAsk4.Location = new System.Drawing.Point(623, 271);
+            this.yourAsk4.Location = new System.Drawing.Point(806, 271);
             this.yourAsk4.Name = "yourAsk4";
             this.yourAsk4.Size = new System.Drawing.Size(163, 29);
             this.yourAsk4.TabIndex = 30;
@@ -535,7 +540,7 @@
             // 
             // yourAsk5TextBox
             // 
-            this.yourAsk5TextBox.Location = new System.Drawing.Point(903, 373);
+            this.yourAsk5TextBox.Location = new System.Drawing.Point(1086, 373);
             this.yourAsk5TextBox.Name = "yourAsk5TextBox";
             this.yourAsk5TextBox.Size = new System.Drawing.Size(100, 20);
             this.yourAsk5TextBox.TabIndex = 37;
@@ -543,7 +548,7 @@
             // yourAsk5Name
             // 
             this.yourAsk5Name.AutoSize = true;
-            this.yourAsk5Name.Location = new System.Drawing.Point(900, 354);
+            this.yourAsk5Name.Location = new System.Drawing.Point(1083, 354);
             this.yourAsk5Name.Name = "yourAsk5Name";
             this.yourAsk5Name.Size = new System.Drawing.Size(83, 13);
             this.yourAsk5Name.TabIndex = 36;
@@ -553,7 +558,7 @@
             // 
             this.yourAsk5Box.Controls.Add(this.yourAsk5StringRadio);
             this.yourAsk5Box.Controls.Add(this.yourAsk5NumericRadio);
-            this.yourAsk5Box.Location = new System.Drawing.Point(792, 354);
+            this.yourAsk5Box.Location = new System.Drawing.Point(975, 354);
             this.yourAsk5Box.Name = "yourAsk5Box";
             this.yourAsk5Box.Size = new System.Drawing.Size(102, 76);
             this.yourAsk5Box.TabIndex = 35;
@@ -586,7 +591,7 @@
             // 
             this.yourAsk5.AutoSize = true;
             this.yourAsk5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.yourAsk5.Location = new System.Drawing.Point(623, 354);
+            this.yourAsk5.Location = new System.Drawing.Point(806, 354);
             this.yourAsk5.Name = "yourAsk5";
             this.yourAsk5.Size = new System.Drawing.Size(163, 29);
             this.yourAsk5.TabIndex = 34;
@@ -770,11 +775,55 @@
             this.yourQuestion.Size = new System.Drawing.Size(237, 20);
             this.yourQuestion.TabIndex = 54;
             // 
+            // fileToLoad
+            // 
+            this.fileToLoad.Controls.Add(this.askTextIn);
+            this.fileToLoad.Controls.Add(this.askImageIn);
+            this.fileToLoad.Controls.Add(this.askVideoIn);
+            this.fileToLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.fileToLoad.Location = new System.Drawing.Point(550, 192);
+            this.fileToLoad.Name = "fileToLoad";
+            this.fileToLoad.Size = new System.Drawing.Size(159, 175);
+            this.fileToLoad.TabIndex = 55;
+            this.fileToLoad.TabStop = false;
+            this.fileToLoad.Text = "Z jakich plików losować?";
+            // 
+            // askImageIn
+            // 
+            this.askImageIn.AutoSize = true;
+            this.askImageIn.Location = new System.Drawing.Point(6, 53);
+            this.askImageIn.Name = "askImageIn";
+            this.askImageIn.Size = new System.Drawing.Size(110, 29);
+            this.askImageIn.TabIndex = 0;
+            this.askImageIn.Text = "graficzne";
+            this.askImageIn.UseVisualStyleBackColor = true;
+            // 
+            // askVideoIn
+            // 
+            this.askVideoIn.AutoSize = true;
+            this.askVideoIn.Location = new System.Drawing.Point(6, 89);
+            this.askVideoIn.Name = "askVideoIn";
+            this.askVideoIn.Size = new System.Drawing.Size(82, 29);
+            this.askVideoIn.TabIndex = 56;
+            this.askVideoIn.Text = "wideo";
+            this.askVideoIn.UseVisualStyleBackColor = true;
+            // 
+            // askTextIn
+            // 
+            this.askTextIn.AutoSize = true;
+            this.askTextIn.Location = new System.Drawing.Point(6, 122);
+            this.askTextIn.Name = "askTextIn";
+            this.askTextIn.Size = new System.Drawing.Size(108, 29);
+            this.askTextIn.TabIndex = 57;
+            this.askTextIn.Text = "tekstowe";
+            this.askTextIn.UseVisualStyleBackColor = true;
+            // 
             // research_setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1216, 702);
+            this.Controls.Add(this.fileToLoad);
             this.Controls.Add(this.yourQuestion);
             this.Controls.Add(this.newQuestion);
             this.Controls.Add(this.wasThatAi);
@@ -846,6 +895,8 @@
             this.yourAsk4Box.PerformLayout();
             this.yourAsk5Box.ResumeLayout(false);
             this.yourAsk5Box.PerformLayout();
+            this.fileToLoad.ResumeLayout(false);
+            this.fileToLoad.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -919,5 +970,9 @@
         private System.Windows.Forms.CheckBox wasThatAi;
         private System.Windows.Forms.CheckBox newQuestion;
         private System.Windows.Forms.TextBox yourQuestion;
+        private System.Windows.Forms.GroupBox fileToLoad;
+        private System.Windows.Forms.CheckBox askTextIn;
+        private System.Windows.Forms.CheckBox askImageIn;
+        private System.Windows.Forms.CheckBox askVideoIn;
     }
 }

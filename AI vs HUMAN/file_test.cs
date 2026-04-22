@@ -137,17 +137,16 @@ namespace AI_vs_HUMAN
             }
             try
             {
+                buttonChange();
                 string filePath= this.filePathMain.FileName;
                 string ext = System.IO.Path.GetExtension(filePath).ToLower();
                 if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
-                    buttonChange();
                     int result_from_model = await ApiComunication.SendImageToModel(this.filePathMain.FileName);
                     if (result_from_model == 0)
                         answerAIorNOT.Text = "Model mówi: to nie jest AI";
                     else if (result_from_model == 1)
                         answerAIorNOT.Text = "Model mówi: to jest AI";
-                    buttonChange();
                 }
                 else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
@@ -160,7 +159,6 @@ namespace AI_vs_HUMAN
                             return;
                         }
                         int speed=form_speed.SelectedSpeed;
-                        buttonChange();
                         answerAIorNOT.Text = "Analizowanie trwa...";
                         result_from_model = await ApiComunication.AnalizeVideo(this.filePathMain.FileName, speed);
                     }
@@ -176,7 +174,6 @@ namespace AI_vs_HUMAN
                     {
                         answerAIorNOT.Text = $"Model mówi, to jest AI \nPewność: {(result_from_model):F2}%";
                     }
-                    buttonChange();
                 }
                 else if (ext == ".txt")
                 {
@@ -192,6 +189,7 @@ namespace AI_vs_HUMAN
                 {
                     MessageBox.Show("Nieobsługiwany format pliku.");
                 }
+                buttonChange();
 
             }
             catch (Exception ex)

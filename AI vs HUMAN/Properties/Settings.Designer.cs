@@ -622,5 +622,41 @@ namespace AI_vs_HUMAN.Properties {
                 this["newQuestion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool askTextIn {
+            get {
+                return ((bool)(this["askTextIn"]));
+            }
+            set {
+                this["askTextIn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool askVideoIn {
+            get {
+                return ((bool)(this["askVideoIn"]));
+            }
+            set {
+                this["askVideoIn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool askImageIn {
+            get {
+                return ((bool)(this["askImageIn"]));
+            }
+            set {
+                this["askImageIn"] = value;
+            }
+        }
     }
 }

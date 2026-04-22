@@ -86,10 +86,10 @@ Below is a list of features that are already available in the application as wel
 		- [ ] Spanish
 	- [ ] Adding a research module
 		- [x] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
-		- [ ] Connecting your own files in the research module in a clearly defined format
+		- [x] Connecting your own files in the research module in a clearly defined format
 			- [x] Using graphic files
 			- [x] Using video files
-			- [ ] Using text files
+			- [x] Using text files
 		- [x] Not returning or returning results on an ongoing basis during the study at the user's request
 		- [x] Not returning or returning results in the form of a txt file after the study is completed
 		- [x] Saving results to a database
@@ -128,10 +128,10 @@ Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak 
 		- [ ] Hiszpański
 	- [ ] Dodanie modułu badawczego
 		- [x] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
-		- [ ] Podpięcie własnych plików w module badawczym w jasno określonym formacie
+		- [x] Podpięcie własnych plików w module badawczym w jasno określonym formacie
 			- [x] Wykorzystywanie plików graficznych
 			- [x] Wykorzystywanie plików wideo
-			- [ ] Wykorzystywanie plików tekstowych
+			- [x] Wykorzystywanie plików tekstowych
 		- [x] Nie zwracanie lub zwracanie wyników na bierząco podczas badania na rządanie użytkownika
 		- [x] Nie zwracanie lub zwracanie wyników w formie pliku txt po zakończeniu badania
 		- [x] Zapisywanie wyników do bazy danych

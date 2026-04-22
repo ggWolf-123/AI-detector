@@ -372,6 +372,11 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Musisz wybrać folder docelowy, aby zapisać ścieżki plików.");
                 return;
             }
+            if (!(askImageIn.Checked || askVideoIn.Checked || askTextIn.Checked))
+            {
+                MessageBox.Show("Musisz wybrać jaki rodzaj pliku będzie brany pod uwage podczas losowania.");
+                return;
+            }
             if (funMode.Checked)
             {
                 SaveCustomField(yourAsk1, yourAsk1TextBox, yourAsk1NumericRadio, yourAsk1StringRadio, 1);
@@ -406,7 +411,7 @@ namespace AI_vs_HUMAN
                 MessageBox.Show("Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go.");
                 return;
             }
-            if(!ValidateCustomFields())
+            if (!ValidateCustomFields())
             {
                 return;
             }

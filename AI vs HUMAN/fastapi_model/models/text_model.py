@@ -32,7 +32,7 @@ async def predict_text(text: str):
     try:
         features=vectorizer.transform([text])
         pred=model.predict(features)[0]
-        mapped=1 if pred==1 else 0
+        mapped=1 if pred==0 else 0
         return {
             "result":mapped,
             "label":"AI" if mapped==1 else "HUMAN"

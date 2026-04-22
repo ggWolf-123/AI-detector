@@ -17,7 +17,7 @@ namespace AI_vs_HUMAN
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string mainFolderPath;
         private string selectdImagePath;
-        private string[] allImages;
+        private string[] allFiles;
         private int result_from_model = -1;
         private int rightHumanAnswers = 0;
         private int wrongHumanAnswers = 0;
@@ -41,6 +41,8 @@ namespace AI_vs_HUMAN
             InitializeComponent();
             ApplyLanguage();
             axWindowsMediaPlayer1.Hide();
+            textBoxRandomText.Hide();
+            textBoxRandomText.ReadOnly = true;
             this.Shown += (s, e) =>
             {
                 this.WindowState = FormWindowState.Maximized;
@@ -129,31 +131,37 @@ namespace AI_vs_HUMAN
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
                     mainFolderPath = folderDialog.SelectedPath;
-                    allImages = System.IO.Directory.GetFiles(mainFolderPath, "*.*", System.IO.SearchOption.AllDirectories)
-                        .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".avi", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".mov", StringComparison.OrdinalIgnoreCase))
-                        .ToArray();
-                    if (allImages.Length == 0)
-                    {
-                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów i/lub filmów.");
-                        return;
-                    }
+                    actualizeFolderFiles();
                     randomFilePrepare();
                     startGameButton.SendToBack();
                     MessageBox.Show($"Wybrano folder: {mainFolderPath}");
             }
         }
     }
+        private void actualizeFolderFiles()
+        {
+            if (!string.IsNullOrEmpty(mainFolderPath))
+            {
+                var allowedExension = new List<String>();
+                if (Properties.Settings.Default.askImageIn)
+                    allowedExension.AddRange(new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" });
+                if (Properties.Settings.Default.askVideoIn)
+                    allowedExension.AddRange(new[] { ".mp4", ".avi", ".mov" });
+                if (Properties.Settings.Default.askTextIn)
+                    allowedExension.Add(".txt");
+                allFiles = System.IO.Directory.GetFiles(mainFolderPath, "*.*", System.IO.SearchOption.AllDirectories)
+                    .Where(file => allowedExension.Contains(System.IO.Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
+                    .ToArray();
+                if (allFiles.Length == 0)
+                {
+                    MessageBox.Show("Wybrany folder nie zawiera żadnych plików o wybranym formacie.");
+                    return;
+                }
+            }
+        }
         private async void randomFilePrepare()
         {
-            selectdImagePath = allImages[rnd.Next(allImages.Length)];
+            selectdImagePath = allFiles[rnd.Next(allFiles.Length)];
             await Task.Delay(200);
             string ext = System.IO.Path.GetExtension(selectdImagePath).ToLower();
             try
@@ -163,6 +171,7 @@ namespace AI_vs_HUMAN
                     axWindowsMediaPlayer1.URL = "";
                     axWindowsMediaPlayer1.Hide();
                     axWindowsMediaPlayer1.Ctlcontrols.stop();
+                    textBoxRandomText.Hide();
                     randomPhoto.Show();
                     randomPhoto.Image = System.Drawing.Image.FromFile(selectdImagePath);
                     randomPhoto.SizeMode = PictureBoxSizeMode.Zoom;
@@ -170,9 +179,19 @@ namespace AI_vs_HUMAN
                 else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
                     randomPhoto.Hide();
+                    textBoxRandomText.Hide();
                     axWindowsMediaPlayer1.Show();
                     this.axWindowsMediaPlayer1.URL = selectdImagePath;
                     this.axWindowsMediaPlayer1.Ctlcontrols.play();
+                }
+                else if (ext== ".txt")
+                {
+                    textBoxRandomText.Show();
+                    randomPhoto.Hide();
+                    axWindowsMediaPlayer1.Hide();
+                    axWindowsMediaPlayer1.Ctlcontrols.stop();
+                    string textContent = File.ReadAllText(selectdImagePath);
+                    textBoxRandomText.Text = textContent;
                 }
             }
             catch (Exception ex)
@@ -202,6 +221,10 @@ namespace AI_vs_HUMAN
                     {
                         result_from_model = 1;
                     }
+                }
+                else if (ext == ".txt")
+                {
+                    result_from_model = await ApiComunication.SentTextToModel(textBoxRandomText.Text);
                 }
             }
             catch (Exception ex)
@@ -557,6 +580,8 @@ namespace AI_vs_HUMAN
                 {
                     questionMG.Text = Properties.Settings.Default.yourQuestion;
                 }
+                actualizeFolderFiles();
+                randomFilePrepare();
             };
             researchSetting.ShowDialog();
         }
