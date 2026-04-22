@@ -75,11 +75,11 @@ The tool is free because I want to show that artificial intelligence can be used
 Below is a list of features that are already available in the application as well as those being added.
 
 - [ ] Version 1.0
-	- [ ] Basic file checking functions
+	- [x] Basic file checking functions
 		- [x] Added the ability to check graphics
 		- [x] Added the ability to check videos
-		- [ ] Added the ability to check texts
-		- [ ] Checking folders with graphics, videos and texts and returning results in a txt file
+		- [x] Added the ability to check texts
+		- [x] Checking folders with graphics, videos and texts and returning results in a txt file
 	- [ ] Adding languages and the ability to easily switch between them
 		- [x] Polish
 		- [ ] English
@@ -117,11 +117,11 @@ Narzędzie jest darmowe, ponieważ chcę pokazać, że sztuczna inteligencja mo�
 Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak i będących w fazie dodawania.
 
 - [ ] Wersja 1.0
-	- [ ] Podstawowe funkcje sprawdzania plików
+	- [x] Podstawowe funkcje sprawdzania plików
 		- [x] Dodanie możliwości sprawdzania grafik
 		- [x] Dodanie możliwości sprawdzania wideo
-		- [ ] Dodanie możliwości sprawdzania tekstów
-		- [ ] Sprawdzanie folderów z grafikami, wideo i tekstami oraz zwracaniem wyników w pliku txt
+		- [x] Dodanie możliwości sprawdzania tekstów
+		- [x] Sprawdzanie folderów z grafikami, wideo i tekstami oraz zwracaniem wyników w pliku txt
 	- [ ] Dodanie języków i możliwości łatwego przełączania się między nimi
 		- [x] Polski
 		- [ ] Angielski

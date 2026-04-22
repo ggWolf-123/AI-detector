@@ -11,7 +11,7 @@ _tokenizer=None
 _model=None
 _ready=False
 
-def _load():
+def ensure_load():
     global _tokenizer, _model, _ready
     if _ready:
         return
@@ -20,13 +20,11 @@ def _load():
     _model.eval()
     _ready = True
 
-
-threading.Thread(target=_load, daemon=True).start()
-
 def is_ready():
     return _ready
 
 async def translate_text(text: str):
+    ensure_load()  # Ensure model is loaded
     if not _ready:
         return {"error": "Model is loading, please try again later."}
 
@@ -36,7 +34,6 @@ async def translate_text(text: str):
         return {"translated_text": text} # No translation needed
 
     inputs = _tokenizer(text, return_tensors="pt", padding=True, truncation=True).to(DEVICE)
-    inputs={k: v.to(DEVICE) for k,v in inputs.items()}
 
     with torch.no_grad():
         translated = _model.generate(**inputs)

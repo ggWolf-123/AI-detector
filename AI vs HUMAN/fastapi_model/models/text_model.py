@@ -1,4 +1,4 @@
-import pickle
+
 import joblib
 
 _model=None
@@ -9,8 +9,16 @@ def load_text_model():
     if _model is not None and _vectorizer is not None:
         return _model, _vectorizer
     
-    _model=joblib.load("assets/SVM_model.pkl")
-    _vectorizer=pickle.load(open("assets/vectorizer.pkl","rb"))
+    try:
+        _model=joblib.load("assets/SVM_model.pkl")
+        _vectorizer=joblib.load("assets/vectorizer.pkl")
+    except Exception as e:
+        print("Error loading text model:", e)
+        _model=None
+        _vectorizer=None
+        raise
+
+    return _model, _vectorizer
 
 def is_loaded():
     return _model is not None and _vectorizer is not None
@@ -21,11 +29,17 @@ async def predict_text(text: str):
         return {
             "error":"Text is empty"
         }
-    features=_vectorizer.transform([text])
-    pred=_model.predict(features)[0]
-    mapped=1 if pred==0 else 0
-    return {
-        "result":mapped,
-        "label":"AI" if mapped==1 else "HUMAN"
-    }
+    try:
+        features=vectorizer.transform([text])
+        pred=model.predict(features)[0]
+        mapped=1 if pred==1 else 0
+        return {
+            "result":mapped,
+            "label":"AI" if mapped==1 else "HUMAN"
+        }
+    except Exception as e:
+        print("Error during text prediction:", e)
+        return {
+            "error":"Prediction failed"
+        }
     

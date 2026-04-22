@@ -30,15 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(file_test));
             this.challangeBitton = new System.Windows.Forms.Button();
-            this.getPhotoButton = new System.Windows.Forms.Button();
+            this.getFileButton = new System.Windows.Forms.Button();
             this.pictureToCheck = new System.Windows.Forms.PictureBox();
-            this.photoPath = new System.Windows.Forms.OpenFileDialog();
+            this.filePathMain = new System.Windows.Forms.OpenFileDialog();
             this.checkButton = new System.Windows.Forms.Button();
             this.answerAIorNOT = new System.Windows.Forms.Label();
             this.answerFileCheck = new System.Windows.Forms.Label();
             this.changeLang = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.checkFolderButton = new System.Windows.Forms.Button();
+            this.textBoxCheck = new System.Windows.Forms.RichTextBox();
+            this.folderStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -54,16 +56,16 @@
             this.challangeBitton.UseVisualStyleBackColor = true;
             this.challangeBitton.Click += new System.EventHandler(this.challangeBitton_Click);
             // 
-            // getPhotoButton
+            // getFileButton
             // 
-            this.getPhotoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
-            this.getPhotoButton.Location = new System.Drawing.Point(12, 562);
-            this.getPhotoButton.Name = "getPhotoButton";
-            this.getPhotoButton.Size = new System.Drawing.Size(445, 90);
-            this.getPhotoButton.TabIndex = 1;
-            this.getPhotoButton.Text = "Podaj obraz do sprawdzenia";
-            this.getPhotoButton.UseVisualStyleBackColor = true;
-            this.getPhotoButton.Click += new System.EventHandler(this.getPhotoButton_Click);
+            this.getFileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.getFileButton.Location = new System.Drawing.Point(12, 562);
+            this.getFileButton.Name = "getFileButton";
+            this.getFileButton.Size = new System.Drawing.Size(445, 90);
+            this.getFileButton.TabIndex = 1;
+            this.getFileButton.Text = "Podaj obraz do sprawdzenia";
+            this.getFileButton.UseVisualStyleBackColor = true;
+            this.getFileButton.Click += new System.EventHandler(this.getFileButton_Click);
             // 
             // pictureToCheck
             // 
@@ -73,9 +75,9 @@
             this.pictureToCheck.TabIndex = 2;
             this.pictureToCheck.TabStop = false;
             // 
-            // photoPath
+            // filePathMain
             // 
-            this.photoPath.FileName = "photoPath";
+            this.filePathMain.FileName = "filePathMain";
             // 
             // checkButton
             // 
@@ -92,7 +94,7 @@
             // 
             this.answerAIorNOT.AutoSize = true;
             this.answerAIorNOT.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.answerAIorNOT.Location = new System.Drawing.Point(904, 438);
+            this.answerAIorNOT.Location = new System.Drawing.Point(923, 437);
             this.answerAIorNOT.Name = "answerAIorNOT";
             this.answerAIorNOT.Size = new System.Drawing.Size(106, 25);
             this.answerAIorNOT.TabIndex = 4;
@@ -139,11 +141,33 @@
             this.checkFolderButton.UseVisualStyleBackColor = true;
             this.checkFolderButton.Click += new System.EventHandler(this.checkFolderButton_Click);
             // 
+            // textBoxCheck
+            // 
+            this.textBoxCheck.AcceptsTab = true;
+            this.textBoxCheck.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.textBoxCheck.Location = new System.Drawing.Point(12, 12);
+            this.textBoxCheck.Name = "textBoxCheck";
+            this.textBoxCheck.Size = new System.Drawing.Size(886, 544);
+            this.textBoxCheck.TabIndex = 9;
+            this.textBoxCheck.Text = "";
+            // 
+            // folderStatus
+            // 
+            this.folderStatus.AutoSize = true;
+            this.folderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.folderStatus.Location = new System.Drawing.Point(923, 386);
+            this.folderStatus.Name = "folderStatus";
+            this.folderStatus.Size = new System.Drawing.Size(127, 25);
+            this.folderStatus.TabIndex = 10;
+            this.folderStatus.Text = "folderStatus";
+            // 
             // file_test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1214, 661);
+            this.Controls.Add(this.folderStatus);
+            this.Controls.Add(this.textBoxCheck);
             this.Controls.Add(this.checkFolderButton);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.changeLang);
@@ -151,7 +175,7 @@
             this.Controls.Add(this.answerAIorNOT);
             this.Controls.Add(this.answerFileCheck);
             this.Controls.Add(this.pictureToCheck);
-            this.Controls.Add(this.getPhotoButton);
+            this.Controls.Add(this.getFileButton);
             this.Controls.Add(this.challangeBitton);
             this.Name = "file_test";
             this.Text = "test_obrazu";
@@ -165,14 +189,16 @@
         #endregion
 
         private System.Windows.Forms.Button challangeBitton;
-        private System.Windows.Forms.Button getPhotoButton;
+        private System.Windows.Forms.Button getFileButton;
         private System.Windows.Forms.PictureBox pictureToCheck;
-        private System.Windows.Forms.OpenFileDialog photoPath;
+        private System.Windows.Forms.OpenFileDialog filePathMain;
         private System.Windows.Forms.Button checkButton;
         private System.Windows.Forms.Label answerAIorNOT;
         private System.Windows.Forms.Label answerFileCheck;
         private System.Windows.Forms.Button changeLang;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button checkFolderButton;
+        private System.Windows.Forms.RichTextBox textBoxCheck;
+        private System.Windows.Forms.Label folderStatus;
     }
 }

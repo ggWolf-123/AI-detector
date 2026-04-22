@@ -3,11 +3,12 @@ import torch.nn as nn
 from torchvision import transforms, models
 import io
 from PIL import Image
+import numpy as np
 
 DEVICE=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 _model=None
 
-transforms=transforms.Compose([
+transform_pipeline=transforms.Compose([
     transforms.Resize((512,512)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -29,11 +30,22 @@ def load_image_model():
 def is_loaded():
     return _model is not None
 
+def predict_frame_local(frame):
+    model=load_image_model()
+    img=Image.fromarray(frame[...,::-1])
+    img=transform_pipeline(img).unsqueeze(0).to(DEVICE)
+
+    with torch.no_grad():
+        output=model(img)
+        pred=output.argmax(1).item()
+    mapped=1 if pred==0 else 0
+    return mapped
+
 async def predict_image(file):
     model=load_image_model()
     img_bytes=await file.read()
     img=Image.open(io.BytesIO(img_bytes)).convert("RGB")
-    img=transforms(img).unsqueeze(0).to(DEVICE)
+    img=transform_pipeline(img).unsqueeze(0).to(DEVICE)
 
     with torch.no_grad():
         output=model(img)

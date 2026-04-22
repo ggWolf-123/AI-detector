@@ -22,8 +22,10 @@ namespace AI_vs_HUMAN
         }
         public static async Task<List<Process>> StartFastApiServers()
         {
+
             var env = StartENV();
             var processes = StartFasApiProcesses(env);
+            await Task.Delay(2000);
             await WaitForAllApisReady(300);
             return processes;
         }
@@ -99,14 +101,41 @@ namespace AI_vs_HUMAN
                 try
                 {
                     var response = await client.GetAsync(url);
-                    if (response.IsSuccessStatusCode)
+                    var content = await response.Content.ReadAsStringAsync();
+                    if (!response.IsSuccessStatusCode)
                     {
-                        return;
+                        Console.WriteLine($"API at {url} returned status code {response.StatusCode}: {content}");
+                        Console.WriteLine(await response.Content.ReadAsStringAsync());
+                        await Task.Delay(1000);
+                        continue;
+                    }
+                    if (string.IsNullOrWhiteSpace(content))
+                    {
+                        Console.WriteLine($"API at {url} returned empty response");
+                        await Task.Delay(500);
+                        continue;
+                    }
+                    try
+                    {
+                        using (var doc = JsonDocument.Parse(content))
+                        {
+                            var root = doc.RootElement;
+                            if (root.TryGetProperty("status", out var status) && status.GetString() == "ready")
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    catch (JsonException)
+                    {
+                        Console.WriteLine($"API at {url} returned invalid JSON: {content}");
+                        await Task.Delay(500);
+                        continue;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Ignore exceptions and retry
+                    Console.WriteLine($"Error connecting to API at {url}: {ex.Message}");
                 }
                 await Task.Delay(500);
             }
@@ -154,49 +183,21 @@ namespace AI_vs_HUMAN
         }
         public static async Task<double> AnalizeVideo(string videoPath, int frameStep)
         {
-            //MessageBox.Show($"FrameStep: {frameStep}");
-            using (var capture = new VideoCapture(videoPath))
+            using (var content = new MultipartFormDataContent())
             {
-                if (!capture.IsOpened())
+                var videoBytes=File.ReadAllBytes(videoPath);
+                var videoContent = new ByteArrayContent(videoBytes);
+                videoContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("video/mp4");
+                content.Add(videoContent, "file", System.IO.Path.GetFileName(videoPath));
+                content.Add(new StringContent(frameStep.ToString()), "frame_step");
+                var response = await client.PostAsync("http://127.0.0.1:8000/predict/video", content);
+                response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                using (var doc = JsonDocument.Parse(responseString))
                 {
-                    MessageBox.Show("Unable to open video.\n\nNie można otworzyć wideo.");
-                    return -1;
+                    double aiPercentage = doc.RootElement.GetProperty("ai_percentage").GetDouble();
+                    return aiPercentage;
                 }
-                int currentFrame = 0;
-                int analyzedFrames = 0;
-                int aiCount = 0;
-                int humanCount = 0;
-
-                Mat frame = new Mat();
-                while (true)
-                {
-                    if (!capture.Read(frame) || frame.Empty())
-                        break;
-                    if (currentFrame % frameStep == 0)
-                    {
-                        Cv2.ImEncode(".jpg", frame, out var buffer);
-                        int result = await SendFrameToModel(buffer);
-                        analyzedFrames++;
-                        //MessageBox.Show($"Analyzed frames: {analyzedFrames}");
-
-                        if (result == 1)
-                        {
-                            aiCount++;
-                        }
-                        else
-                        {
-                            humanCount++;
-                        }
-                    }
-                    currentFrame++;
-                }
-                if (analyzedFrames == 0)
-                {
-                    MessageBox.Show("Could not find frames to analyze.\n\nNie można znaleźć klatek do analizy.");
-                    return -1;
-                }
-                double aiPercentage = (double)aiCount / analyzedFrames * 100;
-                return aiPercentage;
             }
         }
         public static async Task<string> SentTextToTranslate(string text)

@@ -17,8 +17,9 @@ namespace AI_vs_HUMAN
     {
         private System.Drawing.Size originalSize; //Size: OpenCvSharp.Size, but we need System.Drawing.Size for scaling
         private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
-        private string[] allImages;
+        private string[] allFiles;
         private string mainFolderPath;
+        private int folderFilesNumber=0;
         public file_test()
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
@@ -30,6 +31,7 @@ namespace AI_vs_HUMAN
             };
             pictureToCheck.Hide();
             axWindowsMediaPlayer1.Hide();
+            textBoxCheck.Hide();
             this.Load += startLoad;
             this.Resize += startResize;
         }
@@ -71,63 +73,81 @@ namespace AI_vs_HUMAN
             form_research_tool.ShowDialog();
             this.Close();
         }
-        private void getPhotoButton_Click(object sender, EventArgs e)
+        private void showFile(string filePath, string ext)
         {
-            photoPath.Filter = "Media Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.mp4;*.avi;*.mov;*.txt";
-            photoPath.Title = "Wybierz plik";
-            if (photoPath.ShowDialog() == DialogResult.OK)
+            try
             {
-                try
+                if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
-                    string filePath = photoPath.FileName;
-                    string ext = System.IO.Path.GetExtension(filePath).ToLower();
-                    if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
-                    {
-                        axWindowsMediaPlayer1.Hide();
-                        pictureToCheck.Show();
-                        System.Drawing.Image img = System.Drawing.Image.FromFile(photoPath.FileName);
-                        pictureToCheck.Image = img;
-                        pictureToCheck.SizeMode = PictureBoxSizeMode.Zoom;
-                    }
-                    else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
-                    {
-                        pictureToCheck.Hide();
-                        axWindowsMediaPlayer1.Show();
-                        this.axWindowsMediaPlayer1.URL = filePath;
-                        this.axWindowsMediaPlayer1.Ctlcontrols.play();
-                    }
+                    axWindowsMediaPlayer1.Hide();
+                    textBoxCheck.Hide();
+                    pictureToCheck.Show();
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
+                    pictureToCheck.Image = img;
+                    pictureToCheck.SizeMode = PictureBoxSizeMode.Zoom;
                 }
-                catch (Exception ex)
+                else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
-                    MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+                    pictureToCheck.Hide();
+                    textBoxCheck.Hide();
+                    axWindowsMediaPlayer1.Show();
+                    this.axWindowsMediaPlayer1.URL = filePath;
+                    this.axWindowsMediaPlayer1.Ctlcontrols.play();
+                }
+                else if (ext == ".txt")
+                {
+                    pictureToCheck.Hide();
+                    axWindowsMediaPlayer1.Hide();
+                    textBoxCheck.Show();
+                    textBoxCheck.ReadOnly = true;
+                    string text = System.IO.File.ReadAllText(filePath);
+                    textBoxCheck.Text = text;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+            }
         }
-
+        private void getFileButton_Click(object sender, EventArgs e)
+        {
+            filePathMain.Filter = "Media Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.mp4;*.avi;*.mov;*.txt";
+            filePathMain.Title = "Wybierz plik";
+            if (filePathMain.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = this.filePathMain.FileName;
+                string ext = System.IO.Path.GetExtension(filePath).ToLower();
+                showFile(filePath,ext);
+            }
+        }
+        private void buttonChange()
+        {
+            checkButton.Enabled = !checkButton.Enabled;
+            challangeBitton.Enabled = !challangeBitton.Enabled;
+            getFileButton.Enabled = !getFileButton.Enabled;
+            checkFolderButton.Enabled = !checkFolderButton.Enabled;
+            changeLang.Enabled = !changeLang.Enabled;
+        }
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(photoPath.FileName))
+            if (string.IsNullOrEmpty(filePathMain.FileName))
             {
                 MessageBox.Show("Nie podano pliku.");
                 return;
             }
             try
             {
-                string filePath=photoPath.FileName;
+                string filePath= this.filePathMain.FileName;
                 string ext = System.IO.Path.GetExtension(filePath).ToLower();
                 if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
-                    checkButton.Enabled = false;
-                    challangeBitton.Enabled = false;
-                    getPhotoButton.Enabled = false;
-                    int result_from_model = await ApiComunication.SendImageToModel(photoPath.FileName);
+                    buttonChange();
+                    int result_from_model = await ApiComunication.SendImageToModel(this.filePathMain.FileName);
                     if (result_from_model == 0)
                         answerAIorNOT.Text = "Model mówi: to nie jest AI";
                     else if (result_from_model == 1)
                         answerAIorNOT.Text = "Model mówi: to jest AI";
-                    checkButton.Enabled = true;
-                    challangeBitton.Enabled = true;
-                    getPhotoButton.Enabled = true;
+                    buttonChange();
                 }
                 else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
@@ -140,11 +160,9 @@ namespace AI_vs_HUMAN
                             return;
                         }
                         int speed=form_speed.SelectedSpeed;
-                        checkButton.Enabled = false;
-                        challangeBitton.Enabled = false;
-                        getPhotoButton.Enabled = false;
+                        buttonChange();
                         answerAIorNOT.Text = "Analizowanie trwa...";
-                        result_from_model = await ApiComunication.AnalizeVideo(photoPath.FileName, speed);
+                        result_from_model = await ApiComunication.AnalizeVideo(this.filePathMain.FileName, speed);
                     }
                     if (result_from_model == -1)
                     {
@@ -158,9 +176,7 @@ namespace AI_vs_HUMAN
                     {
                         answerAIorNOT.Text = $"Model mówi, to jest AI \nPewność: {(result_from_model):F2}%";
                     }
-                    checkButton.Enabled = true;
-                    challangeBitton.Enabled = true;
-                    getPhotoButton.Enabled = true;
+                    buttonChange();
                 }
                 else if (ext == ".txt")
                 {
@@ -181,9 +197,7 @@ namespace AI_vs_HUMAN
             catch (Exception ex)
             {
                 MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
-                checkButton.Enabled = true;
-                challangeBitton.Enabled = true;
-                getPhotoButton.Enabled = true;
+                buttonChange();
                 return;
             }
         }
@@ -197,10 +211,12 @@ namespace AI_vs_HUMAN
             }
             var header = "File Name;Result";
             System.IO.File.WriteAllText(path, header + Environment.NewLine);
-            foreach (string file in allImages)
+            buttonChange();
+            foreach (string file in allFiles)
             {
                 var columns = new List<string> {System.IO.Path.GetFileName(file)};
                 string ext = System.IO.Path.GetExtension(file).ToLower();
+                showFile(file, ext);
                 if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
                     int result_from_model = await ApiComunication.SendImageToModel(file);
@@ -227,9 +243,26 @@ namespace AI_vs_HUMAN
                         columns.Add($"AI, Confidence: {(result_from_model):F2}%");
                     }
                 }
-                string row=string.Join(";", columns);
+                else if (ext == ".txt")
+                {
+                    string text = System.IO.File.ReadAllText(file);
+                    text = await ApiComunication.SentTextToTranslate(text);
+                    int result_from_model = await ApiComunication.SentTextToModel(text);
+                    if (result_from_model == 0)
+                        columns.Add("Not AI");
+                    else if (result_from_model == 1)
+                        columns.Add("AI");
+                }
+                else
+                {
+                    columns.Add("Unsupported file format");
+                }
+                string row = string.Join(";", columns);
                 System.IO.File.AppendAllText(path, row + Environment.NewLine);
+                answerAIorNOT.Hide();
+                folderStatus.Text= $"Sprawdzono\n {columns[0]}\n ({allFiles.ToList().IndexOf(file) + 1}/{folderFilesNumber})";
             }
+            buttonChange();
             MessageBox.Show($"Sprawdznie folderu {mainFolderPath} zakończyło się.");
         }
         private void chooseFolder()
@@ -241,7 +274,7 @@ namespace AI_vs_HUMAN
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
                     mainFolderPath = folderDialog.SelectedPath;
-                    allImages = System.IO.Directory.GetFiles(mainFolderPath, "*.*", System.IO.SearchOption.AllDirectories)
+                    allFiles = System.IO.Directory.GetFiles(mainFolderPath, "*.*", System.IO.SearchOption.AllDirectories)
                         .Where(file => file.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
@@ -250,11 +283,13 @@ namespace AI_vs_HUMAN
                                        file.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".mp4", StringComparison.OrdinalIgnoreCase) ||
                                        file.EndsWith(".avi", StringComparison.OrdinalIgnoreCase) ||
-                                       file.EndsWith(".mov", StringComparison.OrdinalIgnoreCase))
+                                       file.EndsWith(".mov", StringComparison.OrdinalIgnoreCase) ||
+                                       file.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
                         .ToArray();
-                    if (allImages.Length == 0)
+                    folderFilesNumber= allFiles.Length;
+                    if (allFiles.Length == 0)
                     {
-                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów i/lub filmów.");
+                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów, filmów ani plików tekstowych.");
                         return;
                     }
                     MessageBox.Show($"Wybrano folder: {mainFolderPath}");

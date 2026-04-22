@@ -206,6 +206,9 @@
     <Content Include="fastapi_model\models\image_model.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fastapi_model\services\video_service.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images_yes_no\NO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
