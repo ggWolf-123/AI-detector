@@ -84,7 +84,7 @@ Below is a list of features that are already available in the application as wel
 		- [x] Polish
 		- [ ] English
 		- [ ] Spanish
-	- [ ] Adding a research module
+	- [x] Adding a research module
 		- [x] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
 		- [x] Connecting your own files in the research module in a clearly defined format
 			- [x] Using graphic files
@@ -126,7 +126,7 @@ Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak 
 		- [x] Polski
 		- [ ] Angielski
 		- [ ] Hiszpański
-	- [ ] Dodanie modułu badawczego
+	- [x] Dodanie modułu badawczego
 		- [x] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
 		- [x] Podpięcie własnych plików w module badawczym w jasno określonym formacie
 			- [x] Wykorzystywanie plików graficznych
