@@ -581,7 +581,8 @@ namespace AI_vs_HUMAN
                     questionMG.Text = Properties.Settings.Default.yourQuestion;
                 }
                 actualizeFolderFiles();
-                randomFilePrepare();
+                if(!string.IsNullOrEmpty(mainFolderPath))
+                    randomFilePrepare();
             };
             researchSetting.ShowDialog();
         }
