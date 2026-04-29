@@ -32,12 +32,20 @@ namespace AI_vs_HUMAN
             this.Load += startLoad;
             this.Resize += startResize;
         }
-        
+
+        /// <summary>
+        ///    Change the language of the form and all controls on it. The text for each control is taken from the resources file, so it will be automatically updated when the language is changed. This method is called after changing the language to update the UI.
+        /// </summary>
         private void ApplyLanguage()
         {
             this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
+        /// <summary>
+        ///     Change the language of the application when the changeLang button is clicked. It toggles between English and Polish. After changing the language, it calls ApplyLanguage() to update the UI with the new language.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void changeLang_Click(object sender, EventArgs e)
         {
             if (LanguageManager.CurrentLanguage == "en")
@@ -50,15 +58,30 @@ namespace AI_vs_HUMAN
             }
             ApplyLanguage();
         }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
             originalSize = this.Size;
             ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
         }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
             ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
         }
+        /// <summary>
+        ///     Click event handler for the startButton. When the button is clicked, it starts the FastAPI servers by calling the StartFastApiServers method from the ApiComunication class. It then hides the current form and opens a new form called file_test. After the file_test form is closed, it closes the main form. This allows the user to interact with the file_test form while the FastAPI servers are running in the background.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void startButton_Click(object sender, EventArgs e)
         {
             startButton.Enabled = false;
@@ -70,7 +93,11 @@ namespace AI_vs_HUMAN
             test_Obrazu.ShowDialog();
             this.Close();
         }
-        
+
+        /// <summary>
+        ///     Function to handle the form closing event. It checks if the FastAPI process is still running and attempts to close it gracefully by sending a close signal to the main window. If the process does not exit within 2 seconds, it forcefully kills the process. Finally, it disposes of the process resources. This ensures that the FastAPI servers are properly shut down when the main form is closed.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (fastApiProcess != null && !fastApiProcess.HasExited)

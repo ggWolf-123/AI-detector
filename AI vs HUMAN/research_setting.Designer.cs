@@ -95,9 +95,9 @@
             this.newQuestion = new System.Windows.Forms.CheckBox();
             this.yourQuestion = new System.Windows.Forms.TextBox();
             this.fileToLoad = new System.Windows.Forms.GroupBox();
+            this.askTextIn = new System.Windows.Forms.CheckBox();
             this.askImageIn = new System.Windows.Forms.CheckBox();
             this.askVideoIn = new System.Windows.Forms.CheckBox();
-            this.askTextIn = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.addPoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.takePoint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericSeconds)).BeginInit();
@@ -273,7 +273,7 @@
             // 
             // numericImgLimit
             // 
-            this.numericImgLimit.Location = new System.Drawing.Point(324, 209);
+            this.numericImgLimit.Location = new System.Drawing.Point(324, 206);
             this.numericImgLimit.Name = "numericImgLimit";
             this.numericImgLimit.Size = new System.Drawing.Size(120, 20);
             this.numericImgLimit.TabIndex = 15;
@@ -287,6 +287,7 @@
             this.whereToSaveFolderButton.TabIndex = 16;
             this.whereToSaveFolderButton.Text = "Wybierz folder do zapisywania wyników";
             this.whereToSaveFolderButton.UseVisualStyleBackColor = true;
+            this.whereToSaveFolderButton.Click += new System.EventHandler(this.whereToSaveFolderButton_Click);
             // 
             // askExistingData
             // 
@@ -297,6 +298,7 @@
             this.askExistingData.TabIndex = 17;
             this.askExistingData.Text = "Wybierz istniejące badania do dopisania (muszi mieć te same ustawienia)";
             this.askExistingData.UseVisualStyleBackColor = true;
+            this.askExistingData.Click += new System.EventHandler(this.askExistingData_Click);
             // 
             // yourAsk1
             // 
@@ -788,6 +790,16 @@
             this.fileToLoad.TabStop = false;
             this.fileToLoad.Text = "Z jakich plików losować?";
             // 
+            // askTextIn
+            // 
+            this.askTextIn.AutoSize = true;
+            this.askTextIn.Location = new System.Drawing.Point(6, 122);
+            this.askTextIn.Name = "askTextIn";
+            this.askTextIn.Size = new System.Drawing.Size(108, 29);
+            this.askTextIn.TabIndex = 57;
+            this.askTextIn.Text = "tekstowe";
+            this.askTextIn.UseVisualStyleBackColor = true;
+            // 
             // askImageIn
             // 
             this.askImageIn.AutoSize = true;
@@ -807,16 +819,6 @@
             this.askVideoIn.TabIndex = 56;
             this.askVideoIn.Text = "wideo";
             this.askVideoIn.UseVisualStyleBackColor = true;
-            // 
-            // askTextIn
-            // 
-            this.askTextIn.AutoSize = true;
-            this.askTextIn.Location = new System.Drawing.Point(6, 122);
-            this.askTextIn.Name = "askTextIn";
-            this.askTextIn.Size = new System.Drawing.Size(108, 29);
-            this.askTextIn.TabIndex = 57;
-            this.askTextIn.Text = "tekstowe";
-            this.askTextIn.UseVisualStyleBackColor = true;
             // 
             // research_setting
             // 

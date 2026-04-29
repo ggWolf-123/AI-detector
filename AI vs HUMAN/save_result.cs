@@ -21,6 +21,8 @@ namespace AI_vs_HUMAN
         private int AIgoodAnswers;
         private int AIbadAnswers;
         private int timeOfRechearch;
+        private System.Drawing.Size originalSize;
+        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string pathWithoutExtension = Path.Combine(
             Properties.Settings.Default.SaveFolderPath,
             Path.GetFileNameWithoutExtension(Properties.Settings.Default.FileName)
@@ -29,6 +31,8 @@ namespace AI_vs_HUMAN
         private NumericUpDown[] numericYourData;
         public save_result(int points, int goodAnswers, int badAnswers, int AIpoints, int AIgoodAnswers, int AIbadAnswers, int timeOfRechearch)
         {
+            this.Load += startLoad;
+            this.Resize += startResize;
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
             InitializeComponent();
             ApplyLanguage();
@@ -128,11 +132,37 @@ namespace AI_vs_HUMAN
                 }
             }
         }
+        /// <summary>
+        ///    Change the language of the form and all controls on it. The text for each control is taken from the resources file, so it will be automatically updated when the language is changed. This method is called after changing the language to update the UI.
+        /// </summary>
         private void ApplyLanguage()
         {
             this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void startLoad(object sender, EventArgs e)
+        {
+            originalSize = this.Size;
+            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+        }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="E"></param>
+        private void startResize(object sender, EventArgs E)
+        {
+            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+        }
+        /// <summary>
+        /// Check if the required group boxes ( gender and population) have a selected option. It iterates through the controls in each group box and checks if any of the radio buttons are checked. If a required group box does not have a selected option, it returns false, otherwise it returns true. This method is called before saving the results to ensure that all necessary data is collected. If any required data is missing, it will display a message box indicating which data is missing.
+        /// </summary>
+        /// <returns>True if all required group boxes have a selected option; otherwise, false.</returns>
         private bool groupBoxChecker()
         {
             bool genderBoxCheck = true;
@@ -170,6 +200,10 @@ namespace AI_vs_HUMAN
                 return false;
             }
         }
+        /// <summary>
+        /// Check if the required text boxes for custom data have been filled out. It iterates through the text boxes and checks if any of them are visible and empty. If a visible text box is empty, it returns false and displays a message box indicating which data is missing. If all required text boxes are filled out, it returns true. This method is called before saving the results to ensure that all necessary data is collected.
+        /// </summary>
+        /// <returns>True if all required text boxes have been filled out; otherwise, false.</returns>
         private bool yourDataTextChecker()
         {
             bool yourDataCheck = true;
@@ -193,6 +227,11 @@ namespace AI_vs_HUMAN
             return yourDataCheck;
         }
 
+        /// <summary>
+        /// Add custom data to the list of lines to be saved. It checks if the custom data for the specified number is enabled and whether it is a string or numeric value. If it is enabled, it adds the corresponding value (either from a text box or a numeric up-down control) to the list of lines. This method is called when saving the results to include any additional custom data that the user has entered.
+        /// </summary>
+        /// <param name="lines">The list of lines to which the custom data will be added.</param>
+        /// <param name="number">The number of the custom data to be added.</param>
         private void addCustomData(List<string> lines, int number)
         {
             bool isEnabled= (bool)Properties.Settings.Default[$"YourAsk{number}Enabled"];
@@ -209,6 +248,11 @@ namespace AI_vs_HUMAN
                 }
             }
         }
+        /// <summary>
+        /// Button click event handler for saving the results. It first checks if the required group boxes have a selected option and if the required text boxes for custom data have been filled out. If any required data is missing, it displays a message box indicating which data is missing and returns without saving. If all required data is present, it creates a list of lines to be saved, including points, answers, time of research and any additional custom data. It then saves the results to a new file or an existing file based on the user's settings and displays a message box confirming that the results have been saved. Finally, it closes the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void save_results_button_Click(object sender, EventArgs e)
         {
             if (!groupBoxChecker())

@@ -9,12 +9,14 @@ using System.Windows.Forms;
 
 namespace AI_vs_HUMAN
 {
-
-//spróbuj przerobić tą klasę tak aby wystarczyła jedna linijka w dowolnym formularzu, a ona będzie sama wszysko skalować
     internal class ResizeControl
     {
-        
-        private static Dictionary<Control, float> originalFontSizes = new Dictionary<Control, float>(); 
+        private static Dictionary<Control, float> originalFontSizes = new Dictionary<Control, float>();
+        /// <summary>
+        ///  Function to store original bounds of controls in a dictionary for later resizing. It also stores original font sizes to maintain readability when resizing.
+        /// </summary>
+        /// <param name="parent">The parent control whose child controls' bounds and font sizes are to be stored.</param>
+        /// <param name="originalControlBounds">A dictionary to store the original bounds of the controls.</param>
         public static void StoreOriginalBoundsRecursive(Control parent, Dictionary<Control, Rectangle> originalControlBounds)
         {
             foreach (Control ctrl in parent.Controls)
@@ -29,6 +31,12 @@ namespace AI_vs_HUMAN
                     StoreOriginalBoundsRecursive(ctrl, originalControlBounds);
             }
         }
+        /// <summary>
+        ///     Function to resize controls based on the original bounds stored in the dictionary. It calculates the new position and size of each control based on the ratio of the current size of the parent control to the original size. It also adjusts font sizes to maintain readability.
+        /// </summary>
+        /// <param name="parent">The parent control whose child controls are to be resized.</param>
+        /// <param name="originalControlBounds">A dictionary containing the original bounds of the controls.</param>
+        /// <param name="originalSize">The original size of the parent control.</param>
         public static void ResizeControlsRecursive(Control parent, Dictionary<Control, Rectangle> originalControlBounds, Size originalSize)
         {
             if (originalSize.Width == 0 || originalSize.Height == 0) return;

@@ -88,7 +88,7 @@
             this.checkButton.TabIndex = 5;
             this.checkButton.Text = "SPRAWDŹ!!!";
             this.checkButton.UseVisualStyleBackColor = true;
-            this.checkButton.Click += new System.EventHandler(this.button1_Click);
+            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
             // 
             // answerAIorNOT
             // 

@@ -25,21 +25,38 @@ namespace AI_vs_HUMAN
             this.Load += startLoad;
             this.Resize += startResize;
         }
+        /// <summary>
+        ///    Change the language of the form and all controls on it. The text for each control is taken from the resources file, so it will be automatically updated when the language is changed. This method is called after changing the language to update the UI.
+        /// </summary>
         private void ApplyLanguage()
         {
             this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
             originalSize = this.Size;
             ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
         }
+        /// <summary>
+        ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
             ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
         }
-        
+        /// <summary>
+        /// Button click event handler for accepting the selected speed. It checks which radio button is selected and sets the speed variable accordingly. If the user has entered a custom speed, it validates that the speed is within the range of 1-1000. If the speed is valid, it sets the SelectedSpeed property and closes the form with a DialogResult of OK. If the speed is invalid, it shows an error message to the user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void acceptSpeedButton_Click(object sender, EventArgs e)
         {
             int speed = 0;

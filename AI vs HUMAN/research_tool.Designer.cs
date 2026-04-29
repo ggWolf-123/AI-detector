@@ -33,7 +33,7 @@
             this.noButton = new System.Windows.Forms.Button();
             this.randomPhoto = new System.Windows.Forms.PictureBox();
             this.questionMG = new System.Windows.Forms.Label();
-            this.endButton = new System.Windows.Forms.Button();
+            this.goBackButton = new System.Windows.Forms.Button();
             this.humanScore = new System.Windows.Forms.Label();
             this.youRight = new System.Windows.Forms.Label();
             this.youWrong = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.changeLang = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.textBoxRandomText = new System.Windows.Forms.RichTextBox();
+            this.endButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -93,22 +94,22 @@
             this.questionMG.TabIndex = 3;
             this.questionMG.Text = "Czy ta grafika została wygenerowana przez AI?";
             // 
-            // endButton
+            // goBackButton
             // 
-            this.endButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.endButton.Location = new System.Drawing.Point(1097, 12);
-            this.endButton.Name = "endButton";
-            this.endButton.Size = new System.Drawing.Size(105, 39);
-            this.endButton.TabIndex = 4;
-            this.endButton.Text = "Koniec";
-            this.endButton.UseVisualStyleBackColor = true;
-            this.endButton.Click += new System.EventHandler(this.endButton_Click);
+            this.goBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.goBackButton.Location = new System.Drawing.Point(1097, 12);
+            this.goBackButton.Name = "goBackButton";
+            this.goBackButton.Size = new System.Drawing.Size(105, 39);
+            this.goBackButton.TabIndex = 4;
+            this.goBackButton.Text = "Wróć";
+            this.goBackButton.UseVisualStyleBackColor = true;
+            this.goBackButton.Click += new System.EventHandler(this.goBackButton_Click);
             // 
             // humanScore
             // 
             this.humanScore.AutoSize = true;
             this.humanScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.humanScore.Location = new System.Drawing.Point(851, 112);
+            this.humanScore.Location = new System.Drawing.Point(800, 145);
             this.humanScore.Name = "humanScore";
             this.humanScore.Size = new System.Drawing.Size(217, 46);
             this.humanScore.TabIndex = 5;
@@ -118,7 +119,7 @@
             // 
             this.youRight.AutoSize = true;
             this.youRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.youRight.Location = new System.Drawing.Point(858, 172);
+            this.youRight.Location = new System.Drawing.Point(807, 205);
             this.youRight.Name = "youRight";
             this.youRight.Size = new System.Drawing.Size(276, 31);
             this.youRight.TabIndex = 6;
@@ -128,7 +129,7 @@
             // 
             this.youWrong.AutoSize = true;
             this.youWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.youWrong.Location = new System.Drawing.Point(858, 215);
+            this.youWrong.Location = new System.Drawing.Point(807, 248);
             this.youWrong.Name = "youWrong";
             this.youWrong.Size = new System.Drawing.Size(238, 31);
             this.youWrong.TabIndex = 7;
@@ -138,7 +139,7 @@
             // 
             this.aiScore.AutoSize = true;
             this.aiScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.aiScore.Location = new System.Drawing.Point(851, 277);
+            this.aiScore.Location = new System.Drawing.Point(800, 310);
             this.aiScore.Name = "aiScore";
             this.aiScore.Size = new System.Drawing.Size(177, 46);
             this.aiScore.TabIndex = 8;
@@ -148,7 +149,7 @@
             // 
             this.aiRight.AutoSize = true;
             this.aiRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.aiRight.Location = new System.Drawing.Point(853, 336);
+            this.aiRight.Location = new System.Drawing.Point(802, 369);
             this.aiRight.Name = "aiRight";
             this.aiRight.Size = new System.Drawing.Size(309, 31);
             this.aiRight.TabIndex = 9;
@@ -158,7 +159,7 @@
             // 
             this.aiWrong.AutoSize = true;
             this.aiWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.aiWrong.Location = new System.Drawing.Point(853, 387);
+            this.aiWrong.Location = new System.Drawing.Point(802, 420);
             this.aiWrong.Name = "aiWrong";
             this.aiWrong.Size = new System.Drawing.Size(271, 31);
             this.aiWrong.TabIndex = 10;
@@ -190,7 +191,7 @@
             // 
             this.previousTitle.AutoSize = true;
             this.previousTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.previousTitle.Location = new System.Drawing.Point(851, 456);
+            this.previousTitle.Location = new System.Drawing.Point(800, 489);
             this.previousTitle.Name = "previousTitle";
             this.previousTitle.Size = new System.Drawing.Size(248, 46);
             this.previousTitle.TabIndex = 13;
@@ -201,7 +202,7 @@
             // 
             this.previousAnswer.AutoSize = true;
             this.previousAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.previousAnswer.Location = new System.Drawing.Point(858, 520);
+            this.previousAnswer.Location = new System.Drawing.Point(807, 553);
             this.previousAnswer.Name = "previousAnswer";
             this.previousAnswer.Size = new System.Drawing.Size(212, 31);
             this.previousAnswer.TabIndex = 14;
@@ -257,11 +258,22 @@
             this.textBoxRandomText.TabIndex = 19;
             this.textBoxRandomText.Text = "";
             // 
+            // endButton
+            // 
+            this.endButton.Location = new System.Drawing.Point(1097, 102);
+            this.endButton.Name = "endButton";
+            this.endButton.Size = new System.Drawing.Size(105, 39);
+            this.endButton.TabIndex = 20;
+            this.endButton.Text = "Przerwij badanie";
+            this.endButton.UseVisualStyleBackColor = true;
+            this.endButton.Click += new System.EventHandler(this.endButton_Click);
+            // 
             // research_tool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1214, 661);
+            this.Controls.Add(this.endButton);
             this.Controls.Add(this.textBoxRandomText);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.changeLang);
@@ -278,7 +290,7 @@
             this.Controls.Add(this.youWrong);
             this.Controls.Add(this.youRight);
             this.Controls.Add(this.humanScore);
-            this.Controls.Add(this.endButton);
+            this.Controls.Add(this.goBackButton);
             this.Controls.Add(this.questionMG);
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.randomPhoto);
@@ -297,7 +309,7 @@
         private System.Windows.Forms.Button noButton;
         private System.Windows.Forms.PictureBox randomPhoto;
         private System.Windows.Forms.Label questionMG;
-        private System.Windows.Forms.Button endButton;
+        private System.Windows.Forms.Button goBackButton;
         private System.Windows.Forms.Label humanScore;
         private System.Windows.Forms.Label youRight;
         private System.Windows.Forms.Label youWrong;
@@ -313,5 +325,6 @@
         private System.Windows.Forms.Button changeLang;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.RichTextBox textBoxRandomText;
+        private System.Windows.Forms.Button endButton;
     }
 }
