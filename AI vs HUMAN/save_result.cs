@@ -21,8 +21,6 @@ namespace AI_vs_HUMAN
         private int AIgoodAnswers;
         private int AIbadAnswers;
         private int timeOfRechearch;
-        private System.Drawing.Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string pathWithoutExtension = Path.Combine(
             Properties.Settings.Default.SaveFolderPath,
             Path.GetFileNameWithoutExtension(Properties.Settings.Default.FileName)
@@ -141,14 +139,13 @@ namespace AI_vs_HUMAN
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
@@ -157,7 +154,7 @@ namespace AI_vs_HUMAN
         /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         /// Check if the required group boxes ( gender and population) have a selected option. It iterates through the controls in each group box and checks if any of the radio buttons are checked. If a required group box does not have a selected option, it returns false, otherwise it returns true. This method is called before saving the results to ensure that all necessary data is collected. If any required data is missing, it will display a message box indicating which data is missing.

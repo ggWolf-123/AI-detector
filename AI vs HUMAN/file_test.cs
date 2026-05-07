@@ -15,8 +15,6 @@ namespace AI_vs_HUMAN
 {
     public partial class file_test : Form
     {
-        private System.Drawing.Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string[] allFiles;
         private string mainFolderPath;
         private int folderFilesNumber=0;
@@ -53,23 +51,22 @@ namespace AI_vs_HUMAN
         {
             if (LanguageManager.CurrentLanguage == "en")
             {
-                LanguageManager.ChangeLanguage("pl");
+                LanguageManager.SetLanguage("pl");
             }
             else
             {
-                LanguageManager.ChangeLanguage("en");
+                LanguageManager.SetLanguage("en");
             }
             ApplyLanguage();
         }
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
@@ -78,7 +75,7 @@ namespace AI_vs_HUMAN
         /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         ///     Go to the research tool form when the challangeBitton is clicked. It hides the current form, creates a new instance of the research_tool form, shows it as a dialog, and then closes the current form after the research_tool form is closed. This allows the user to switch between the file test form and the research tool form.

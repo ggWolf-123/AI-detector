@@ -12,8 +12,6 @@ namespace AI_vs_HUMAN
 {
     public partial class research_setting : Form
     {
-        private System.Drawing.Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         public research_setting()
         {
             InitializeComponent();
@@ -36,14 +34,13 @@ namespace AI_vs_HUMAN
             this.Resize += startResize;
         }
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
@@ -52,7 +49,7 @@ namespace AI_vs_HUMAN
         /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         ///     Load the settings for the research form when it is opened. It checks if there are saved settings for the folder path and file path, and if so, it populates the corresponding text boxes with those values. It also loads the settings for all controls on the form, including custom fields, and toggles their enabled state based on whether they are checked or not. This ensures that the form reflects the user's previously saved preferences when it is opened.

@@ -16,8 +16,6 @@ namespace AI_vs_HUMAN
 {
     public partial class main : Form
     {
-        private Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private Process fastApiProcess;
         public main()
         {
@@ -50,32 +48,31 @@ namespace AI_vs_HUMAN
         {
             if (LanguageManager.CurrentLanguage == "en")
             {
-                LanguageManager.ChangeLanguage("pl");
+                LanguageManager.SetLanguage("pl");
             }
             else
             {
-                LanguageManager.ChangeLanguage("en");
+                LanguageManager.SetLanguage("en");
             }
             ApplyLanguage();
         }
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="E"></param>
-        private void startResize(object sender, EventArgs E)
+        /// <param name="e"></param>
+        private void startResize(object sender, EventArgs e)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         ///     Click event handler for the startButton. When the button is clicked, it starts the FastAPI servers by calling the StartFastApiServers method from the ApiComunication class. It then hides the current form and opens a new form called file_test. After the file_test form is closed, it closes the main form. This allows the user to interact with the file_test form while the FastAPI servers are running in the background.

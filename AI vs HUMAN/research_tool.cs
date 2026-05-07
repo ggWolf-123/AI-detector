@@ -13,8 +13,6 @@ namespace AI_vs_HUMAN
 {
     public partial class research_tool : Form
     {
-        private System.Drawing.Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         private string mainFolderPath;
         private string selectdImagePath;
         private string[] allFiles;
@@ -97,24 +95,23 @@ namespace AI_vs_HUMAN
         {
             if (LanguageManager.CurrentLanguage == "en")
             {
-                LanguageManager.ChangeLanguage("pl");
+                LanguageManager.SetLanguage("pl");
             }
             else
             {
-                LanguageManager.ChangeLanguage("en");
+                LanguageManager.SetLanguage("en");
             }
             ApplyLanguage();
         }
 
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
@@ -123,7 +120,7 @@ namespace AI_vs_HUMAN
         /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         ///  Choose a folder containing images for the game. It opens a FolderBrowserDialog to allow the user to select a folder, and then checks if the selected folder is valid (contains the required structure). If the folder is valid, it prepares a random file from the folder for the game and updates the UI accordingly. If the folder is not valid or if no folder is selected, it shows an error message.

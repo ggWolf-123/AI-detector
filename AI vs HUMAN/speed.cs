@@ -14,8 +14,6 @@ namespace AI_vs_HUMAN
     public partial class speed : Form
     {
         public int SelectedSpeed {get; private set; }
-        private Size originalSize;
-        private Dictionary<Control, Rectangle> originalControlBounds = new Dictionary<Control, Rectangle>();
         public speed()
         {
             LanguageManager.SetLanguage(LanguageManager.CurrentLanguage);
@@ -34,14 +32,13 @@ namespace AI_vs_HUMAN
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
-        ///     Change the size of the form and all controls on it when the form is resized. It stores the original size of the form and the original bounds of all controls when the form is loaded, and then resizes the controls proportionally to the new size of the form when it is resized. This ensures that the layout of the form remains consistent regardless of its size.
+        ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startLoad(object sender, EventArgs e)
         {
-            originalSize = this.Size;
-            ResizeControl.StoreOriginalBoundsRecursive(this, originalControlBounds);
+            ResizeControl.Initialize(this);
         }
         /// <summary>
         ///     Change the size of the form and all controls on it when the form is resized. It calls the ResizeControlsRecursive method to resize all controls based on the original size and bounds stored during the startLoad event. This ensures that the layout of the form remains consistent regardless of its size.
@@ -50,7 +47,7 @@ namespace AI_vs_HUMAN
         /// <param name="E"></param>
         private void startResize(object sender, EventArgs E)
         {
-            ResizeControl.ResizeControlsRecursive(this, originalControlBounds, originalSize);
+            ResizeControl.ResizeControlsRecursive(this);
         }
         /// <summary>
         /// Button click event handler for accepting the selected speed. It checks which radio button is selected and sets the speed variable accordingly. If the user has entered a custom speed, it validates that the speed is within the range of 1-1000. If the speed is valid, it sets the SelectedSpeed property and closes the form with a DialogResult of OK. If the speed is invalid, it shows an error message to the user.
