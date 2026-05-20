@@ -1,4 +1,5 @@
-﻿using OpenCvSharp;
+﻿using AI_vs_HUMAN.Properties;
+using OpenCvSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -60,22 +61,22 @@ namespace AI_vs_HUMAN
             }
             else
             {
-                humanScore.Text = "Twój wynik";
-                youRight.Text = "Miałeś/-aś rację : ";
-                youWrong.Text = "Pomyliłeś/-łaś się: ";
+                humanScore.Text = Resources.humanScore;
+                youRight.Text = Resources.youRight;
+                youWrong.Text = Resources.youWrong;
             }
 
             if (!Properties.Settings.Default.showAiAnswers)
             {
-                aiScore.Text = "";
+                aiScoreR.Text = "";
                 aiRight.Text = "";
                 aiWrong.Text = "";
             }
             else
             {
-                aiScore.Text = "Wynik AI";
-                aiRight.Text = "AI miało rację : ";
-                aiWrong.Text = "AI pomyliło się : ";
+                aiScoreR.Text = Resources.aiScoreR;
+                aiRight.Text = Resources.aiRight;
+                aiWrong.Text = Resources.aiWrong;
             }
         }
         /// <summary>
@@ -83,7 +84,6 @@ namespace AI_vs_HUMAN
         /// </summary>
         private void ApplyLanguage()
         {
-            this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
@@ -129,7 +129,7 @@ namespace AI_vs_HUMAN
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
-                folderDialog.Description = "Wybierz główny folder z obrazami";
+                folderDialog.Description = Resources.chooseFolderToR;
                 folderDialog.ShowNewFolderButton = false;
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -137,17 +137,17 @@ namespace AI_vs_HUMAN
                     actualizeFolderFiles();
                     if (string.IsNullOrEmpty(mainFolderPath))
                     {
-                        MessageBox.Show("Nie wybrano folderu.");
+                        MessageBox.Show(Resources.folderNotChosen);
                         return;
                     }
                     if (!isFolderOK())
                     {
-                        MessageBox.Show("Strtuktura wybranego folderu jest nieprawidłowa, sprawdź ją w README.");
+                        MessageBox.Show(Resources.invalidFolderStructure);
                         return;
                     }
                     randomFilePrepare();
                     startGameButton.SendToBack();
-                    MessageBox.Show($"Wybrano folder: {mainFolderPath}");
+                    MessageBox.Show($"{Resources.chosenFolderR} {mainFolderPath}");
             }
         }
     }
@@ -198,7 +198,7 @@ namespace AI_vs_HUMAN
                     .ToArray();
                 if (allFiles.Length == 0)
                 {
-                    MessageBox.Show("Wybrany folder nie zawiera żadnych plików o wybranym formacie.");
+                    MessageBox.Show(Resources.chosenFolderNoChosenFiles);
                     return;
                 }
             }
@@ -248,7 +248,7 @@ namespace AI_vs_HUMAN
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+                MessageBox.Show($"{Resources.errorWhileLoadingFile}\n{ex.Message}");
             }
             yesButton.Enabled = true;
             noButton.Enabled = true;
@@ -286,7 +286,7 @@ namespace AI_vs_HUMAN
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas sprawdzania pliku przez AI\n{ex.Message}");
+                MessageBox.Show($"{Resources.errorWhileCheckingFile}\n{ex.Message}");
             }
         }
 
@@ -345,7 +345,7 @@ namespace AI_vs_HUMAN
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas zapisywania danych: {ex.Message}");
+                MessageBox.Show($"{Resources.errorWhileSavingData}\n{ex.Message}");
             }
         }
         /// <summary>
@@ -363,42 +363,42 @@ namespace AI_vs_HUMAN
             int rightAnswers = -1;
             string diretoryOfImage = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(imagePath));
             if(Properties.Settings.Default.wasThatAi)
-                previousTitle.Text = "Poprzednie zdjęcie/grafika";
+                previousTitle.Text = Resources.previousTitle;
             if (diretoryOfImage == "AI")
             {
                 rightAnswers = 1;
                 if (Properties.Settings.Default.wasThatAi)
-                    previousAnswer.Text = " była wygenerowana przez AI";
+                    previousAnswer.Text =Resources.previousAnswerYES;
             }
             else if (diretoryOfImage == "HUMAN")
             {
                 rightAnswers = 0;
                 if (Properties.Settings.Default.wasThatAi)
-                    previousAnswer.Text = "nie była wygenerowana przez AI";
+                    previousAnswer.Text = Resources.previousAnswerNO;
             }
             if (rightAnswers == answerHuman)
             {
                 rightHumanAnswers++;
                 if(Properties.Settings.Default.showHumanAnswers)
-                    youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
+                    youRight.Text = Resources.youRight + rightHumanAnswers;
             }
             else
             {
                 wrongHumanAnswers++;
                 if (Properties.Settings.Default.showHumanAnswers)
-                    youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
+                    youWrong.Text = Resources.youWrong + wrongHumanAnswers;
             }
             if (rightAnswers == answerAI)
             {
                 rightAiAnswers++;
                 if (Properties.Settings.Default.showAiAnswers)
-                    aiRight.Text = "AI miało rację : " + rightAiAnswers;
+                    aiRight.Text = Resources.aiRight + rightAiAnswers;
             }
             else
             {
                 wrongAiAnswers++;
                 if (Properties.Settings.Default.showAiAnswers)
-                    aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+                    aiWrong.Text = Resources.aiWrong + wrongAiAnswers;
             }
             if(Properties.Settings.Default.showAnswerByColor)
             {
@@ -462,16 +462,16 @@ namespace AI_vs_HUMAN
                 points = (Properties.Settings.Default.addPoint * rightHumanAnswers) + (Properties.Settings.Default.takePoint * wrongHumanAnswers);
                 if (Properties.Settings.Default.showResult)
                 {
-                    MessageBox.Show($"Koniec gry!. Zdobyłeś tyle punktów {points}");
+                    MessageBox.Show(String.Format(Resources.endGamePoints, points));
                 }
                 else
                 {
-                    MessageBox.Show($"Koniec gry!");
+                    MessageBox.Show(Resources.endGame);
                 }
             }
             else
             {
-                MessageBox.Show($"Koniec gry! Twój czas minął.");
+                MessageBox.Show(Resources.endGameTime);
                 points = 0;
                 rightHumanAnswers = 0;
                 wrongHumanAnswers = 0;
@@ -506,7 +506,7 @@ namespace AI_vs_HUMAN
                     gameTimer.Stop();
                 timeLeft = Properties.Settings.Default.numericSeconds;
                 if(Properties.Settings.Default.askTimeMax)
-                    timeLabel.Text = $"Czas: {Properties.Settings.Default.numericSeconds}s";
+                    timeLabel.Text = $"{Resources.timeLabel} {Properties.Settings.Default.numericSeconds}s";
             }
             else
             {
@@ -527,13 +527,13 @@ namespace AI_vs_HUMAN
             imgLimit = 0;
             if (Properties.Settings.Default.showHumanAnswers)
             {
-                youRight.Text = "Miałeś/-aś rację : " + rightHumanAnswers;
-                youWrong.Text = "Pomyliłeś/-łaś się: " + wrongHumanAnswers;
+                youRight.Text = Resources.youRight + rightHumanAnswers;
+                youWrong.Text = Resources.youWrong + wrongHumanAnswers;
             }
             if (Properties.Settings.Default.showAiAnswers)
             {
-                aiRight.Text = "AI miało rację : " + rightAiAnswers;
-                aiWrong.Text = "AI pomyliło się : " + wrongAiAnswers;
+                aiRight.Text = Resources.aiRight + rightAiAnswers;
+                aiWrong.Text = Resources.aiWrong + wrongAiAnswers;
             }
             if (Properties.Settings.Default.askSavePaths)
             {
@@ -564,7 +564,7 @@ namespace AI_vs_HUMAN
         {
             if (string.IsNullOrEmpty(selectdImagePath))
             {
-                MessageBox.Show("Najpierw rozpocznij grę.");
+                MessageBox.Show(Resources.startGameFirst);
                 return;
             }
             if (!isGameActive)
@@ -662,7 +662,7 @@ namespace AI_vs_HUMAN
         {
             if (string.IsNullOrEmpty(selectdImagePath))
             {
-                MessageBox.Show("Najpierw rozpocznij grę.");
+                MessageBox.Show(Resources.startGameFirst);
                 return;
             }
             chooseFolder();
@@ -681,7 +681,7 @@ namespace AI_vs_HUMAN
                 if (Properties.Settings.Default.askTimeMax)
                 {
                     timeLeft = Properties.Settings.Default.numericSeconds;
-                    timeLabel.Text = $"Czas: {Properties.Settings.Default.numericSeconds}s";
+                    timeLabel.Text = $"{Resources.timeLabel} {Properties.Settings.Default.numericSeconds}s";
                 }
                 else
                 {
@@ -695,22 +695,22 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    humanScore.Text = "Twój wynik";
-                    youRight.Text = "Miałeś/-aś rację : 0";
-                    youWrong.Text = "Pomyliłeś/-łaś się: 0";
+                    humanScore.Text = Resources.humanScore;
+                    youRight.Text = Resources.youRight + "0";
+                    youWrong.Text = Resources.youWrong + "0";
                 }
 
                 if (!Properties.Settings.Default.showAiAnswers)
                 {
-                    aiScore.Text = "";
+                    aiScoreR.Text = "";
                     aiRight.Text = "";
                     aiWrong.Text = "";
                 }
                 else
                 {
-                    aiScore.Text = "Wynik AI";
-                    aiRight.Text = "AI miało rację : 0";
-                    aiWrong.Text = "AI pomyliło się : 0";
+                    aiScoreR.Text = Resources.aiScoreR;
+                    aiRight.Text = Resources.aiRight + "0";
+                    aiWrong.Text = Resources.aiWrong + "0";
                 }
                 if (Properties.Settings.Default.newQuestion)
                 {

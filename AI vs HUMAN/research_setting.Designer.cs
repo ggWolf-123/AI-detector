@@ -77,8 +77,8 @@
             this.yourAsk5StringRadio = new System.Windows.Forms.RadioButton();
             this.yourAsk5NumericRadio = new System.Windows.Forms.RadioButton();
             this.yourAsk5 = new System.Windows.Forms.CheckBox();
-            this.chosenFileToWrite = new System.Windows.Forms.Label();
-            this.chosenFolderToSave = new System.Windows.Forms.Label();
+            this.chosenFileToExtend = new System.Windows.Forms.Label();
+            this.chosenFolderPath = new System.Windows.Forms.Label();
             this.nameOfNewFileLabel = new System.Windows.Forms.Label();
             this.newFileNameTextBox = new System.Windows.Forms.TextBox();
             this.newFileToTXT = new System.Windows.Forms.CheckBox();
@@ -600,25 +600,25 @@
             this.yourAsk5.Text = "Własna dana 5";
             this.yourAsk5.UseVisualStyleBackColor = true;
             // 
-            // chosenFileToWrite
+            // chosenFileToExtend
             // 
-            this.chosenFileToWrite.AutoSize = true;
-            this.chosenFileToWrite.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.chosenFileToWrite.Location = new System.Drawing.Point(-2, 639);
-            this.chosenFileToWrite.Name = "chosenFileToWrite";
-            this.chosenFileToWrite.Size = new System.Drawing.Size(320, 20);
-            this.chosenFileToWrite.TabIndex = 38;
-            this.chosenFileToWrite.Text = "Ścieżka wybranego pliku do roższerzenia to:";
+            this.chosenFileToExtend.AutoSize = true;
+            this.chosenFileToExtend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.chosenFileToExtend.Location = new System.Drawing.Point(-2, 639);
+            this.chosenFileToExtend.Name = "chosenFileToExtend";
+            this.chosenFileToExtend.Size = new System.Drawing.Size(320, 20);
+            this.chosenFileToExtend.TabIndex = 38;
+            this.chosenFileToExtend.Text = "Ścieżka wybranego pliku do roższerzenia to:";
             // 
-            // chosenFolderToSave
+            // chosenFolderPath
             // 
-            this.chosenFolderToSave.AutoSize = true;
-            this.chosenFolderToSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.chosenFolderToSave.Location = new System.Drawing.Point(384, 639);
-            this.chosenFolderToSave.Name = "chosenFolderToSave";
-            this.chosenFolderToSave.Size = new System.Drawing.Size(221, 20);
-            this.chosenFolderToSave.TabIndex = 39;
-            this.chosenFolderToSave.Text = "Ścieżka wybranego folderu to:";
+            this.chosenFolderPath.AutoSize = true;
+            this.chosenFolderPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.chosenFolderPath.Location = new System.Drawing.Point(384, 639);
+            this.chosenFolderPath.Name = "chosenFolderPath";
+            this.chosenFolderPath.Size = new System.Drawing.Size(221, 20);
+            this.chosenFolderPath.TabIndex = 39;
+            this.chosenFolderPath.Text = "Ścieżka wybranego folderu to:";
             // 
             // nameOfNewFileLabel
             // 
@@ -841,8 +841,8 @@
             this.Controls.Add(this.newFileToTXT);
             this.Controls.Add(this.newFileNameTextBox);
             this.Controls.Add(this.nameOfNewFileLabel);
-            this.Controls.Add(this.chosenFolderToSave);
-            this.Controls.Add(this.chosenFileToWrite);
+            this.Controls.Add(this.chosenFolderPath);
+            this.Controls.Add(this.chosenFileToExtend);
             this.Controls.Add(this.yourAsk5TextBox);
             this.Controls.Add(this.yourAsk5Name);
             this.Controls.Add(this.yourAsk5Box);
@@ -955,8 +955,8 @@
         private System.Windows.Forms.RadioButton yourAsk5StringRadio;
         private System.Windows.Forms.RadioButton yourAsk5NumericRadio;
         private System.Windows.Forms.CheckBox yourAsk5;
-        private System.Windows.Forms.Label chosenFileToWrite;
-        private System.Windows.Forms.Label chosenFolderToSave;
+        private System.Windows.Forms.Label chosenFileToExtend;
+        private System.Windows.Forms.Label chosenFolderPath;
         private System.Windows.Forms.Label nameOfNewFileLabel;
         private System.Windows.Forms.TextBox newFileNameTextBox;
         private System.Windows.Forms.CheckBox newFileToTXT;

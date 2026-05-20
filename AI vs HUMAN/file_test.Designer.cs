@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(file_test));
-            this.challangeBitton = new System.Windows.Forms.Button();
+            this.changeModuleButton = new System.Windows.Forms.Button();
             this.getFileButton = new System.Windows.Forms.Button();
             this.pictureToCheck = new System.Windows.Forms.PictureBox();
             this.filePathMain = new System.Windows.Forms.OpenFileDialog();
@@ -45,16 +45,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
-            // challangeBitton
+            // changeModuleButton
             // 
-            this.challangeBitton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
-            this.challangeBitton.Location = new System.Drawing.Point(904, 559);
-            this.challangeBitton.Name = "challangeBitton";
-            this.challangeBitton.Size = new System.Drawing.Size(298, 90);
-            this.challangeBitton.TabIndex = 0;
-            this.challangeBitton.Text = "Moduł badawczy";
-            this.challangeBitton.UseVisualStyleBackColor = true;
-            this.challangeBitton.Click += new System.EventHandler(this.challangeBitton_Click);
+            this.changeModuleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.changeModuleButton.Location = new System.Drawing.Point(904, 559);
+            this.changeModuleButton.Name = "changeModuleButton";
+            this.changeModuleButton.Size = new System.Drawing.Size(298, 90);
+            this.changeModuleButton.TabIndex = 0;
+            this.changeModuleButton.Text = "Moduł badawczy";
+            this.changeModuleButton.UseVisualStyleBackColor = true;
+            this.changeModuleButton.Click += new System.EventHandler(this.changeModuleButton_Click);
             // 
             // getFileButton
             // 
@@ -63,7 +63,7 @@
             this.getFileButton.Name = "getFileButton";
             this.getFileButton.Size = new System.Drawing.Size(445, 90);
             this.getFileButton.TabIndex = 1;
-            this.getFileButton.Text = "Podaj obraz do sprawdzenia";
+            this.getFileButton.Text = "Podaj plik do sprawdzenia";
             this.getFileButton.UseVisualStyleBackColor = true;
             this.getFileButton.Click += new System.EventHandler(this.getFileButton_Click);
             // 
@@ -176,7 +176,7 @@
             this.Controls.Add(this.answerFileCheck);
             this.Controls.Add(this.pictureToCheck);
             this.Controls.Add(this.getFileButton);
-            this.Controls.Add(this.challangeBitton);
+            this.Controls.Add(this.changeModuleButton);
             this.Name = "file_test";
             this.Text = "test_obrazu";
             ((System.ComponentModel.ISupportInitialize)(this.pictureToCheck)).EndInit();
@@ -188,7 +188,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button challangeBitton;
+        private System.Windows.Forms.Button changeModuleButton;
         private System.Windows.Forms.Button getFileButton;
         private System.Windows.Forms.PictureBox pictureToCheck;
         private System.Windows.Forms.OpenFileDialog filePathMain;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AI_vs_HUMAN.Properties;
+using OpenCvSharp.Flann;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,7 @@ namespace AI_vs_HUMAN
         public research_setting()
         {
             InitializeComponent();
+            ApplyLanguage();
             this.Load += Research_setting_Load;
             pointAskBox.CheckedChanged += pointAskBox_CheckedChanged;
             askLimitImg.CheckedChanged += askLimitImg_CheckedChanged;
@@ -32,6 +35,13 @@ namespace AI_vs_HUMAN
             aiAnswersToo.CheckedChanged += AiAnswersToo_CheckedChanged;
             this.Load += startLoad;
             this.Resize += startResize;
+        }
+        /// <summary>
+        ///    Change the language of the form and all controls on it. The text for each control is taken from the resources file, so it will be automatically updated when the language is changed. This method is called after changing the language to update the UI.
+        /// </summary>
+        private void ApplyLanguage()
+        {
+            LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
         ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
@@ -61,12 +71,12 @@ namespace AI_vs_HUMAN
             //folder
             if(!string.IsNullOrEmpty(Properties.Settings.Default.SaveFolderPath))
             {
-                chosenFolderToSave.Text = Properties.Settings.Default.SaveFolderPath;
+                chosenFolderPath.Text = Properties.Settings.Default.SaveFolderPath;
             }
             //file
             if (!string.IsNullOrEmpty(Properties.Settings.Default.ExistingFilePath))
             {
-                chosenFileToWrite.Text = Properties.Settings.Default.ExistingFilePath;
+                chosenFileToExtend.Text = Properties.Settings.Default.ExistingFilePath;
             }
             //your data
             LoadAllControlsSetings();
@@ -126,7 +136,7 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawien, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku.");
+                    MessageBox.Show(Resources.fileExistsAlready);
                     return false;
                 }
             }
@@ -139,7 +149,7 @@ namespace AI_vs_HUMAN
                 }
                 else
                 {
-                    MessageBox.Show("Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawien, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku.");
+                    MessageBox.Show(Resources.fileExistsAlready);
                     return false;
                 }
             }
@@ -196,12 +206,12 @@ namespace AI_vs_HUMAN
         {
             if (askCheckBox.Checked && string.IsNullOrWhiteSpace(askTextBox.Text))
             {
-                MessageBox.Show($"Pole 'Your Ask {index}' jest zaznaczone, ale nie podano nazwy kolumny. Zapis zostaje zatrzymany.");
+                MessageBox.Show(string.Format(Resources.yourAskNotNamed, index));
                 return;
             }
             if (askCheckBox.Checked && !numericRadio.Checked && !stringRadio.Checked)
             {
-                MessageBox.Show($"Pole 'Your Ask {index}' jest zaznaczone, ale nie wybrano typu danych (Numeric/String). Zapis zostaje zatrzymany.");
+                MessageBox.Show(string.Format(Resources.yourAskNotChosenData, index));
                 return;
             }
             Properties.Settings.Default[$"YourAsk{index}Enabled"] = askCheckBox.Checked;
@@ -318,8 +328,8 @@ namespace AI_vs_HUMAN
                     tb.Text = (string)Properties.Settings.Default[tb.Name];
                 }
             }
-            chosenFolderToSave.Text = Properties.Settings.Default.SaveFolderPath;
-            chosenFileToWrite.Text = Properties.Settings.Default.ExistingFilePath;
+            chosenFolderPath.Text = Properties.Settings.Default.SaveFolderPath;
+            chosenFileToExtend.Text = Properties.Settings.Default.ExistingFilePath;
         }
         /// <summary>
         ///     Save all control settings from the corresponding controls on the form into the application settings. It iterates through all controls on the form, checks if there are corresponding settings for each control based on its name, and if so, it saves the current value of the control into the settings. It handles different types of controls such as CheckBox, NumericUpDown, and TextBox, and it also updates the settings for the chosen folder and file paths. Finally, it calls the Save method to persist all changes to the application settings. This method ensures that all user preferences are saved when they accept the settings.
@@ -343,8 +353,8 @@ namespace AI_vs_HUMAN
                 }
             }
             Properties.Settings.Default.FileName = newFileNameTextBox.Text;
-            Properties.Settings.Default.SaveFolderPath = chosenFolderToSave.Text;
-            Properties.Settings.Default.ExistingFilePath = chosenFileToWrite.Text;
+            Properties.Settings.Default.SaveFolderPath = chosenFolderPath.Text;
+            Properties.Settings.Default.ExistingFilePath = chosenFileToExtend.Text;
             Properties.Settings.Default.Save();
         }
         /// <summary>
@@ -363,12 +373,12 @@ namespace AI_vs_HUMAN
                 {
                     if (askCheckBox==null && string.IsNullOrWhiteSpace(askTextBox.Text))
                     {
-                        MessageBox.Show($"Pole 'Your Ask {i}' jest zaznaczone, ale nie podano nazwy kolumny.");
+                        MessageBox.Show(string.Format(Resources.yourAskNotNamed, i));
                         return false;
                     }
                     if(numericRadio != null && stringRadio != null && !numericRadio.Checked && !stringRadio.Checked)
                     {
-                        MessageBox.Show($"Pole 'Your Ask {i}' jest zaznaczone, ale nie wybrano typu danych (Numeric/String).");
+                        MessageBox.Show(string.Format(Resources.yourAskNotChosenData, i));
                         return false;
                     }
                 }
@@ -436,12 +446,12 @@ namespace AI_vs_HUMAN
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
-                folderDialog.Description = "Wybierz folder docelowy do zapisywania wyników.";
+                folderDialog.Description = Resources.chooseFolderToSave;
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
                     Properties.Settings.Default.SaveFolderPath = folderDialog.SelectedPath;
                     Properties.Settings.Default.Save();
-                    chosenFolderToSave.Text = folderDialog.SelectedPath;
+                    chosenFolderPath.Text = folderDialog.SelectedPath;
                 }
             }
         }
@@ -455,20 +465,20 @@ namespace AI_vs_HUMAN
         {
             using(OpenFileDialog fileDialog = new OpenFileDialog())
             {
-                fileDialog.Title = "Wybierz istniejący plik do zapisywania wyników.";
-                fileDialog.Filter = "Pliki tekstowe (*.txt)|*.txt|Pliki CSV (*.csv)|*.csv";
+                fileDialog.Title = Resources.chooseExistingFile;
+                fileDialog.Filter = Resources.chooseExistingFileExtension;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     if (CheckFileCompatibility(fileDialog.FileName))
                     {
                         Properties.Settings.Default.ExistingFilePath = fileDialog.FileName;
                         Properties.Settings.Default.Save();
-                        chosenFileToWrite.Text = fileDialog.FileName;
-                        MessageBox.Show("Plik został pomyślnie wybrany.");
+                        chosenFileToExtend.Text = fileDialog.FileName;
+                        MessageBox.Show(Resources.fileChoosenOK);
                     }
                     else
                     {
-                        MessageBox.Show("Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny.");
+                        MessageBox.Show(Resources.fileChoosenNotOK);
                     }
                 }
             }
@@ -506,22 +516,22 @@ namespace AI_vs_HUMAN
             }
             if (!newFileToTXT.Checked && !newFileToCSV.Checked && string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath))
             {
-                MessageBox.Show("Musisz wybrać istniejący plik lub utworzyć nowy, aby kontynuować.");
+                MessageBox.Show(Resources.chooseExistingFileOrNew);
                 return;
             }
             if ((newFileToTXT.Checked || newFileToCSV.Checked) && string.IsNullOrWhiteSpace(newFileNameTextBox.Text))
             {
-                MessageBox.Show("Podaj nazwe nowego pliku.");
+                MessageBox.Show(Resources.giveFileName);
                 return;
             }
             if ((newFileToTXT.Checked || newFileToCSV.Checked) && string.IsNullOrWhiteSpace(Properties.Settings.Default.SaveFolderPath))
             {
-                MessageBox.Show("Musisz wybrać folder docelowy, aby utworzyć nowy plik.");
+                MessageBox.Show(Resources.chooseFolderNameToSave);
                 return;
             }
             if (!(CheckFileCompatibility(Properties.Settings.Default.ExistingFilePath)) && !(string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath)))
             {
-                MessageBox.Show("Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go.");
+                MessageBox.Show(Resources.chosenFileIsNotCombatible);
                 return;
             }
             if (!ValidateCustomFields())
@@ -552,7 +562,7 @@ namespace AI_vs_HUMAN
         {
             Properties.Settings.Default.ExistingFilePath ="";
             Properties.Settings.Default.Save();
-            chosenFileToWrite.Text = "Ścieżka wybranego pliku do roższerzenia to:";
+            chosenFileToExtend.Text = Resources.chosenFileToExtend;
         }
         /// <summary>
         ///     Click event handler for the button that resets the selected folder path. It clears the SaveFolderPath setting, saves the settings, and updates the corresponding text box on the form to indicate that no folder is currently selected. This allows users to easily reset their choice of a save folder if they want to choose a different one or simply want to clear their selection.
@@ -563,7 +573,7 @@ namespace AI_vs_HUMAN
         {
             Properties.Settings.Default.SaveFolderPath = "";
             Properties.Settings.Default.Save();
-            chosenFolderToSave.Text = "Ścieżka wybranego folderu to:";
+            chosenFolderPath.Text = Resources.chosenFolderPath;
         }
     }
 }

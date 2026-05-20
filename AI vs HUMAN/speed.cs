@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AI_vs_HUMAN.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,7 +29,6 @@ namespace AI_vs_HUMAN
         /// </summary>
         private void ApplyLanguage()
         {
-            this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
@@ -68,13 +68,13 @@ namespace AI_vs_HUMAN
                 speed = (int)speedUserNumeric.Value;
                 if (speed < 1 || speed > 1000)
                 {
-                    MessageBox.Show($"Proszę podać prędkość z zakresu 1-1000.\nLub wybrać jedną z opcji");
+                    MessageBox.Show(Resources.chooseSpeed);
                     return;
                 }
             }
             if (speed == 0)
             {
-                MessageBox.Show($"Proszę wybrać prędkość lub podać własną.");
+                MessageBox.Show(Resources.chooseSpeedOrEnter);
                 return;
             }
             SelectedSpeed = speed;

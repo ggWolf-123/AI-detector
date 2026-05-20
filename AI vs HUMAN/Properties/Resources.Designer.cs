@@ -70,6 +70,33 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wiek.
+        /// </summary>
+        internal static string ageLabel {
+            get {
+                return ResourceManager.GetString("ageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu AI też ocenia.
+        /// </summary>
+        internal static string aiAnswersToo {
+            get {
+                return ResourceManager.GetString("aiAnswersToo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu AI miało rację : .
+        /// </summary>
+        internal static string aiRight {
+            get {
+                return ResourceManager.GetString("aiRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wynik AI.
         /// </summary>
         internal static string aiScore {
@@ -79,11 +106,74 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu AI pomyliło się: 0.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wynik AI.
+        /// </summary>
+        internal static string aiScoreR {
+            get {
+                return ResourceManager.GetString("aiScoreR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu AI pomyliło się : .
         /// </summary>
         internal static string aiWrong {
             get {
                 return ResourceManager.GetString("aiWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Model mówi: .
+        /// </summary>
+        internal static string answerAIorNOT {
+            get {
+                return ResourceManager.GetString("answerAIorNOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Analizowanie trwa....
+        /// </summary>
+        internal static string answerAIorNOT_Analyzing {
+            get {
+                return ResourceManager.GetString("answerAIorNOT_Analyzing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu \nPewność {0}.
+        /// </summary>
+        internal static string answerAIorNOT_Confidence {
+            get {
+                return ResourceManager.GetString("answerAIorNOT_Confidence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Bład podczas analizy wideo..
+        /// </summary>
+        internal static string answerAIorNOT_ErrorVideo {
+            get {
+                return ResourceManager.GetString("answerAIorNOT_ErrorVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  to nie jest AI.
+        /// </summary>
+        internal static string answerAIorNOT_Negative {
+            get {
+                return ResourceManager.GetString("answerAIorNOT_Negative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu  to jest AI.
+        /// </summary>
+        internal static string answerAIorNOT_Positive {
+            get {
+                return ResourceManager.GetString("answerAIorNOT_Positive", resourceCulture);
             }
         }
         
@@ -97,11 +187,110 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Mini gra, pojedynek z AI.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz istniejące badania do dopisania (musi mieć te same ustawienia).
         /// </summary>
-        internal static string challangeBitton {
+        internal static string askExistingData {
             get {
-                return ResourceManager.GetString("challangeBitton", resourceCulture);
+                return ResourceManager.GetString("askExistingData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapytaj o płeć.
+        /// </summary>
+        internal static string askGender {
+            get {
+                return ResourceManager.GetString("askGender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu graficzne.
+        /// </summary>
+        internal static string askImageIn {
+            get {
+                return ResourceManager.GetString("askImageIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ustaw limit wylosowanych zdjęć.
+        /// </summary>
+        internal static string askLimitImg {
+            get {
+                return ResourceManager.GetString("askLimitImg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapytaj o wielkość miejsca zamieszkania.
+        /// </summary>
+        internal static string askPopulation {
+            get {
+                return ResourceManager.GetString("askPopulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Mierz ile czasu trwało badanie.
+        /// </summary>
+        internal static string askSaveHowLong {
+            get {
+                return ResourceManager.GetString("askSaveHowLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapisz ścieżki wylosowanych zdjęć do txt.
+        /// </summary>
+        internal static string askSavePaths {
+            get {
+                return ResourceManager.GetString("askSavePaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu tekstowe.
+        /// </summary>
+        internal static string askTextIn {
+            get {
+                return ResourceManager.GetString("askTextIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ustaw czas badania w sekundach.
+        /// </summary>
+        internal static string askTimeMax {
+            get {
+                return ResourceManager.GetString("askTimeMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu wideo.
+        /// </summary>
+        internal static string askVideoIn {
+            get {
+                return ResourceManager.GetString("askVideoIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapytaj o wiek.
+        /// </summary>
+        internal static string askYears {
+            get {
+                return ResourceManager.GetString("askYears", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Niepoprawna odpowiedz.
+        /// </summary>
+        internal static string badAnswer {
+            get {
+                return ResourceManager.GetString("badAnswer", resourceCulture);
             }
         }
         
@@ -115,7 +304,16 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sprawdź!!!.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Moduł badawczy.
+        /// </summary>
+        internal static string changeModuleButton {
+            get {
+                return ResourceManager.GetString("changeModuleButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu SPRAWDŹ!!!.
         /// </summary>
         internal static string checkButton {
             get {
@@ -124,7 +322,169 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Koniec, wróć.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sprawdź pliki z wybranego folderu.
+        /// </summary>
+        internal static string checkFolderButton {
+            get {
+                return ResourceManager.GetString("checkFolderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz istniejący plik do zapisywania wyników..
+        /// </summary>
+        internal static string chooseExistingFile {
+            get {
+                return ResourceManager.GetString("chooseExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pliki tekstowe (*.txt)|*.txt|Pliki CSV (*.csv)|*.csv.
+        /// </summary>
+        internal static string chooseExistingFileExtension {
+            get {
+                return ResourceManager.GetString("chooseExistingFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Musisz wybrać istniejący plik lub utworzyć nowy aby kontynuować..
+        /// </summary>
+        internal static string chooseExistingFileOrNew {
+            get {
+                return ResourceManager.GetString("chooseExistingFileOrNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz folder z plikami do sprawdzenia. Plik csv z wynikami zostanie do niego zapisany..
+        /// </summary>
+        internal static string chooseFolderDescription {
+            get {
+                return ResourceManager.GetString("chooseFolderDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Musisz wybrać folder docelowy, aby utworzyć nowy plik..
+        /// </summary>
+        internal static string chooseFolderNameToSave {
+            get {
+                return ResourceManager.GetString("chooseFolderNameToSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz główny folder z plikami.
+        /// </summary>
+        internal static string chooseFolderToR {
+            get {
+                return ResourceManager.GetString("chooseFolderToR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz folder docelowy do zapisywania wyników..
+        /// </summary>
+        internal static string chooseFolderToSave {
+            get {
+                return ResourceManager.GetString("chooseFolderToSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrany folder nie zawiera żadnych obrazów, filmów ani plików tekstowych..
+        /// </summary>
+        internal static string choosenFolderHasNoFiles {
+            get {
+                return ResourceManager.GetString("choosenFolderHasNoFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Proszę podać prędkość z zakresu 1-1000.\nLub wybrać jedną z opcji.
+        /// </summary>
+        internal static string chooseSpeed {
+            get {
+                return ResourceManager.GetString("chooseSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Proszę wybrać prędkość lub podać własną..
+        /// </summary>
+        internal static string chooseSpeedOrEnter {
+            get {
+                return ResourceManager.GetString("chooseSpeedOrEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go..
+        /// </summary>
+        internal static string chosenFileIsNotCombatible {
+            get {
+                return ResourceManager.GetString("chosenFileIsNotCombatible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ścieżka wybranego pliku do rozszerzenia to:.
+        /// </summary>
+        internal static string chosenFileToExtend {
+            get {
+                return ResourceManager.GetString("chosenFileToExtend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrany folder nie zawiera żadnych plików o wybranym formacie..
+        /// </summary>
+        internal static string chosenFolderNoChosenFiles {
+            get {
+                return ResourceManager.GetString("chosenFolderNoChosenFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ścieżka wybranego folderu to:.
+        /// </summary>
+        internal static string chosenFolderPath {
+            get {
+                return ResourceManager.GetString("chosenFolderPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrano folder : .
+        /// </summary>
+        internal static string chosenFolderR {
+            get {
+                return ResourceManager.GetString("chosenFolderR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wyniki zostały zapisane do pliku: .
+        /// </summary>
+        internal static string dataSaveTo {
+            get {
+                return ResourceManager.GetString("dataSaveTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wyniki zostały zapisane do pliku (stary): .
+        /// </summary>
+        internal static string dataSaveToOld {
+            get {
+                return ResourceManager.GetString("dataSaveToOld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Przerwij badanie.
         /// </summary>
         internal static string endButton {
             get {
@@ -133,11 +493,92 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu tryb nieskończony.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zakończono sprawdzanie folderu: {0}.
         /// </summary>
-        internal static string endlessModeButton {
+        internal static string endFolderCheck {
             get {
-                return ResourceManager.GetString("endlessModeButton", resourceCulture);
+                return ResourceManager.GetString("endFolderCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Koniec gry!.
+        /// </summary>
+        internal static string endGame {
+            get {
+                return ResourceManager.GetString("endGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Koniec gry! Zdobyłeś tyle punktów :  {0}.
+        /// </summary>
+        internal static string endGamePoints {
+            get {
+                return ResourceManager.GetString("endGamePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Koniec gry! Czas minął!.
+        /// </summary>
+        internal static string endGameTime {
+            get {
+                return ResourceManager.GetString("endGameTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas ładowania pliku\n.
+        /// </summary>
+        internal static string errorDuringFileLoad {
+            get {
+                return ResourceManager.GetString("errorDuringFileLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas analizy wideo: {0}.
+        /// </summary>
+        internal static string errorDuringVideoAnalysis {
+            get {
+                return ResourceManager.GetString("errorDuringVideoAnalysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas ładowania pliku.
+        /// </summary>
+        internal static string errorLoadingFile {
+            get {
+                return ResourceManager.GetString("errorLoadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas sprawdzania pliku przez AI.
+        /// </summary>
+        internal static string errorWhileCheckingFile {
+            get {
+                return ResourceManager.GetString("errorWhileCheckingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas ładowania pliku.
+        /// </summary>
+        internal static string errorWhileLoadingFile {
+            get {
+                return ResourceManager.GetString("errorWhileLoadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas zapisywania danych : .
+        /// </summary>
+        internal static string errorWhileSavingData {
+            get {
+                return ResourceManager.GetString("errorWhileSavingData", resourceCulture);
             }
         }
         
@@ -151,11 +592,155 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Podaj obraz do sprawdzenia.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Kobieta.
         /// </summary>
-        internal static string getPhotoButton {
+        internal static string femaleRadio {
             get {
-                return ResourceManager.GetString("getPhotoButton", resourceCulture);
+                return ResourceManager.GetString("femaleRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny..
+        /// </summary>
+        internal static string fileChoosenNotOK {
+            get {
+                return ResourceManager.GetString("fileChoosenNotOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Plik został pomyślnie wybrany..
+        /// </summary>
+        internal static string fileChoosenOK {
+            get {
+                return ResourceManager.GetString("fileChoosenOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawień, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku..
+        /// </summary>
+        internal static string fileExistsAlready {
+            get {
+                return ResourceManager.GetString("fileExistsAlready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Z jakich plików losować?.
+        /// </summary>
+        internal static string fileToLoad {
+            get {
+                return ResourceManager.GetString("fileToLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie podano pliku.
+        /// </summary>
+        internal static string fileWasNotGiven {
+            get {
+                return ResourceManager.GetString("fileWasNotGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie wybrano folderu..
+        /// </summary>
+        internal static string folderNotChosen {
+            get {
+                return ResourceManager.GetString("folderNotChosen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybrano folder: .
+        /// </summary>
+        internal static string folderSelected {
+            get {
+                return ResourceManager.GetString("folderSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sprawdzono\n{0}\n({1}/{2}).
+        /// </summary>
+        internal static string folderStatus {
+            get {
+                return ResourceManager.GetString("folderStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miasto od 150 tys. do 500 tys..
+        /// </summary>
+        internal static string from150to500Radio {
+            get {
+                return ResourceManager.GetString("from150to500Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miasto od 50 tys. do 150 tys..
+        /// </summary>
+        internal static string from50to150Radio {
+            get {
+                return ResourceManager.GetString("from50to150Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Tryb bez zapisywania danych.
+        /// </summary>
+        internal static string funMode {
+            get {
+                return ResourceManager.GetString("funMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Płeć.
+        /// </summary>
+        internal static string genderGroupBox {
+            get {
+                return ResourceManager.GetString("genderGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Podaj plik do sprawdzenia.
+        /// </summary>
+        internal static string getFileButton {
+            get {
+                return ResourceManager.GetString("getFileButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Podaj nazwę nowego pliku..
+        /// </summary>
+        internal static string giveFileName {
+            get {
+                return ResourceManager.GetString("giveFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wróć.
+        /// </summary>
+        internal static string goBackButton {
+            get {
+                return ResourceManager.GetString("goBackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Poprawna odpowiedz.
+        /// </summary>
+        internal static string goodAnswer {
+            get {
+                return ResourceManager.GetString("goodAnswer", resourceCulture);
             }
         }
         
@@ -178,11 +763,65 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Struktura wybranego folderu jest nieprawidłowa, sprawdź ją w README..
+        /// </summary>
+        internal static string invalidFolderStructure {
+            get {
+                return ResourceManager.GetString("invalidFolderStructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Co ile klatek ma być sprawdzane wideo (wartości wpisane nie mają pierwszeństwa).
         /// </summary>
         internal static string labelFast {
             get {
                 return ResourceManager.GetString("labelFast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Mężczyzna.
+        /// </summary>
+        internal static string maleRadio {
+            get {
+                return ResourceManager.GetString("maleRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa pliku.
+        /// </summary>
+        internal static string nameOfNewFileLabel {
+            get {
+                return ResourceManager.GetString("nameOfNewFileLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapisz jako csv.
+        /// </summary>
+        internal static string newFileToCSV {
+            get {
+                return ResourceManager.GetString("newFileToCSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapisz jako txt.
+        /// </summary>
+        internal static string newFileToTXT {
+            get {
+                return ResourceManager.GetString("newFileToTXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapytanie.
+        /// </summary>
+        internal static string newQuestion {
+            get {
+                return ResourceManager.GetString("newQuestion", resourceCulture);
             }
         }
         
@@ -196,6 +835,24 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brakuje danej: .
+        /// </summary>
+        internal static string noData {
+            get {
+                return ResourceManager.GetString("noData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brakuje danej o wielkości miejsca zamieszkania..
+        /// </summary>
+        internal static string noPopulationData {
+            get {
+                return ResourceManager.GetString("noPopulationData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Normalnie (co 30 klatkę).
         /// </summary>
         internal static string normalRadio {
@@ -205,11 +862,110 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy ta grafika została wygenerowana przez AI?.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Brak danej o płci..
+        /// </summary>
+        internal static string noSexData {
+            get {
+                return ResourceManager.GetString("noSexData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nieobsługiwany format pliku.
+        /// </summary>
+        internal static string notRightFileFormat {
+            get {
+                return ResourceManager.GetString("notRightFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Inna.
+        /// </summary>
+        internal static string otherRadio {
+            get {
+                return ResourceManager.GetString("otherRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miasto powyżej 500 tys..
+        /// </summary>
+        internal static string over500Radio {
+            get {
+                return ResourceManager.GetString("over500Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Licz punkty.
+        /// </summary>
+        internal static string pointAskBox {
+            get {
+                return ResourceManager.GetString("pointAskBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wielkość miejsca zamieszkania.
+        /// </summary>
+        internal static string populationBox {
+            get {
+                return ResourceManager.GetString("populationBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu nie była wygenerowana przez AI.
+        /// </summary>
+        internal static string previousAnswerNO {
+            get {
+                return ResourceManager.GetString("previousAnswerNO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu była wygenerowana przez AI.
+        /// </summary>
+        internal static string previousAnswerYES {
+            get {
+                return ResourceManager.GetString("previousAnswerYES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Poprzedni plik.
+        /// </summary>
+        internal static string previousTitle {
+            get {
+                return ResourceManager.GetString("previousTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nie chcę podawać.
+        /// </summary>
+        internal static string privateRadio {
+            get {
+                return ResourceManager.GetString("privateRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czy ten plik został wygenerowany przez AI?.
         /// </summary>
         internal static string questionMG {
             get {
                 return ResourceManager.GetString("questionMG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Reset pliku do dopisania.
+        /// </summary>
+        internal static string resetFileButton {
+            get {
+                return ResourceManager.GetString("resetFileButton", resourceCulture);
             }
         }
         
@@ -223,7 +979,79 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wolno (co 15 klatkę).
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zapisz wyniki.
+        /// </summary>
+        internal static string save_results_button {
+            get {
+                return ResourceManager.GetString("save_results_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zatwierdź.
+        /// </summary>
+        internal static string settingAcceptButton {
+            get {
+                return ResourceManager.GetString("settingAcceptButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wybierz opcje.
+        /// </summary>
+        internal static string settingsAsk {
+            get {
+                return ResourceManager.GetString("settingsAsk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ustawienia.
+        /// </summary>
+        internal static string settingsOfData {
+            get {
+                return ResourceManager.GetString("settingsOfData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pokaż jak idzie AI.
+        /// </summary>
+        internal static string showAiAnswers {
+            get {
+                return ResourceManager.GetString("showAiAnswers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pokaż odpowiedź po przez kolor.
+        /// </summary>
+        internal static string showAnswerByColor {
+            get {
+                return ResourceManager.GetString("showAnswerByColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pokaż jak idzie uczestnikowi.
+        /// </summary>
+        internal static string showHumanAnswers {
+            get {
+                return ResourceManager.GetString("showHumanAnswers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pokaż wynik.
+        /// </summary>
+        internal static string showResult {
+            get {
+                return ResourceManager.GetString("showResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wolno (co 15 klatka ma być sprawdzona).
         /// </summary>
         internal static string slowRadio {
             get {
@@ -232,7 +1060,7 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Uruchom model (może to zająć chwilę).
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Uruchom model (może to zająć kilka minut).
         /// </summary>
         internal static string startButton {
             get {
@@ -241,11 +1069,11 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zacznij grę.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Najpierw rozpocznij grę..
         /// </summary>
-        internal static string startGameButton {
+        internal static string startGameFirst {
             get {
-                return ResourceManager.GetString("startGameButton", resourceCulture);
+                return ResourceManager.GetString("startGameFirst", resourceCulture);
             }
         }
         
@@ -259,7 +1087,7 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Super wolno (każdą klatkę).
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Super wolno (każda klatka ma być sprawdzana).
         /// </summary>
         internal static string superSlowRadio {
             get {
@@ -268,7 +1096,7 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pozostały czas: .
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Czas : .
         /// </summary>
         internal static string timeLabel {
             get {
@@ -277,11 +1105,29 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu AI miało rację:  0.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miasto do 50 tys..
         /// </summary>
-        internal static string Wy {
+        internal static string to50Radio {
             get {
-                return ResourceManager.GetString("Wy", resourceCulture);
+                return ResourceManager.GetString("to50Radio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Wieś.
+        /// </summary>
+        internal static string villageRadio {
+            get {
+                return ResourceManager.GetString("villageRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pokaż czy poprzedni przykład został wygenerowany przez AI.
+        /// </summary>
+        internal static string wasThatAi {
+            get {
+                return ResourceManager.GetString("wasThatAi", resourceCulture);
             }
         }
         
@@ -295,7 +1141,250 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miałeś/-aś rację : 0.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 1.
+        /// </summary>
+        internal static string yourAsk1 {
+            get {
+                return ResourceManager.GetString("yourAsk1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 1.
+        /// </summary>
+        internal static string yourAsk1Box {
+            get {
+                return ResourceManager.GetString("yourAsk1Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa tej danej.
+        /// </summary>
+        internal static string yourAsk1Name {
+            get {
+                return ResourceManager.GetString("yourAsk1Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu numeryczna.
+        /// </summary>
+        internal static string yourAsk1NumericRadio {
+            get {
+                return ResourceManager.GetString("yourAsk1NumericRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu napis.
+        /// </summary>
+        internal static string yourAsk1StringRadio {
+            get {
+                return ResourceManager.GetString("yourAsk1StringRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 2.
+        /// </summary>
+        internal static string yourAsk2 {
+            get {
+                return ResourceManager.GetString("yourAsk2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 2.
+        /// </summary>
+        internal static string yourAsk2Box {
+            get {
+                return ResourceManager.GetString("yourAsk2Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa tej danej.
+        /// </summary>
+        internal static string yourAsk2Name {
+            get {
+                return ResourceManager.GetString("yourAsk2Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu numeryczna.
+        /// </summary>
+        internal static string yourAsk2NumericRadio {
+            get {
+                return ResourceManager.GetString("yourAsk2NumericRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu napis.
+        /// </summary>
+        internal static string yourAsk2StringRadio {
+            get {
+                return ResourceManager.GetString("yourAsk2StringRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 3.
+        /// </summary>
+        internal static string yourAsk3 {
+            get {
+                return ResourceManager.GetString("yourAsk3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 3.
+        /// </summary>
+        internal static string yourAsk3Box {
+            get {
+                return ResourceManager.GetString("yourAsk3Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa tej danej.
+        /// </summary>
+        internal static string yourAsk3Name {
+            get {
+                return ResourceManager.GetString("yourAsk3Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu numeryczna.
+        /// </summary>
+        internal static string yourAsk3NumericRadio {
+            get {
+                return ResourceManager.GetString("yourAsk3NumericRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu napis.
+        /// </summary>
+        internal static string yourAsk3StringRadio {
+            get {
+                return ResourceManager.GetString("yourAsk3StringRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 4.
+        /// </summary>
+        internal static string yourAsk4 {
+            get {
+                return ResourceManager.GetString("yourAsk4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 4.
+        /// </summary>
+        internal static string yourAsk4Box {
+            get {
+                return ResourceManager.GetString("yourAsk4Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa tej danej.
+        /// </summary>
+        internal static string yourAsk4Name {
+            get {
+                return ResourceManager.GetString("yourAsk4Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu numeryczna.
+        /// </summary>
+        internal static string yourAsk4NumericRadio {
+            get {
+                return ResourceManager.GetString("yourAsk4NumericRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu napis.
+        /// </summary>
+        internal static string yourAsk4StringRadio {
+            get {
+                return ResourceManager.GetString("yourAsk4StringRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 5.
+        /// </summary>
+        internal static string yourAsk5 {
+            get {
+                return ResourceManager.GetString("yourAsk5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Własna dana 5.
+        /// </summary>
+        internal static string yourAsk5Box {
+            get {
+                return ResourceManager.GetString("yourAsk5Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Nazwa tej danej.
+        /// </summary>
+        internal static string yourAsk5Name {
+            get {
+                return ResourceManager.GetString("yourAsk5Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu numeryczna.
+        /// </summary>
+        internal static string yourAsk5NumericRadio {
+            get {
+                return ResourceManager.GetString("yourAsk5NumericRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu napis.
+        /// </summary>
+        internal static string yourAsk5StringRadio {
+            get {
+                return ResourceManager.GetString("yourAsk5StringRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pole &apos;Twoja Dana {0}&apos; jest zaznaczone, ale nie wybrano typu danych (Numeric/String). Zapis zostaje zatrzymany..
+        /// </summary>
+        internal static string yourAskNotChosenData {
+            get {
+                return ResourceManager.GetString("yourAskNotChosenData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pole &apos;Twoja Dana {0}&apos; jest zaznaczone, ale nie podano nazwy kolumny. Zapis zostaje zatrzymany..
+        /// </summary>
+        internal static string yourAskNotNamed {
+            get {
+                return ResourceManager.GetString("yourAskNotNamed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Miałeś / -aś rację : .
         /// </summary>
         internal static string youRight {
             get {
@@ -304,7 +1393,7 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pomyliłeś/-łaś się : 0.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Pomyliłeś /-aś się : .
         /// </summary>
         internal static string youWrong {
             get {

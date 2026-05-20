@@ -37,7 +37,7 @@
             this.humanScore = new System.Windows.Forms.Label();
             this.youRight = new System.Windows.Forms.Label();
             this.youWrong = new System.Windows.Forms.Label();
-            this.aiScore = new System.Windows.Forms.Label();
+            this.aiScoreR = new System.Windows.Forms.Label();
             this.aiRight = new System.Windows.Forms.Label();
             this.aiWrong = new System.Windows.Forms.Label();
             this.restartButton = new System.Windows.Forms.Button();
@@ -135,15 +135,15 @@
             this.youWrong.TabIndex = 7;
             this.youWrong.Text = "błędne odpowiedzi";
             // 
-            // aiScore
+            // aiScoreR
             // 
-            this.aiScore.AutoSize = true;
-            this.aiScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.aiScore.Location = new System.Drawing.Point(800, 310);
-            this.aiScore.Name = "aiScore";
-            this.aiScore.Size = new System.Drawing.Size(177, 46);
-            this.aiScore.TabIndex = 8;
-            this.aiScore.Text = "Wynik AI";
+            this.aiScoreR.AutoSize = true;
+            this.aiScoreR.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.aiScoreR.Location = new System.Drawing.Point(800, 310);
+            this.aiScoreR.Name = "aiScoreR";
+            this.aiScoreR.Size = new System.Drawing.Size(177, 46);
+            this.aiScoreR.TabIndex = 8;
+            this.aiScoreR.Text = "Wynik AI";
             // 
             // aiRight
             // 
@@ -286,7 +286,7 @@
             this.Controls.Add(this.restartButton);
             this.Controls.Add(this.aiWrong);
             this.Controls.Add(this.aiRight);
-            this.Controls.Add(this.aiScore);
+            this.Controls.Add(this.aiScoreR);
             this.Controls.Add(this.youWrong);
             this.Controls.Add(this.youRight);
             this.Controls.Add(this.humanScore);
@@ -295,7 +295,7 @@
             this.Controls.Add(this.startGameButton);
             this.Controls.Add(this.randomPhoto);
             this.Name = "research_tool";
-            this.Text = "mini_gra";
+            this.Text = "research_tool";
             ((System.ComponentModel.ISupportInitialize)(this.randomPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
@@ -313,7 +313,7 @@
         private System.Windows.Forms.Label humanScore;
         private System.Windows.Forms.Label youRight;
         private System.Windows.Forms.Label youWrong;
-        private System.Windows.Forms.Label aiScore;
+        private System.Windows.Forms.Label aiScoreR;
         private System.Windows.Forms.Label aiRight;
         private System.Windows.Forms.Label aiWrong;
         private System.Windows.Forms.Button restartButton;

@@ -1,4 +1,5 @@
-﻿using AxWMPLib;
+﻿using AI_vs_HUMAN.Properties;
+using AxWMPLib;
 using OpenCvSharp;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,6 @@ namespace AI_vs_HUMAN
         /// </summary>
         private void ApplyLanguage()
         {
-            this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace AI_vs_HUMAN
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void challangeBitton_Click(object sender, EventArgs e)
+        private void changeModuleButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             research_tool form_research_tool = new research_tool();
@@ -114,7 +114,7 @@ namespace AI_vs_HUMAN
         {
             if (string.IsNullOrEmpty(filePathMain.FileName))
             {
-                MessageBox.Show("Nie podano pliku.");
+                MessageBox.Show(Resources.fileWasNotGiven);
                 return;
             }
             try
@@ -126,9 +126,15 @@ namespace AI_vs_HUMAN
                 {
                     int result_from_model = await ApiComunication.SendImageToModel(this.filePathMain.FileName);
                     if (result_from_model == 0)
-                        answerAIorNOT.Text = "Model mówi: to nie jest AI";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Negative
+                        );
                     else if (result_from_model == 1)
-                        answerAIorNOT.Text = "Model mówi: to jest AI";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Positive
+                        );
                 }
                 else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
@@ -142,20 +148,30 @@ namespace AI_vs_HUMAN
                             return;
                         }
                         int speed=form_speed.SelectedSpeed;
-                        answerAIorNOT.Text = "Analizowanie trwa...";
+                        answerAIorNOT.Text = Resources.answerAIorNOT_Analyzing;
                         result_from_model = await ApiComunication.AnalizeVideo(this.filePathMain.FileName, speed);
                     }
                     if (result_from_model == -1)
                     {
-                        answerAIorNOT.Text = $"Bład podczas analizy wideo.";
+                        answerAIorNOT.Text = Resources.answerAIorNOT_ErrorVideo;
                     }
                     else if(result_from_model < 50) //result_from_model is a percentage of frames classified as AI, so if it's less than 50%, we say it's not AI
                     {
-                        answerAIorNOT.Text = $"Model mówi, to nie jest AI \nPewność: {100.0 - result_from_model:F2}%";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Negative,
+                        Resources.answerAIorNOT_Confidence,
+                        (100.0 - result_from_model).ToString("F2")
+                        );
                     }
                     else
                     {
-                        answerAIorNOT.Text = $"Model mówi, to jest AI \nPewność: {(result_from_model):F2}%";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Positive,
+                        Resources.answerAIorNOT_Confidence,
+                        result_from_model.ToString("F2")
+                        );
                     }
                 }
                 else if (ext == ".txt")
@@ -164,20 +180,26 @@ namespace AI_vs_HUMAN
                     text=await ApiComunication.SentTextToTranslate(text);
                     int result_from_model = await ApiComunication.SentTextToModel(text);
                     if (result_from_model == 0)
-                        answerAIorNOT.Text = "Model mówi: to nie jest AI";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Negative
+                        );
                     else if (result_from_model == 1)
-                        answerAIorNOT.Text = "Model mówi: to jest AI";
+                        answerAIorNOT.Text = string.Format(
+                        Resources.answerAIorNOT,
+                        Resources.answerAIorNOT_Positive
+                        );
                 }
                 else
                 {
-                    MessageBox.Show("Nieobsługiwany format pliku.");
+                    MessageBox.Show(Resources.notRightFileFormat);
                 }
                 buttonChange();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+                MessageBox.Show($"{Resources.errorLoadingFile}\n{ex.Message}");
                 buttonChange();
                 return;
             }
@@ -217,7 +239,7 @@ namespace AI_vs_HUMAN
                     result_from_model = await ApiComunication.AnalizeVideo(file, 180);
                     if (result_from_model == -1)
                     {
-                        MessageBox.Show($"Bład podczas analizy wideo {System.IO.Path.GetFileName(file)}.");
+                        MessageBox.Show(string.Format(Resources.errorDuringVideoAnalysis, System.IO.Path.GetFileName(file)));
                         columns.Add("Error during analysis");
                     }
                     else if (result_from_model < 50) //result_from_model is a percentage of frames classified as AI, so if it's less than 50%, we say it's not AI
@@ -246,10 +268,15 @@ namespace AI_vs_HUMAN
                 string row = string.Join(";", columns);
                 System.IO.File.AppendAllText(path, row + Environment.NewLine);
                 answerAIorNOT.Hide();
-                folderStatus.Text= $"Sprawdzono\n {columns[0]}\n ({allFiles.ToList().IndexOf(file) + 1}/{folderFilesNumber})";
+                folderStatus.Text= string.Format(
+                    Resources.folderStatus,
+                    columns[0],
+                    allFiles.ToList().IndexOf(file)+1,
+                    folderFilesNumber
+                    );
             }
             buttonChange();
-            MessageBox.Show($"Sprawdznie folderu {mainFolderPath} zakończyło się.");
+            MessageBox.Show(string.Format(Resources.endFolderCheck, mainFolderPath));
         }
         /// <summary>
         /// Function to change the enabled state of the buttons on the form. It is used to disable the buttons while the model is analyzing a file, and then re-enable them after the analysis is complete. This prevents the user from trying to analyze another file while the current analysis is still in progress, which could cause errors or unexpected behavior.
@@ -257,7 +284,7 @@ namespace AI_vs_HUMAN
         private void buttonChange()
         {
             checkButton.Enabled = !checkButton.Enabled;
-            challangeBitton.Enabled = !challangeBitton.Enabled;
+            changeModuleButton.Enabled = !changeModuleButton.Enabled;
             getFileButton.Enabled = !getFileButton.Enabled;
             checkFolderButton.Enabled = !checkFolderButton.Enabled;
             changeLang.Enabled = !changeLang.Enabled;
@@ -269,7 +296,7 @@ namespace AI_vs_HUMAN
         {
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
-                folderDialog.Description = "Wybierz folder z plikami do sprawdzenia. Plik csv z wynikami zostanie do niego zapisany.";
+                folderDialog.Description = Resources.chooseFolderDescription;
                 folderDialog.ShowNewFolderButton = false;
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -289,10 +316,10 @@ namespace AI_vs_HUMAN
                     folderFilesNumber= allFiles.Length;
                     if (allFiles.Length == 0)
                     {
-                        MessageBox.Show("Wybrany folder nie zawiera żadnych obrazów, filmów ani plików tekstowych.");
+                        MessageBox.Show(Resources.choosenFolderHasNoFiles);
                         return;
                     }
-                    MessageBox.Show($"Wybrano folder: {mainFolderPath}");
+                    MessageBox.Show(string.Format(Resources.folderSelected, mainFolderPath));
                 }
             }
         }
@@ -334,7 +361,7 @@ namespace AI_vs_HUMAN
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd podczas ładowania pliku\n{ex.Message}");
+                MessageBox.Show($"{Resources.errorDuringFileLoad}\n{ex.Message}");
             }
         }
     }

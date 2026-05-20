@@ -36,7 +36,6 @@ namespace AI_vs_HUMAN
         /// </summary>
         private void ApplyLanguage()
         {
-            this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>

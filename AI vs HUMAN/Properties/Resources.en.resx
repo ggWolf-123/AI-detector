@@ -117,88 +117,451 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Wy" xml:space="preserve">
-    <value>AI was right: 0</value>
+  <data name="checkFolderButton" xml:space="preserve">
+    <value>Check files from chosen folder</value>
   </data>
-  <data name="aiScore" xml:space="preserve">
-    <value>AI score</value>
+  <data name="getFileButton" xml:space="preserve">
+    <value>Choose a file to check</value>
   </data>
-  <data name="aiWrong" xml:space="preserve">
-    <value>AI was wrong: 0</value>
-  </data>
-  <data name="answerFileCheck" xml:space="preserve">
-    <value>RESULT</value>
-  </data>
-  <data name="challangeBitton" xml:space="preserve">
-    <value>Mini game, duel with AI</value>
+  <data name="startButton" xml:space="preserve">
+    <value>Start models (it can take a minute)</value>
   </data>
   <data name="changeLang" xml:space="preserve">
     <value>Change language</value>
   </data>
   <data name="checkButton" xml:space="preserve">
-    <value>Check!!!</value>
+    <value>CHECK!!!</value>
   </data>
-  <data name="endButton" xml:space="preserve">
-    <value>End, go back</value>
+  <data name="answerFileCheck" xml:space="preserve">
+    <value>CONCLISION</value>
   </data>
-  <data name="endlessModeButton" xml:space="preserve">
-    <value>Endless mode</value>
+  <data name="folderStatus" xml:space="preserve">
+    <value>Checked\n{0}\n({1}/{2})</value>
   </data>
-  <data name="getPhotoButton" xml:space="preserve">
-    <value>Select image to check</value>
+  <data name="changeModuleButton" xml:space="preserve">
+    <value>Research module</value>
+  </data>
+  <data name="answerAIorNOT" xml:space="preserve">
+    <value>Model says:</value>
+  </data>
+  <data name="answerAIorNOT_Positive" xml:space="preserve">
+    <value> it's AI</value>
+  </data>
+  <data name="answerAIorNOT_Negative" xml:space="preserve">
+    <value> it's not AI</value>
+  </data>
+  <data name="answerAIorNOT_Analyzing" xml:space="preserve">
+    <value>Analizing...</value>
+  </data>
+  <data name="answerAIorNOT_ErrorVideo" xml:space="preserve">
+    <value>Error during video analyz.</value>
+  </data>
+  <data name="answerAIorNOT_Confidence" xml:space="preserve">
+    <value>\nConfidence{0}</value>
+  </data>
+  <data name="fileWasNotGiven" xml:space="preserve">
+    <value>File was not given</value>
+  </data>
+  <data name="notRightFileFormat" xml:space="preserve">
+    <value>Unsupported file format</value>
+  </data>
+  <data name="errorLoadingFile" xml:space="preserve">
+    <value>Error during file load</value>
+  </data>
+  <data name="errorDuringVideoAnalysis" xml:space="preserve">
+    <value>Error during video analysis: {0}</value>
+  </data>
+  <data name="endFolderCheck" xml:space="preserve">
+    <value>Ended checking folder: {0}</value>
+  </data>
+  <data name="chooseFolderDescription" xml:space="preserve">
+    <value>Select the folder with the files to check. The csv file with the results will be saved to it.</value>
+  </data>
+  <data name="choosenFolderHasNoFiles" xml:space="preserve">
+    <value>The selected folder does not contain any images, videos or text files.</value>
+  </data>
+  <data name="folderSelected" xml:space="preserve">
+    <value>Chosen folder: </value>
+  </data>
+  <data name="errorDuringFileLoad" xml:space="preserve">
+    <value>Error during file load\n</value>
+  </data>
+  <data name="chooseSpeed" xml:space="preserve">
+    <value>Please enter a speed between 1-1000.\nOr choose one of the options</value>
+  </data>
+  <data name="chooseSpeedOrEnter" xml:space="preserve">
+    <value>Please choose speed or enter your own.</value>
   </data>
   <data name="groupBoxSpeed" xml:space="preserve">
-    <value>Select a video processing speed</value>
+    <value>Choose video analyzing speed</value>
   </data>
-  <data name="humanScore" xml:space="preserve">
-    <value>Your score</value>
+  <data name="superSlowRadio" xml:space="preserve">
+    <value>Super fast (every frame will be analyzed)</value>
   </data>
-  <data name="noButton" xml:space="preserve">
-    <value>NO</value>
+  <data name="slowRadio" xml:space="preserve">
+    <value>Slow (every 15 frame will be analyzed)</value>
+  </data>
+  <data name="normalRadio" xml:space="preserve">
+    <value>Normal (every 30 frame)</value>
+  </data>
+  <data name="fastRadio" xml:space="preserve">
+    <value>Fast (every 60 frame)</value>
+  </data>
+  <data name="superFastRadio" xml:space="preserve">
+    <value>Super fast (every 120 frame)</value>
+  </data>
+  <data name="labelFast" xml:space="preserve">
+    <value>How many frames should the video be checked (values entered do not take precedence)</value>
+  </data>
+  <data name="acceptSpeedButton" xml:space="preserve">
+    <value>I confirm the speed</value>
+  </data>
+  <data name="genderGroupBox" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="maleRadio" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="femaleRadio" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="otherRadio" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="privateRadio" xml:space="preserve">
+    <value>I don't want to give</value>
+  </data>
+  <data name="ageLabel" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="populationBox" xml:space="preserve">
+    <value>Size of residence</value>
+  </data>
+  <data name="villageRadio" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="to50Radio" xml:space="preserve">
+    <value>City to 50k</value>
+  </data>
+  <data name="from50to150Radio" xml:space="preserve">
+    <value>City from 50k to 150k</value>
+  </data>
+  <data name="from150to500Radio" xml:space="preserve">
+    <value>City from 150k to 500k</value>
+  </data>
+  <data name="over500Radio" xml:space="preserve">
+    <value>City over 500k</value>
+  </data>
+  <data name="save_results_button" xml:space="preserve">
+    <value>Save results</value>
+  </data>
+  <data name="noData" xml:space="preserve">
+    <value>Missing data: </value>
+  </data>
+  <data name="noSexData" xml:space="preserve">
+    <value>Missing data about gender.</value>
+  </data>
+  <data name="noPopulationData" xml:space="preserve">
+    <value>Data on the size of residence is missing.</value>
+  </data>
+  <data name="dataSaveTo" xml:space="preserve">
+    <value>Data has been saved to file: </value>
+  </data>
+  <data name="dataSaveToOld" xml:space="preserve">
+    <value>Data has been saved to file (old): </value>
+  </data>
+  <data name="fileExistsAlready" xml:space="preserve">
+    <value>A file with this name already exists. Choose a different name or use an existing file. If you want to use a file with this name, exit the settings and all settings will be restored to the last accepted configuration. This will allow you to continue working on this file.</value>
+  </data>
+  <data name="yourAskNotNamed" xml:space="preserve">
+    <value>The 'Your Data {0}' field is checked, but the column name is not provided. The record is stopped.</value>
+  </data>
+  <data name="yourAskNotChosenData" xml:space="preserve">
+    <value>The 'Your Data {0}' field is checked, but the data type (Numeric/String) is not selected. The record is stopped.</value>
+  </data>
+  <data name="chooseFolderToSave" xml:space="preserve">
+    <value>Choose folder to save result.</value>
+  </data>
+  <data name="chooseExistingFile" xml:space="preserve">
+    <value>Choose existing file to save result.</value>
+  </data>
+  <data name="chooseExistingFileExtension" xml:space="preserve">
+    <value>Text Files (*.txt)|*.txt|CSV Files (*.csv)|*.csv</value>
+  </data>
+  <data name="fileChoosenOK" xml:space="preserve">
+    <value>The file selection was successful.</value>
+  </data>
+  <data name="fileChoosenNotOK" xml:space="preserve">
+    <value>The selected file is not compatible. Make sure it contains the appropriate columns.</value>
+  </data>
+  <data name="chooseExistingFileOrNew" xml:space="preserve">
+    <value>You must select an existing file or create a new one to continue.</value>
+  </data>
+  <data name="giveFileName" xml:space="preserve">
+    <value>Enter the name of the new file.</value>
+  </data>
+  <data name="chooseFolderNameToSave" xml:space="preserve">
+    <value>You need to select the destination folder to create a new file.</value>
+  </data>
+  <data name="chosenFileIsNotCombatible" xml:space="preserve">
+    <value>The selected file is not compatible. Make sure it contains the appropriate columns or uncheck it.</value>
+  </data>
+  <data name="chosenFileToExtend" xml:space="preserve">
+    <value>The path of the selected file to be extended is:</value>
+  </data>
+  <data name="chosenFolderPath" xml:space="preserve">
+    <value>The path of the selected folder is:</value>
+  </data>
+  <data name="settingsAsk" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="wasThatAi" xml:space="preserve">
+    <value>Show if the previous example was generated by AI</value>
+  </data>
+  <data name="pointAskBox" xml:space="preserve">
+    <value>Count points</value>
+  </data>
+  <data name="goodAnswer" xml:space="preserve">
+    <value>Right answer</value>
+  </data>
+  <data name="badAnswer" xml:space="preserve">
+    <value>Wrong answer</value>
+  </data>
+  <data name="showResult" xml:space="preserve">
+    <value>Show result</value>
+  </data>
+  <data name="askTimeMax" xml:space="preserve">
+    <value>Set the test time in seconds</value>
+  </data>
+  <data name="askSaveHowLong" xml:space="preserve">
+    <value>Measure how long the test took</value>
+  </data>
+  <data name="askLimitImg" xml:space="preserve">
+    <value>Set the limit of the pictures you have drawn</value>
+  </data>
+  <data name="askSavePaths" xml:space="preserve">
+    <value>Save the paths of the drawn photos to txt</value>
+  </data>
+  <data name="askGender" xml:space="preserve">
+    <value>Ask about gender</value>
+  </data>
+  <data name="askYears" xml:space="preserve">
+    <value>Ask about age</value>
+  </data>
+  <data name="askPopulation" xml:space="preserve">
+    <value>Ask about the size of residence</value>
+  </data>
+  <data name="showAnswerByColor" xml:space="preserve">
+    <value>Show answer after by color</value>
+  </data>
+  <data name="aiAnswersToo" xml:space="preserve">
+    <value>AI answers too</value>
+  </data>
+  <data name="showAiAnswers" xml:space="preserve">
+    <value>Show how is AI doing</value>
+  </data>
+  <data name="showHumanAnswers" xml:space="preserve">
+    <value>Show how the participant is doing</value>
+  </data>
+  <data name="newQuestion" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="fileToLoad" xml:space="preserve">
+    <value>From which files to draw?</value>
+  </data>
+  <data name="askImageIn" xml:space="preserve">
+    <value>image</value>
+  </data>
+  <data name="askVideoIn" xml:space="preserve">
+    <value>vidio</value>
+  </data>
+  <data name="askTextIn" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="askExistingData" xml:space="preserve">
+    <value>Select existing studies to extend (must have the same settings)</value>
+  </data>
+  <data name="nameOfNewFileLabel" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="newFileToTXT" xml:space="preserve">
+    <value>Save as txt</value>
+  </data>
+  <data name="newFileToCSV" xml:space="preserve">
+    <value>Save as csv</value>
+  </data>
+  <data name="settingAcceptButton" xml:space="preserve">
+    <value>Accept settings</value>
+  </data>
+  <data name="funMode" xml:space="preserve">
+    <value>Mode without saving data</value>
+  </data>
+  <data name="yourAsk1" xml:space="preserve">
+    <value>Your data 1</value>
+  </data>
+  <data name="yourAsk5" xml:space="preserve">
+    <value>Your data 5</value>
+  </data>
+  <data name="yourAsk4" xml:space="preserve">
+    <value>Your data 4</value>
+  </data>
+  <data name="yourAsk3" xml:space="preserve">
+    <value>Your data 3</value>
+  </data>
+  <data name="yourAsk2" xml:space="preserve">
+    <value>Your data 2</value>
+  </data>
+  <data name="yourAsk1Box" xml:space="preserve">
+    <value>Your data 1</value>
+  </data>
+  <data name="yourAsk5Box" xml:space="preserve">
+    <value>Your data 5</value>
+  </data>
+  <data name="yourAsk4Box" xml:space="preserve">
+    <value>Your data 4</value>
+  </data>
+  <data name="yourAsk3Box" xml:space="preserve">
+    <value>Your data 3</value>
+  </data>
+  <data name="yourAsk2Box" xml:space="preserve">
+    <value>Your data 2</value>
+  </data>
+  <data name="yourAsk1NumericRadio" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="yourAsk3NumericRadio" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="yourAsk2NumericRadio" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="yourAsk5NumericRadio" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="yourAsk4NumericRadio" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="yourAsk1StringRadio" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="yourAsk5StringRadio" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="yourAsk4StringRadio" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="yourAsk3StringRadio" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="yourAsk2StringRadio" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="yourAsk1Name" xml:space="preserve">
+    <value>The name of this data</value>
+  </data>
+  <data name="yourAsk5Name" xml:space="preserve">
+    <value>The name of this data</value>
+  </data>
+  <data name="yourAsk4Name" xml:space="preserve">
+    <value>The name of this data</value>
+  </data>
+  <data name="yourAsk3Name" xml:space="preserve">
+    <value>The name of this data</value>
+  </data>
+  <data name="yourAsk2Name" xml:space="preserve">
+    <value>The name of this data</value>
   </data>
   <data name="questionMG" xml:space="preserve">
-    <value>Was this image generated by AI?</value>
+    <value>Was that file generated by AI?</value>
   </data>
   <data name="restartButton" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="startButton" xml:space="preserve">
-    <value>Start model (this may take a while)</value>
+  <data name="goBackButton" xml:space="preserve">
+    <value>Return</value>
   </data>
-  <data name="startGameButton" xml:space="preserve">
-    <value>Start game</value>
+  <data name="settingsOfData" xml:space="preserve">
+    <value>Settings</value>
   </data>
-  <data name="timeLabel" xml:space="preserve">
-    <value>Remaining time: </value>
+  <data name="endButton" xml:space="preserve">
+    <value>Stop research</value>
+  </data>
+  <data name="humanScore" xml:space="preserve">
+    <value>Your score</value>
+  </data>
+  <data name="aiScore" xml:space="preserve">
+    <value>AI score</value>
+  </data>
+  <data name="noButton" xml:space="preserve">
+    <value>NO</value>
   </data>
   <data name="yesButton" xml:space="preserve">
     <value>YES</value>
   </data>
   <data name="youRight" xml:space="preserve">
-    <value>You were right: 0</value>
+    <value>You were right : </value>
   </data>
   <data name="youWrong" xml:space="preserve">
-    <value>You were wrong: 0</value>
+    <value>You were wrong : </value>
   </data>
-  <data name="superSlowRadio" xml:space="preserve">
-    <value>Super slow (every frame)</value>
+  <data name="resetFileButton" xml:space="preserve">
+    <value>Reset file to be extended</value>
   </data>
-  <data name="slowRadio" xml:space="preserve">
-    <value>Slow (every 15th frame)</value>
+  <data name="aiScoreR" xml:space="preserve">
+    <value>AI score</value>
   </data>
-  <data name="normalRadio" xml:space="preserve">
-    <value>Normal (every 30th frame)</value>
+  <data name="aiRight" xml:space="preserve">
+    <value>AI was right : </value>
   </data>
-  <data name="fastRadio" xml:space="preserve">
-    <value>Fast (every 60th frame)</value>
+  <data name="aiWrong" xml:space="preserve">
+    <value>AI was wrong : </value>
   </data>
-  <data name="superFastRadio" xml:space="preserve">
-    <value>Super fast (every 120th frame)</value>
+  <data name="chooseFolderToR" xml:space="preserve">
+    <value>Choose main folder with files</value>
   </data>
-  <data name="labelFast" xml:space="preserve">
-    <value>Frame check interval (entered values not prioritized)</value>
+  <data name="folderNotChosen" xml:space="preserve">
+    <value>Folder was not chosen.</value>
   </data>
-  <data name="acceptSpeedButton" xml:space="preserve">
-    <value>Confirm</value>
+  <data name="invalidFolderStructure" xml:space="preserve">
+    <value>The structure of the selected folder is incorrect, please check it in the README.</value>
+  </data>
+  <data name="chosenFolderR" xml:space="preserve">
+    <value>Chosen folder : </value>
+  </data>
+  <data name="chosenFolderNoChosenFiles" xml:space="preserve">
+    <value>The selected folder does not contain any files with the selected format.</value>
+  </data>
+  <data name="errorWhileLoadingFile" xml:space="preserve">
+    <value>Error while loading file</value>
+  </data>
+  <data name="errorWhileCheckingFile" xml:space="preserve">
+    <value>Error while AI is checking file</value>
+  </data>
+  <data name="errorWhileSavingData" xml:space="preserve">
+    <value>Error saving data : </value>
+  </data>
+  <data name="previousTitle" xml:space="preserve">
+    <value>Previous file</value>
+  </data>
+  <data name="previousAnswerYES" xml:space="preserve">
+    <value>was generated by AI</value>
+  </data>
+  <data name="previousAnswerNO" xml:space="preserve">
+    <value>was not generated by AI</value>
+  </data>
+  <data name="endGamePoints" xml:space="preserve">
+    <value>Game over! You scored so many points : {0}</value>
+  </data>
+  <data name="endGame" xml:space="preserve">
+    <value>End game!</value>
+  </data>
+  <data name="endGameTime" xml:space="preserve">
+    <value>Game over! Time has passed!</value>
+  </data>
+  <data name="timeLabel" xml:space="preserve">
+    <value>Time : </value>
+  </data>
+  <data name="startGameFirst" xml:space="preserve">
+    <value>Start game first.</value>
   </data>
 </root>

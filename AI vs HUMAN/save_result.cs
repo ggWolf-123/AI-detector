@@ -1,4 +1,5 @@
 ﻿using AI_vs_HUMAN;
+using AI_vs_HUMAN.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,7 +136,6 @@ namespace AI_vs_HUMAN
         /// </summary>
         private void ApplyLanguage()
         {
-            this.Text = Properties.Resources.challangeBitton;
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
@@ -217,7 +217,7 @@ namespace AI_vs_HUMAN
                 if (yourAskText[i].Visible && string.IsNullOrWhiteSpace(yourAskText[i].Text))
                 {
                     yourDataCheck = false;
-                    MessageBox.Show($"Brakuje danej: {yourAskText[i].Name}");
+                    MessageBox.Show($"{Resources.noData} {yourAskText[i].Name}");
                     break;
                 }
             }
@@ -256,11 +256,11 @@ namespace AI_vs_HUMAN
             {
                 if (!Properties.Settings.Default.askGender)
                 {
-                    MessageBox.Show("Brakuje danej o płci.");
+                    MessageBox.Show(Resources.noSexData);
                 }
                 if (!Properties.Settings.Default.askPopulation)
                 {
-                    MessageBox.Show("Brakuje danej o wielkości miejsca zamieszkania.");
+                    MessageBox.Show(Resources.noPopulationData);
                 }
                 return;
             }
@@ -365,18 +365,18 @@ namespace AI_vs_HUMAN
             {
                 filePath = pathWithoutExtension + ".csv";
                 File.AppendAllText(filePath, row + Environment.NewLine);
-                MessageBox.Show($"Wyniki zostały zapisane do pliku: {filePath}");
+                MessageBox.Show($"{Resources.dataSaveTo} {filePath}");
             }
             if(Properties.Settings.Default.newFileToTXT)
             {
                 filePath = pathWithoutExtension + ".txt";
                 File.AppendAllText(filePath, row + Environment.NewLine);
-                MessageBox.Show($"Wyniki zostały zapisane do pliku: {filePath}");
+                MessageBox.Show($"{Resources.dataSaveTo} {filePath}");
             }
             if (!(string.IsNullOrWhiteSpace(Properties.Settings.Default.ExistingFilePath)))
             {
                 File.AppendAllText(Properties.Settings.Default.ExistingFilePath, row + Environment.NewLine);
-                MessageBox.Show($"Wyniki zostały zapisane do pliku (starego): {Properties.Settings.Default.ExistingFilePath}");
+                MessageBox.Show($"{Resources.dataSaveToOld} {Properties.Settings.Default.ExistingFilePath}");
             }
             this.Close();
             
