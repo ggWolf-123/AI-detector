@@ -102,6 +102,7 @@ namespace AI_vs_HUMAN
                 LanguageManager.SetLanguage("en");
             }
             ApplyLanguage();
+            checkLabelsForSettings();
         }
 
         /// <summary>
@@ -121,6 +122,59 @@ namespace AI_vs_HUMAN
         private void startResize(object sender, EventArgs E)
         {
             ResizeControl.ResizeControlsRecursive(this);
+        }
+
+        private void checkLabelsForSettings()
+        {
+            if (!Properties.Settings.Default.showHumanAnswers)
+            {
+                humanScore.Text = "";
+                youRight.Text = "";
+                youWrong.Text = "";
+            }
+            else
+            {
+                humanScore.Text = Resources.humanScore;
+                youRight.Text = Resources.youRight + rightHumanAnswers;
+                youWrong.Text = Resources.youWrong + wrongHumanAnswers;
+            }
+            if (!Properties.Settings.Default.showAiAnswers)
+            {
+                aiScoreR.Text = "";
+                aiRight.Text = "";
+                aiWrong.Text = "";
+            }
+            else
+            {
+                aiScoreR.Text = Resources.aiScoreR;
+                aiRight.Text = Resources.aiRight + rightAiAnswers;
+                aiWrong.Text = Resources.aiWrong + wrongAiAnswers;
+            }
+            if (Properties.Settings.Default.askTimeMax)
+            {
+                timeLabel.Text = $"{Resources.timeLabel} {Properties.Settings.Default.numericSeconds}s";
+            }
+            else
+            {
+                timeLabel.Text = "";
+            }
+            if(Properties.Settings.Default.wasThatAi)
+            {
+                previousTitle.Text = Resources.previousTitle;
+            }
+            else
+            {
+                previousTitle.Text = "";
+                previousAnswer.Text = "";
+            }
+            if (Properties.Settings.Default.newQuestion)
+            {
+                questionMG.Text = Settings.Default.yourQuestion;
+            }
+            else
+            {
+                questionMG.Text =Resources.questionMG;
+            }
         }
         /// <summary>
         ///  Choose a folder containing images for the game. It opens a FolderBrowserDialog to allow the user to select a folder, and then checks if the selected folder is valid (contains the required structure). If the folder is valid, it prepares a random file from the folder for the game and updates the UI accordingly. If the folder is not valid or if no folder is selected, it shows an error message.

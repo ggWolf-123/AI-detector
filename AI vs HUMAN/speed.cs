@@ -68,7 +68,7 @@ namespace AI_vs_HUMAN
                 speed = (int)speedUserNumeric.Value;
                 if (speed < 1 || speed > 1000)
                 {
-                    MessageBox.Show(Resources.chooseSpeed);
+                    MessageBox.Show(Resources.chooseSpeed.Replace("\\n", Environment.NewLine));
                     return;
                 }
             }

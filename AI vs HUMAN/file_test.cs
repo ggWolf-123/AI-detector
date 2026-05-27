@@ -58,6 +58,9 @@ namespace AI_vs_HUMAN
                 LanguageManager.SetLanguage("en");
             }
             ApplyLanguage();
+            answerFileCheck.Hide();
+            folderStatus.Hide();
+            answerAIorNOT.Hide();
         }
         /// <summary>
         ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
@@ -103,6 +106,9 @@ namespace AI_vs_HUMAN
                 string filePath = this.filePathMain.FileName;
                 string ext = System.IO.Path.GetExtension(filePath).ToLower();
                 showFile(filePath,ext);
+                answerFileCheck.Hide();
+                folderStatus.Hide();
+                answerAIorNOT.Hide();
             }
         }
         /// <summary>
@@ -160,7 +166,7 @@ namespace AI_vs_HUMAN
                         answerAIorNOT.Text = string.Format(
                         Resources.answerAIorNOT,
                         Resources.answerAIorNOT_Negative,
-                        Resources.answerAIorNOT_Confidence,
+                        Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine),
                         (100.0 - result_from_model).ToString("F2")
                         );
                     }
@@ -169,7 +175,7 @@ namespace AI_vs_HUMAN
                         answerAIorNOT.Text = string.Format(
                         Resources.answerAIorNOT,
                         Resources.answerAIorNOT_Positive,
-                        Resources.answerAIorNOT_Confidence,
+                        Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine),
                         result_from_model.ToString("F2")
                         );
                     }
@@ -220,6 +226,9 @@ namespace AI_vs_HUMAN
             var header = "File Name;Result";
             System.IO.File.WriteAllText(path, header + Environment.NewLine);
             buttonChange();
+            answerFileCheck.Hide();
+            folderStatus.Hide();
+            answerAIorNOT.Hide();
             foreach (string file in allFiles)
             {
                 var columns = new List<string> {System.IO.Path.GetFileName(file)};
@@ -269,7 +278,7 @@ namespace AI_vs_HUMAN
                 System.IO.File.AppendAllText(path, row + Environment.NewLine);
                 answerAIorNOT.Hide();
                 folderStatus.Text= string.Format(
-                    Resources.folderStatus,
+                    Resources.folderStatus.Replace("\\n", Environment.NewLine),
                     columns[0],
                     allFiles.ToList().IndexOf(file)+1,
                     folderFilesNumber

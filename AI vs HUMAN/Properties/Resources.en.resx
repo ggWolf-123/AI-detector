@@ -184,7 +184,7 @@
     <value>Chosen folder: </value>
   </data>
   <data name="errorDuringFileLoad" xml:space="preserve">
-    <value>Error during file load\n</value>
+    <value>Error during file load</value>
   </data>
   <data name="chooseSpeed" xml:space="preserve">
     <value>Please enter a speed between 1-1000.\nOr choose one of the options</value>

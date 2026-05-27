@@ -529,7 +529,7 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas ładowania pliku\n.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Błąd podczas ładowania pliku.
         /// </summary>
         internal static string errorDuringFileLoad {
             get {
