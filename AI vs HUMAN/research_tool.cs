@@ -87,24 +87,16 @@ namespace AI_vs_HUMAN
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
-        ///     Change the language of the application when the changeLang button is clicked. It toggles between English and Polish. After changing the language, it calls ApplyLanguage() to update the UI with the new language.
+        ///     Open the language selection form when the changeLang button is clicked. This allows the user to select a different language for the application. After the user selects a language and closes the language form, the main form will update its UI to reflect the new language selection.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void changeLang_Click(object sender, EventArgs e)
         {
-            if (LanguageManager.CurrentLanguage == "en")
-            {
-                LanguageManager.SetLanguage("pl");
-            }
-            else
-            {
-                LanguageManager.SetLanguage("en");
-            }
+            language langForm = new language();
+            langForm.ShowDialog();
             ApplyLanguage();
-            checkLabelsForSettings();
         }
-
         /// <summary>
         ///     Initialize the form and store the original size and bounds of controls for resizing. It calls the Initialize method of the ResizeControl class, which stores the original size of the form and the original bounds of all controls in a dictionary. This allows the application to resize controls proportionally when the form is resized, maintaining a consistent layout regardless of the form's size.
         /// </summary>
@@ -262,6 +254,11 @@ namespace AI_vs_HUMAN
         /// </summary>
         private async void randomFilePrepare()
         {
+            if (allFiles == null || allFiles.Length == 0)
+            {
+                MessageBox.Show(Resources.chosenFolderNoExist);
+                return;
+            }
             selectdImagePath = allFiles[rnd.Next(allFiles.Length)];
             await Task.Delay(200);
             string ext = System.IO.Path.GetExtension(selectdImagePath).ToLower();

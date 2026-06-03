@@ -81,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiComunication.cs" />
+    <Compile Include="language.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="language.Designer.cs">
+      <DependentUpon>language.cs</DependentUpon>
+    </Compile>
     <Compile Include="LanguageManager.cs" />
     <Compile Include="research_setting.cs">
       <SubType>Form</SubType>
@@ -121,6 +127,10 @@
     <Compile Include="main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="language.resx">
+      <DependentUpon>language.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="research_setting.resx">
       <DependentUpon>research_setting.cs</DependentUpon>
     </EmbeddedResource>

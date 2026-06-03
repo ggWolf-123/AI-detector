@@ -133,7 +133,7 @@
     <value>CHECK!!!</value>
   </data>
   <data name="answerFileCheck" xml:space="preserve">
-    <value>CONCLISION</value>
+    <value>CONCLUSION</value>
   </data>
   <data name="folderStatus" xml:space="preserve">
     <value>Checked\n{0}\n({1}/{2})</value>
@@ -154,7 +154,7 @@
     <value>Analizing...</value>
   </data>
   <data name="answerAIorNOT_ErrorVideo" xml:space="preserve">
-    <value>Error during video analyz.</value>
+    <value>Error during video analyzer.</value>
   </data>
   <data name="answerAIorNOT_Confidence" xml:space="preserve">
     <value>\nConfidence{0}</value>
@@ -373,7 +373,7 @@
     <value>image</value>
   </data>
   <data name="askVideoIn" xml:space="preserve">
-    <value>vidio</value>
+    <value>video</value>
   </data>
   <data name="askTextIn" xml:space="preserve">
     <value>text</value>
@@ -563,5 +563,8 @@
   </data>
   <data name="startGameFirst" xml:space="preserve">
     <value>Start game first.</value>
+  </data>
+  <data name="chosenFolderNoExist" xml:space="preserve">
+    <value>First, select the folder to conduct your research.</value>
   </data>
 </root>

@@ -43,20 +43,14 @@ namespace AI_vs_HUMAN
             LanguageManager.ApplyLanguageToControls(this);
         }
         /// <summary>
-        ///     Change the language of the application when the changeLang button is clicked. It toggles between English and Polish. After changing the language, it calls ApplyLanguage() to update the UI with the new language.
+        ///     Open the language selection form when the changeLang button is clicked. This allows the user to select a different language for the application. After the user selects a language and closes the language form, the main form will update its UI to reflect the new language selection.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void changeLang_Click(object sender, EventArgs e)
         {
-            if (LanguageManager.CurrentLanguage == "en")
-            {
-                LanguageManager.SetLanguage("pl");
-            }
-            else
-            {
-                LanguageManager.SetLanguage("en");
-            }
+            language langForm = new language();
+            langForm.ShowDialog();
             ApplyLanguage();
             answerFileCheck.Hide();
             folderStatus.Hide();

@@ -80,10 +80,10 @@ Below is a list of features that are already available in the application as wel
 		- [x] Added the ability to check videos
 		- [x] Added the ability to check texts
 		- [x] Checking folders with graphics, videos and texts and returning results in a txt file
-	- [ ] Adding languages and the ability to easily switch between them
+	- [x] Adding languages and the ability to easily switch between them
 		- [x] Polish
-		- [ ] English
-		- [ ] Spanish
+		- [x] English
+		- [x] Spanish
 	- [x] Adding a research module
 		- [x] Personalization of the study (adding time limit, number of files, type of files, scoring, etc.)
 		- [x] Connecting your own files in the research module in a clearly defined format
@@ -122,10 +122,10 @@ Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak 
 		- [x] Dodanie możliwości sprawdzania wideo
 		- [x] Dodanie możliwości sprawdzania tekstów
 		- [x] Sprawdzanie folderów z grafikami, wideo i tekstami oraz zwracaniem wyników w pliku txt
-	- [ ] Dodanie języków i możliwości łatwego przełączania się między nimi
+	- [x] Dodanie języków i możliwości łatwego przełączania się między nimi
 		- [x] Polski
-		- [ ] Angielski
-		- [ ] Hiszpański
+		- [x] Angielski
+		- [x] Hiszpański
 	- [x] Dodanie modułu badawczego
 		- [x] Personalizacja badania(dodanie limitu czasu, ilości plików, rodzaju plików, punktacji itp.)
 		- [x] Podpięcie własnych plików w module badawczym w jasno określonym formacie

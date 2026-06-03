@@ -448,6 +448,15 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Najpierw wybierz folder do przeprowadzania badań..
+        /// </summary>
+        internal static string chosenFolderNoExist {
+            get {
+                return ResourceManager.GetString("chosenFolderNoExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ścieżka wybranego folderu to:.
         /// </summary>
         internal static string chosenFolderPath {

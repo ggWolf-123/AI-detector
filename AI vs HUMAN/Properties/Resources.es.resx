@@ -118,453 +118,453 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="checkFolderButton" xml:space="preserve">
-    <value>Sprawdź pliki z wybranego folderu</value>
+    <value>Comprobar archivos de la carpeta seleccionada</value>
   </data>
   <data name="getFileButton" xml:space="preserve">
-    <value>Podaj plik do sprawdzenia</value>
+    <value>Seleccione un archivo para comprobar</value>
   </data>
   <data name="startButton" xml:space="preserve">
-    <value>Uruchom model (może to zająć kilka minut)</value>
+    <value>Iniciar modelos (puede tardar un minuto)</value>
   </data>
   <data name="changeLang" xml:space="preserve">
-    <value>Zmień język</value>
+    <value>Cambiar idioma</value>
   </data>
   <data name="checkButton" xml:space="preserve">
-    <value>SPRAWDŹ!!!</value>
+    <value>¡¡¡CONTROLAR!!!</value>
   </data>
   <data name="answerFileCheck" xml:space="preserve">
-    <value>WYNIK</value>
+    <value>CONCLUSIÓN</value>
   </data>
   <data name="folderStatus" xml:space="preserve">
-    <value>Sprawdzono\n{0}\n({1}/{2})</value>
+    <value>Comprobado\n{0}\n({1}/{2})</value>
   </data>
   <data name="changeModuleButton" xml:space="preserve">
-    <value>Moduł badawczy</value>
+    <value>Módulo de investigación</value>
   </data>
   <data name="answerAIorNOT" xml:space="preserve">
-    <value>Model mówi: </value>
+    <value>El modelo dice:</value>
   </data>
   <data name="answerAIorNOT_Positive" xml:space="preserve">
-    <value> to jest AI</value>
+    <value>es IA</value>
   </data>
   <data name="answerAIorNOT_Negative" xml:space="preserve">
-    <value> to nie jest AI</value>
+    <value>No es IA</value>
   </data>
   <data name="answerAIorNOT_Analyzing" xml:space="preserve">
-    <value>Analizowanie trwa...</value>
+    <value>Analizando...</value>
   </data>
   <data name="answerAIorNOT_ErrorVideo" xml:space="preserve">
-    <value>Bład podczas analizy wideo.</value>
+    <value>Error durante el análisis de vídeo.</value>
   </data>
   <data name="answerAIorNOT_Confidence" xml:space="preserve">
-    <value>\nPewność {0}</value>
+    <value>\nConfianza{0}</value>
   </data>
   <data name="fileWasNotGiven" xml:space="preserve">
-    <value>Nie podano pliku</value>
+    <value>No se proporcionó el archivo.</value>
   </data>
   <data name="notRightFileFormat" xml:space="preserve">
-    <value>Nieobsługiwany format pliku</value>
+    <value>Formato de archivo no compatible</value>
   </data>
   <data name="errorLoadingFile" xml:space="preserve">
-    <value>Błąd podczas ładowania pliku</value>
+    <value>Error durante la carga del archivo</value>
   </data>
   <data name="errorDuringVideoAnalysis" xml:space="preserve">
-    <value>Błąd podczas analizy wideo: {0}</value>
+    <value>Error durante el análisis de vídeo: {0}</value>
   </data>
   <data name="endFolderCheck" xml:space="preserve">
-    <value>Zakończono sprawdzanie folderu: {0}</value>
+    <value>Finalizada la comprobación de la carpeta: {0}</value>
   </data>
   <data name="chooseFolderDescription" xml:space="preserve">
-    <value>Wybierz folder z plikami do sprawdzenia. Plik csv z wynikami zostanie do niego zapisany.</value>
+    <value>Seleccione la carpeta que contiene los archivos que desea comprobar. El archivo CSV con los resultados se guardará en ella.</value>
   </data>
   <data name="choosenFolderHasNoFiles" xml:space="preserve">
-    <value>Wybrany folder nie zawiera żadnych obrazów, filmów ani plików tekstowych.</value>
+    <value>La carpeta seleccionada no contiene imágenes, vídeos ni archivos de texto.</value>
   </data>
   <data name="folderSelected" xml:space="preserve">
-    <value>Wybrano folder: </value>
+    <value>Carpeta seleccionada:</value>
   </data>
   <data name="errorDuringFileLoad" xml:space="preserve">
-    <value>Błąd podczas ładowania pliku</value>
+    <value>Error durante la carga del archivo</value>
   </data>
   <data name="chooseSpeed" xml:space="preserve">
-    <value>Proszę podać prędkość z zakresu 1-1000.\nLub wybrać jedną z opcji</value>
+    <value>Introduzca una velocidad entre 1 y 1000.\nO elija una de las opciones.</value>
   </data>
   <data name="chooseSpeedOrEnter" xml:space="preserve">
-    <value>Proszę wybrać prędkość lub podać własną.</value>
+    <value>Por favor elija velocidad o ingrese el suyo.</value>
   </data>
   <data name="groupBoxSpeed" xml:space="preserve">
-    <value>Wybierz prędkość przetwarzania wideo</value>
+    <value>Seleccione la velocidad de análisis de vídeo.</value>
   </data>
   <data name="superSlowRadio" xml:space="preserve">
-    <value>Super wolno (każda klatka ma być sprawdzana)</value>
+    <value>Súper rápido (se analizará cada fotograma)</value>
   </data>
   <data name="slowRadio" xml:space="preserve">
-    <value>Wolno (co 15 klatka ma być sprawdzona)</value>
+    <value>Lento (se analizarán cada 15 fotogramas)</value>
   </data>
   <data name="normalRadio" xml:space="preserve">
-    <value>Normalnie (co 30 klatkę)</value>
+    <value>Normal (cada 30 fotogramas)</value>
   </data>
   <data name="fastRadio" xml:space="preserve">
-    <value>Szybko (co 60 klatkę)</value>
+    <value>Rápido (cada 60 cuadros)</value>
   </data>
   <data name="superFastRadio" xml:space="preserve">
-    <value>Super szybko (co 120 klatkę)</value>
+    <value>Super fast (every 120 frame)</value>
   </data>
   <data name="labelFast" xml:space="preserve">
-    <value>Co ile klatek ma być sprawdzane wideo (wartości wpisane nie mają pierwszeństwa)</value>
+    <value>¿Cuántos fotogramas del vídeo deben comprobarse? (Los valores introducidos no tienen prioridad).</value>
   </data>
   <data name="acceptSpeedButton" xml:space="preserve">
-    <value>Potwierdzam prędkość</value>
+    <value>Confirmo la velocidad</value>
   </data>
   <data name="genderGroupBox" xml:space="preserve">
-    <value>Płeć</value>
+    <value>Género</value>
   </data>
   <data name="maleRadio" xml:space="preserve">
-    <value>Mężczyzna</value>
+    <value>Masculino</value>
   </data>
   <data name="femaleRadio" xml:space="preserve">
-    <value>Kobieta</value>
+    <value>Femenina</value>
   </data>
   <data name="otherRadio" xml:space="preserve">
-    <value>Inna</value>
+    <value>Otro</value>
   </data>
   <data name="privateRadio" xml:space="preserve">
-    <value>Nie chcę podawać</value>
+    <value>No quiero dar</value>
   </data>
   <data name="ageLabel" xml:space="preserve">
-    <value>Wiek</value>
+    <value>Edad</value>
   </data>
   <data name="populationBox" xml:space="preserve">
-    <value>Wielkość miejsca zamieszkania</value>
+    <value>Tamaño de la residencia</value>
   </data>
   <data name="villageRadio" xml:space="preserve">
-    <value>Wieś</value>
+    <value>Aldea</value>
   </data>
   <data name="to50Radio" xml:space="preserve">
-    <value>Miasto do 50 tys.</value>
+    <value>Ciudad a 50k</value>
   </data>
   <data name="from50to150Radio" xml:space="preserve">
-    <value>Miasto od 50 tys. do 150 tys.</value>
+    <value>Ciudad de 50k a 150k</value>
   </data>
   <data name="from150to500Radio" xml:space="preserve">
-    <value>Miasto od 150 tys. do 500 tys.</value>
+    <value>Ciudad de 150k a 500k</value>
   </data>
   <data name="over500Radio" xml:space="preserve">
-    <value>Miasto powyżej 500 tys.</value>
+    <value>Ciudad con más de 500k habitantes</value>
   </data>
   <data name="save_results_button" xml:space="preserve">
-    <value>Zapisz wyniki</value>
+    <value>Guardar resultados</value>
   </data>
   <data name="noData" xml:space="preserve">
-    <value>Brakuje danej: </value>
+    <value>Datos faltantes:</value>
   </data>
   <data name="noSexData" xml:space="preserve">
-    <value>Brak danej o płci.</value>
+    <value>Faltan datos sobre el género.</value>
   </data>
   <data name="noPopulationData" xml:space="preserve">
-    <value>Brakuje danej o wielkości miejsca zamieszkania.</value>
+    <value>Faltan datos sobre el tamaño de la vivienda.</value>
   </data>
   <data name="dataSaveTo" xml:space="preserve">
-    <value>Wyniki zostały zapisane do pliku: </value>
+    <value>Los datos se han guardado en un archivo:</value>
   </data>
   <data name="dataSaveToOld" xml:space="preserve">
-    <value>Wyniki zostały zapisane do pliku (stary): </value>
+    <value>Los datos se han guardado en el archivo (antiguo):</value>
   </data>
   <data name="fileExistsAlready" xml:space="preserve">
-    <value>Plik o tej nazwie już istnieje. Wybierz inną nazwę lub użyj istniejącego pliku. Jeśli chcesz korzystać z pliku o tej nazwie to wyjdź z ustawień, a wszystkie ustawienia zostaną przywrócone do ostatniej zaakceptowanej konfiguracji. Dzięki temu będziesz mógł/mogła kontynuować pracę na tym pliku.</value>
+    <value>Ya existe un archivo con este nombre. Elija otro nombre o utilice un archivo existente. Si desea utilizar un archivo con este nombre, salga de la configuración y se restaurará la última configuración aceptada. Esto le permitirá continuar trabajando en este archivo.</value>
   </data>
   <data name="yourAskNotNamed" xml:space="preserve">
-    <value>Pole 'Twoja Dana {0}' jest zaznaczone, ale nie podano nazwy kolumny. Zapis zostaje zatrzymany.</value>
+    <value>El campo 'Tus datos {0}' está marcado, pero no se ha proporcionado el nombre de la columna. El registro se ha detenido.</value>
   </data>
   <data name="yourAskNotChosenData" xml:space="preserve">
-    <value>Pole 'Twoja Dana {0}' jest zaznaczone, ale nie wybrano typu danych (Numeric/String). Zapis zostaje zatrzymany.</value>
+    <value>El campo 'Sus datos {0}' está marcado, pero el tipo de datos (Numérico/Cadena) no está seleccionado. El registro se detiene.</value>
   </data>
   <data name="chooseFolderToSave" xml:space="preserve">
-    <value>Wybierz folder docelowy do zapisywania wyników.</value>
+    <value>Seleccione la carpeta donde desea guardar el resultado.</value>
   </data>
   <data name="chooseExistingFile" xml:space="preserve">
-    <value>Wybierz istniejący plik do zapisywania wyników.</value>
+    <value>Seleccione un archivo existente para guardar el resultado.</value>
   </data>
   <data name="chooseExistingFileExtension" xml:space="preserve">
-    <value>Pliki tekstowe (*.txt)|*.txt|Pliki CSV (*.csv)|*.csv</value>
+    <value>Archivos de texto (*.txt)|*.txt|Archivos CSV (*.csv)|*.csv</value>
   </data>
   <data name="fileChoosenOK" xml:space="preserve">
-    <value>Plik został pomyślnie wybrany.</value>
+    <value>La selección del archivo fue exitosa.</value>
   </data>
   <data name="fileChoosenNotOK" xml:space="preserve">
-    <value>Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny.</value>
+    <value>El archivo seleccionado no es compatible. Asegúrese de que contenga las columnas adecuadas.</value>
   </data>
   <data name="chooseExistingFileOrNew" xml:space="preserve">
-    <value>Musisz wybrać istniejący plik lub utworzyć nowy aby kontynuować.</value>
+    <value>Para continuar, debe seleccionar un archivo existente o crear uno nuevo.</value>
   </data>
   <data name="giveFileName" xml:space="preserve">
-    <value>Podaj nazwę nowego pliku.</value>
+    <value>Introduzca el nombre del nuevo archivo.</value>
   </data>
   <data name="chooseFolderNameToSave" xml:space="preserve">
-    <value>Musisz wybrać folder docelowy, aby utworzyć nowy plik.</value>
+    <value>Debes seleccionar la carpeta de destino para crear un nuevo archivo.</value>
   </data>
   <data name="chosenFileIsNotCombatible" xml:space="preserve">
-    <value>Wybrany plik nie jest kompatybilny. Upewnij się, że zawiera odpowiednie kolumny lub odznacz go.</value>
+    <value>El archivo seleccionado no es compatible. Asegúrese de que contenga las columnas adecuadas o desactive la opción.</value>
   </data>
   <data name="chosenFileToExtend" xml:space="preserve">
-    <value>Ścieżka wybranego pliku do rozszerzenia to:</value>
+    <value>La ruta del archivo seleccionado para ser extendido es:</value>
   </data>
   <data name="chosenFolderPath" xml:space="preserve">
-    <value>Ścieżka wybranego folderu to:</value>
+    <value>La ruta de la carpeta seleccionada es:</value>
   </data>
   <data name="settingsAsk" xml:space="preserve">
-    <value>Wybierz opcje</value>
+    <value>Ajustes</value>
   </data>
   <data name="wasThatAi" xml:space="preserve">
-    <value>Pokaż czy poprzedni przykład został wygenerowany przez AI</value>
+    <value>Muestra si el ejemplo anterior fue generado por IA.</value>
   </data>
   <data name="pointAskBox" xml:space="preserve">
-    <value>Licz punkty</value>
+    <value>Puntos de conteo</value>
   </data>
   <data name="goodAnswer" xml:space="preserve">
-    <value>Poprawna odpowiedz</value>
+    <value>Respuesta correcta</value>
   </data>
   <data name="badAnswer" xml:space="preserve">
-    <value>Niepoprawna odpowiedz</value>
+    <value>Respuesta incorrecta</value>
   </data>
   <data name="showResult" xml:space="preserve">
-    <value>Pokaż wynik</value>
+    <value>Mostrar resultado</value>
   </data>
   <data name="askTimeMax" xml:space="preserve">
-    <value>Ustaw czas badania w sekundach</value>
+    <value>Establezca el tiempo de prueba en segundos.</value>
   </data>
   <data name="askSaveHowLong" xml:space="preserve">
-    <value>Mierz ile czasu trwało badanie</value>
+    <value>Mide cuánto tiempo duró la prueba.</value>
   </data>
   <data name="askLimitImg" xml:space="preserve">
-    <value>Ustaw limit wylosowanych zdjęć</value>
+    <value>Establece el límite de los dibujos que has hecho.</value>
   </data>
   <data name="askSavePaths" xml:space="preserve">
-    <value>Zapisz ścieżki wylosowanych zdjęć do txt</value>
+    <value>Guarda los trazados de las fotos dibujadas en txt.</value>
   </data>
   <data name="askGender" xml:space="preserve">
-    <value>Zapytaj o płeć</value>
+    <value>Preguntar sobre el género</value>
   </data>
   <data name="askYears" xml:space="preserve">
-    <value>Zapytaj o wiek</value>
+    <value>Preguntar sobre la edad</value>
   </data>
   <data name="askPopulation" xml:space="preserve">
-    <value>Zapytaj o wielkość miejsca zamieszkania</value>
+    <value>Pregunte por el tamaño de la residencia</value>
   </data>
   <data name="showAnswerByColor" xml:space="preserve">
-    <value>Pokaż odpowiedź po przez kolor</value>
+    <value>Mostrar respuesta después por color</value>
   </data>
   <data name="aiAnswersToo" xml:space="preserve">
-    <value>AI też ocenia</value>
+    <value>La IA también responde</value>
   </data>
   <data name="showAiAnswers" xml:space="preserve">
-    <value>Pokaż jak idzie AI</value>
+    <value>Muestra cómo le va a la IA.</value>
   </data>
   <data name="showHumanAnswers" xml:space="preserve">
-    <value>Pokaż jak idzie uczestnikowi</value>
+    <value>Mostrar cómo está el participante</value>
   </data>
   <data name="newQuestion" xml:space="preserve">
-    <value>Zapytanie</value>
+    <value>Pregunta</value>
   </data>
   <data name="fileToLoad" xml:space="preserve">
-    <value>Z jakich plików losować?</value>
+    <value>¿De qué archivos extraer?</value>
   </data>
   <data name="askImageIn" xml:space="preserve">
-    <value>graficzne</value>
+    <value>imagen</value>
   </data>
   <data name="askVideoIn" xml:space="preserve">
-    <value>wideo</value>
+    <value>video</value>
   </data>
   <data name="askTextIn" xml:space="preserve">
-    <value>tekstowe</value>
+    <value>texto</value>
   </data>
   <data name="askExistingData" xml:space="preserve">
-    <value>Wybierz istniejące badania do dopisania (musi mieć te same ustawienia)</value>
+    <value>Seleccione estudios existentes para ampliar (deben tener la misma configuración).</value>
   </data>
   <data name="nameOfNewFileLabel" xml:space="preserve">
-    <value>Nazwa pliku</value>
+    <value>Nombre del archivo</value>
   </data>
   <data name="newFileToTXT" xml:space="preserve">
-    <value>Zapisz jako txt</value>
+    <value>Guardar como txt</value>
   </data>
   <data name="newFileToCSV" xml:space="preserve">
-    <value>Zapisz jako csv</value>
+    <value>Guardar como csv</value>
   </data>
   <data name="settingAcceptButton" xml:space="preserve">
-    <value>Zatwierdź</value>
+    <value>Aceptar configuración</value>
   </data>
   <data name="funMode" xml:space="preserve">
-    <value>Tryb bez zapisywania danych</value>
+    <value>Modo sin guardar datos</value>
   </data>
   <data name="yourAsk1" xml:space="preserve">
-    <value>Własna dana 1</value>
+    <value>Tus datos 1</value>
   </data>
   <data name="yourAsk5" xml:space="preserve">
-    <value>Własna dana 5</value>
+    <value>Tus datos 5</value>
   </data>
   <data name="yourAsk4" xml:space="preserve">
-    <value>Własna dana 4</value>
+    <value>Tus datos 4</value>
   </data>
   <data name="yourAsk3" xml:space="preserve">
-    <value>Własna dana 3</value>
+    <value>Tus datos 3</value>
   </data>
   <data name="yourAsk2" xml:space="preserve">
-    <value>Własna dana 2</value>
+    <value>Tus datos 2</value>
   </data>
   <data name="yourAsk1Box" xml:space="preserve">
-    <value>Własna dana 1</value>
+    <value>Tus datos 1</value>
   </data>
   <data name="yourAsk5Box" xml:space="preserve">
-    <value>Własna dana 5</value>
+    <value>Tus datos 5</value>
   </data>
   <data name="yourAsk4Box" xml:space="preserve">
-    <value>Własna dana 4</value>
+    <value>Tus datos 4</value>
   </data>
   <data name="yourAsk3Box" xml:space="preserve">
-    <value>Własna dana 3</value>
+    <value>Tus datos3</value>
   </data>
   <data name="yourAsk2Box" xml:space="preserve">
-    <value>Własna dana 2</value>
+    <value>Tus datos2</value>
   </data>
   <data name="yourAsk1NumericRadio" xml:space="preserve">
-    <value>numeryczna</value>
+    <value>numérico</value>
   </data>
   <data name="yourAsk3NumericRadio" xml:space="preserve">
-    <value>numeryczna</value>
+    <value>numérico</value>
   </data>
   <data name="yourAsk2NumericRadio" xml:space="preserve">
-    <value>numeryczna</value>
+    <value>numérico</value>
   </data>
   <data name="yourAsk5NumericRadio" xml:space="preserve">
-    <value>numeryczna</value>
+    <value>numérico</value>
   </data>
   <data name="yourAsk4NumericRadio" xml:space="preserve">
-    <value>numeryczna</value>
+    <value>numérico</value>
   </data>
   <data name="yourAsk1StringRadio" xml:space="preserve">
-    <value>napis</value>
+    <value>texto</value>
   </data>
   <data name="yourAsk5StringRadio" xml:space="preserve">
-    <value>napis</value>
+    <value>texto</value>
   </data>
   <data name="yourAsk4StringRadio" xml:space="preserve">
-    <value>napis</value>
+    <value>texto</value>
   </data>
   <data name="yourAsk3StringRadio" xml:space="preserve">
-    <value>napis</value>
+    <value>texto</value>
   </data>
   <data name="yourAsk2StringRadio" xml:space="preserve">
-    <value>napis</value>
+    <value>texto</value>
   </data>
   <data name="yourAsk1Name" xml:space="preserve">
-    <value>Nazwa tej danej</value>
+    <value>El nombre de estos datos</value>
   </data>
   <data name="yourAsk5Name" xml:space="preserve">
-    <value>Nazwa tej danej</value>
+    <value>El nombre de estos datos</value>
   </data>
   <data name="yourAsk4Name" xml:space="preserve">
-    <value>Nazwa tej danej</value>
+    <value>El nombre de estos datos</value>
   </data>
   <data name="yourAsk3Name" xml:space="preserve">
-    <value>Nazwa tej danej</value>
+    <value>El nombre de estos datos</value>
   </data>
   <data name="yourAsk2Name" xml:space="preserve">
-    <value>Nazwa tej danej</value>
+    <value>El nombre de estos datos</value>
   </data>
   <data name="questionMG" xml:space="preserve">
-    <value>Czy ten plik został wygenerowany przez AI?</value>
+    <value>¿Ese archivo fue generado por IA?</value>
   </data>
   <data name="restartButton" xml:space="preserve">
-    <value>Reset</value>
+    <value>Reiniciar</value>
   </data>
   <data name="goBackButton" xml:space="preserve">
-    <value>Wróć</value>
+    <value>Devolver</value>
   </data>
   <data name="settingsOfData" xml:space="preserve">
-    <value>Ustawienia</value>
+    <value>Ajustes</value>
   </data>
   <data name="endButton" xml:space="preserve">
-    <value>Przerwij badanie</value>
+    <value>Detener la investigación</value>
   </data>
   <data name="humanScore" xml:space="preserve">
-    <value>Twój wynik</value>
+    <value>Tu puntuación</value>
   </data>
   <data name="aiScore" xml:space="preserve">
-    <value>Wynik AI</value>
+    <value>Puntuación de IA</value>
   </data>
   <data name="noButton" xml:space="preserve">
-    <value>NIE</value>
+    <value>NO</value>
   </data>
   <data name="yesButton" xml:space="preserve">
-    <value>TAK</value>
+    <value>SÍ</value>
   </data>
   <data name="youRight" xml:space="preserve">
-    <value>Miałeś / -aś rację : </value>
+    <value>Tenías razón:</value>
   </data>
   <data name="youWrong" xml:space="preserve">
-    <value>Pomyliłeś /-aś się : </value>
+    <value>You were wrong : </value>
   </data>
   <data name="resetFileButton" xml:space="preserve">
-    <value>Reset pliku do dopisania</value>
+    <value>Restablecer archivo para extender</value>
   </data>
   <data name="aiScoreR" xml:space="preserve">
-    <value>Wynik AI</value>
+    <value>Puntuación de IA</value>
   </data>
   <data name="aiRight" xml:space="preserve">
-    <value>AI miało rację : </value>
+    <value>La IA tenía razón:</value>
   </data>
   <data name="aiWrong" xml:space="preserve">
-    <value>AI pomyliło się : </value>
+    <value>AI estaba equivocado:</value>
   </data>
   <data name="chooseFolderToR" xml:space="preserve">
-    <value>Wybierz główny folder z plikami</value>
+    <value>Seleccione la carpeta principal con los archivos.</value>
   </data>
   <data name="folderNotChosen" xml:space="preserve">
-    <value>Nie wybrano folderu.</value>
+    <value>No se seleccionó ninguna carpeta.</value>
   </data>
   <data name="invalidFolderStructure" xml:space="preserve">
-    <value>Struktura wybranego folderu jest nieprawidłowa, sprawdź ją w README.</value>
+    <value>La estructura de la carpeta seleccionada es incorrecta; por favor, compruébela en el archivo README.</value>
   </data>
   <data name="chosenFolderR" xml:space="preserve">
-    <value>Wybrano folder : </value>
+    <value>Carpeta seleccionada:</value>
   </data>
   <data name="chosenFolderNoChosenFiles" xml:space="preserve">
-    <value>Wybrany folder nie zawiera żadnych plików o wybranym formacie.</value>
+    <value>La carpeta seleccionada no contiene ningún archivo con el formato seleccionado.</value>
   </data>
   <data name="errorWhileLoadingFile" xml:space="preserve">
-    <value>Błąd podczas ładowania pliku</value>
+    <value>Error al cargar el archivo</value>
   </data>
   <data name="errorWhileCheckingFile" xml:space="preserve">
-    <value>Błąd podczas sprawdzania pliku przez AI</value>
+    <value>Error mientras la IA está comprobando el archivo</value>
   </data>
   <data name="errorWhileSavingData" xml:space="preserve">
-    <value>Błąd podczas zapisywania danych : </value>
+    <value>Error al guardar los datos:</value>
   </data>
   <data name="previousTitle" xml:space="preserve">
-    <value>Poprzedni plik</value>
+    <value>Archivo anterior</value>
   </data>
   <data name="previousAnswerYES" xml:space="preserve">
-    <value>była wygenerowana przez AI</value>
+    <value>fue generado por IA</value>
   </data>
   <data name="previousAnswerNO" xml:space="preserve">
-    <value>nie była wygenerowana przez AI</value>
+    <value>no fue generado por IA</value>
   </data>
   <data name="endGamePoints" xml:space="preserve">
-    <value>Koniec gry! Zdobyłeś tyle punktów :  {0}</value>
+    <value>¡Fin del juego! Has conseguido demasiados puntos: {0}</value>
   </data>
   <data name="endGame" xml:space="preserve">
-    <value>Koniec gry!</value>
+    <value>¡Fin del juego!</value>
   </data>
   <data name="endGameTime" xml:space="preserve">
-    <value>Koniec gry! Czas minął!</value>
+    <value>¡Se acabó el juego! ¡El tiempo ha pasado!</value>
   </data>
   <data name="timeLabel" xml:space="preserve">
-    <value>Czas : </value>
+    <value>Tiempo :</value>
   </data>
   <data name="startGameFirst" xml:space="preserve">
-    <value>Najpierw rozpocznij grę.</value>
+    <value>Comienza primero el juego.</value>
   </data>
   <data name="chosenFolderNoExist" xml:space="preserve">
-    <value>Najpierw wybierz folder do przeprowadzania badań.</value>
+    <value>Primero, seleccione la carpeta para realizar su investigación.</value>
   </data>
 </root>

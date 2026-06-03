@@ -113,9 +113,9 @@
             // changeLang
             // 
             this.changeLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
-            this.changeLang.Location = new System.Drawing.Point(912, 8);
+            this.changeLang.Location = new System.Drawing.Point(904, 8);
             this.changeLang.Name = "changeLang";
-            this.changeLang.Size = new System.Drawing.Size(290, 110);
+            this.changeLang.Size = new System.Drawing.Size(298, 110);
             this.changeLang.TabIndex = 6;
             this.changeLang.Text = "Zmień język";
             this.changeLang.UseVisualStyleBackColor = true;
