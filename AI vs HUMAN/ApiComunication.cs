@@ -53,9 +53,16 @@ namespace AI_vs_HUMAN
         private static PythonEnvConfig StartENV()
         {
             string baseDir=AppContext.BaseDirectory;
+
+            ///Debug
             string solutionRoot=Directory.GetParent(baseDir).Parent.Parent.Parent.FullName;
             string fastApiDir = Path.Combine(solutionRoot, "AI vs HUMAN", "fastapi_model");
             string venvPath = Path.Combine(solutionRoot, "env", "Scripts", "python.exe");
+            ///
+            ///Release
+            ///string fastApiDir = Path.Combine(baseDir, "fastapi_model");
+            ///string venvPath = Path.Combine(baseDir, "env", "Scripts", "python.exe");
+
             if (!Directory.Exists(fastApiDir))
             {
                 MessageBox.Show(fastApiDir);

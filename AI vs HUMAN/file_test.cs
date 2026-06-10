@@ -120,21 +120,18 @@ namespace AI_vs_HUMAN
             try
             {
                 buttonChange();
+                answerFileCheck.Hide();
+                folderStatus.Hide();
+                answerAIorNOT.Show();
                 string filePath= this.filePathMain.FileName;
                 string ext = System.IO.Path.GetExtension(filePath).ToLower();
                 if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif")
                 {
                     int result_from_model = await ApiComunication.SendImageToModel(this.filePathMain.FileName);
                     if (result_from_model == 0)
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Negative
-                        );
+                        answerAIorNOT.Text = Resources.answerAIorNOT + Resources.answerAIorNOT_Negative;
                     else if (result_from_model == 1)
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Positive
-                        );
+                        answerAIorNOT.Text = Resources.answerAIorNOT + Resources.answerAIorNOT_Positive;
                 }
                 else if (ext == ".mp4" || ext == ".avi" || ext == ".mov")
                 {
@@ -157,21 +154,11 @@ namespace AI_vs_HUMAN
                     }
                     else if(result_from_model < 50) //result_from_model is a percentage of frames classified as AI, so if it's less than 50%, we say it's not AI
                     {
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Negative,
-                        Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine),
-                        (100.0 - result_from_model).ToString("F2")
-                        );
+                        answerAIorNOT.Text = Resources.answerAIorNOT+ Resources.answerAIorNOT_Negative+ Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine)+ (100.0 - result_from_model).ToString("F2")+"%";
                     }
                     else
                     {
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Positive,
-                        Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine),
-                        result_from_model.ToString("F2")
-                        );
+                        answerAIorNOT.Text = Resources.answerAIorNOT+ Resources.answerAIorNOT_Positive+ Resources.answerAIorNOT_Confidence.Replace("\\n", Environment.NewLine)+ result_from_model.ToString("F2")+"%";
                     }
                 }
                 else if (ext == ".txt")
@@ -180,15 +167,9 @@ namespace AI_vs_HUMAN
                     text=await ApiComunication.SentTextToTranslate(text);
                     int result_from_model = await ApiComunication.SentTextToModel(text);
                     if (result_from_model == 0)
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Negative
-                        );
+                        answerAIorNOT.Text =Resources.answerAIorNOT+Resources.answerAIorNOT_Negative;
                     else if (result_from_model == 1)
-                        answerAIorNOT.Text = string.Format(
-                        Resources.answerAIorNOT,
-                        Resources.answerAIorNOT_Positive
-                        );
+                        answerAIorNOT.Text = Resources.answerAIorNOT + Resources.answerAIorNOT_Positive;
                 }
                 else
                 {
@@ -220,8 +201,8 @@ namespace AI_vs_HUMAN
             var header = "File Name;Result";
             System.IO.File.WriteAllText(path, header + Environment.NewLine);
             buttonChange();
-            answerFileCheck.Hide();
-            folderStatus.Hide();
+            answerFileCheck.Show();
+            folderStatus.Show();
             answerAIorNOT.Hide();
             foreach (string file in allFiles)
             {
