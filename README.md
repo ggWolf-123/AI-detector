@@ -33,6 +33,32 @@ The models were trained independently on both self-prepared data and publicly av
 - "AI vs Human Text Classification Dataset 2026" © Alita Qishah — CC0: Public Domain
 - "AI and Human Text Dataset" © Hasany Iitakbulut — CC BY 4.0
 
+
+### How to install
+
+After download open terminal in APP\AI vs HUMAN and create envirement like that:
+
+```bash
+pip install -r requirements.txt
+```
+
+then activate envirement
+
+```bash
+env\Scripts\Activate.ps1
+```
+
+and install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+after that your project structire should look like this
+
+![After installation structure](pstructure.png)
+
+
 ### How to use
 
 ###### main
@@ -83,6 +109,30 @@ Modele zostały wytrenowane samodzielnie na własnoręcznie przygotowanych danyc
 - "AI vs Human Text" © Shane Gerami — Licencja nieokreślona
 - "AI vs Human Text Classification Dataset 2026" © Alita Qishah — CC0: Public Domain
 - "AI and Human Text Dataset" © Hasany Iitakbulut — CC BY 4.0
+
+### Jak zainstalować
+
+Po pobraniu otwórz terminal w APP\AI vs HUMAN i utwórz środowisko w następujący sposób:
+
+```bash
+pip install -r requirements.txt
+```
+
+Następnie aktywuj środowisko
+
+```bash
+env\Scripts\Activate.ps1
+```
+
+i zainstaluj wymagania
+
+```bash
+pip install -r requirements.txt
+```
+
+Po tym struktura projektu powinna wyglądać następująco:
+
+![Struktura po instalacji](pstructure.png)
 
 ### Jak korzystać
 
