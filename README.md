@@ -169,7 +169,7 @@ The tool is free because I want to show that artificial intelligence can be used
 
 Below is a list of features that are already available in the application as well as those being added.
 
-- [ ] Version 1.0
+- [x] Version 1.0
 	- [x] Basic file checking functions
 		- [x] Added the ability to check graphics
 		- [x] Added the ability to check videos
@@ -210,7 +210,7 @@ Narzędzie jest darmowe, ponieważ chcę pokazać, że sztuczna inteligencja mo�
 
 Poniżej znajduje się lista funkcji, które są już dostępne w aplikacji jak i będących w fazie dodawania.
 
-- [ ] Wersja 1.0
+- [x] Wersja 1.0
 	- [x] Podstawowe funkcje sprawdzania plików
 		- [x] Dodanie możliwości sprawdzania grafik
 		- [x] Dodanie możliwości sprawdzania wideo
