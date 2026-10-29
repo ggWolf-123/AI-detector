@@ -567,4 +567,7 @@
   <data name="chosenFolderNoExist" xml:space="preserve">
     <value>Primero, seleccione la carpeta para realizar su investigación.</value>
   </data>
+  <data name="startGameButton" xml:space="preserve">
+    <value>Comience</value>
+  </data>
 </root>

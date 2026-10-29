@@ -1078,6 +1078,15 @@ namespace AI_vs_HUMAN.Properties {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Zacznij.
+        /// </summary>
+        internal static string startGameButton {
+            get {
+                return ResourceManager.GetString("startGameButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Najpierw rozpocznij grę..
         /// </summary>
         internal static string startGameFirst {

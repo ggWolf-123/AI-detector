@@ -567,4 +567,7 @@
   <data name="chosenFolderNoExist" xml:space="preserve">
     <value>First, select the folder to conduct your research.</value>
   </data>
+  <data name="startGameButton" xml:space="preserve">
+    <value>Start</value>
+  </data>
 </root>
